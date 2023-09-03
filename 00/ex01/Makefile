@@ -1,6 +1,8 @@
 NAME		=	phonebook
 
-SOURCES		=	megaphone.cpp
+SOURCES		=	main.cpp \
+				Contact.cpp \
+				PhoneBook.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs

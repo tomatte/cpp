@@ -3,14 +3,19 @@
 #include <string>
 
 class Contact {
-	std::string first_name;
-	std::string last_name;
-	std::string nickname;
-	std::string dark_secret;
-	std::string	phone_number;
+	std::string _first_name;
+	std::string _last_name;
+	std::string _nickname;
+	std::string _dark_secret;
+	std::string	_phone_number;
+	static bool	is_empty(std::string str);
 	public:
 		Contact(void);
+		Contact(Contact const & rhs);
 		~Contact(void);
+
+		Contact &	operator=(Contact const & rhs);
+
 		std::string get_first_name(void) const;
 		std::string get_last_name(void) const;
 		std::string get_nickname(void) const;
@@ -19,11 +24,9 @@ class Contact {
 		void		 set_first_name(std::string name);
 		void		 set_last_name(std::string name);
 		void		 set_nickname(std::string name);
-		void		 set_dark_secret(std::string name);
+		void		 set_dark_secret(std::string secret);
 		void		 set_phone_number(std::string number);
 
 };
 
 #endif
-
-//irst name, last name, nickname, phone number, and darkest secret
