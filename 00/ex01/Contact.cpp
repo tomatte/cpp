@@ -1,5 +1,6 @@
 #include "Contact.hpp"
 #include <string>
+#include <iostream>
 
 Contact::Contact(void) : _first_name("") {
 	return ;
@@ -65,4 +66,14 @@ void	Contact::set_phone_number(std::string number) {
 
 void	Contact::set_dark_secret(std::string secret) {
 	this->_dark_secret = secret;
+}
+
+void	Contact::show(void) const {
+	std::cout << "------------- CONTACT -------------\n";
+	std::cout << "First name: " << this->_first_name << "\n";
+	std::cout << "Last name: " << this->_last_name << "\n";
+	std::cout << "Nickname: " << this->_nickname << "\n";
+	std::cout << "Darkest secret: " << this->_dark_secret << "\n";
+	std::cout << "Phone number: " << this->_phone_number << "\n";
+	std::cout << "------------------------------------\n";
 }

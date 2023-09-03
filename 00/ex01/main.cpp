@@ -49,7 +49,7 @@ void	search_contact(PhoneBook & phone_book) {
 
  	phone_book.show_contacts();
 	index = read_index();
-	std::cout << "FOUND: " << phone_book.get_contact(index - 1).get_first_name() << "\n";
+	phone_book.get_contact(index - 1).show();
 }
 
 int	main(void) {
