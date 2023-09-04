@@ -98,6 +98,21 @@ t_data	normalized_length(int limit, std::string& str) {
 	return data;
 }
 
+std::string	put_a_dot(int limit, std::string &str) {
+	int	i = 0;
+	int	real_len = 0;
+	std::string	str_with_dot;
+
+	while (i < (int) str.length()) {
+		real_len++;
+		i += char_size(str[i]);
+		if (real_len + 1 == limit)
+			break ;
+	}
+	str_with_dot = str.substr(0, i) + ".";
+	return (str_with_dot);
+}
+
 void	PhoneBook::print_with_pipe(std::string str) {
 	std::string	limited;
 	t_data		len;
@@ -106,6 +121,10 @@ void	PhoneBook::print_with_pipe(std::string str) {
 	limited = str.substr(0, len.len);
 	std::cout << "|";
 	std::cout << std::right;
+	if ((int) str.length() > len.len) {
+		limited = put_a_dot(10, limited);
+		len = normalized_length(10, limited);
+	}
 	std::cout.width(len.len + (10 - len.real_len));
 	std::cout << limited;
 }

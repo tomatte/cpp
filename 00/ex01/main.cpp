@@ -86,26 +86,11 @@ void	search_contact(PhoneBook & phone_book) {
 	phone_book.get_contact(index - 1).show();
 }
 
-/* void	debug(std::string str) {
-	t_data data;
-
-	data = normalized_length(10, str);
-	std::cout << "str: " << str << "\n";
-	std::cout << "len: " << data.len << "\n";
-	std::cout << "normalized len: " << data.real_len << "\n";
-} */
 
 int	main(void) {
 	PhoneBook	phone_book;
 	std::string	command;
 
-
-/* 	std::string str;
-	while (1) {
-		std::cout << "> ";
-		std::getline(std::cin, str);
-		debug(str);
-	} */
 	while (1) {
 		std::cout << "COMMANDS: [EXIT, SEARCH, ADD]\n";
 		std::cout << "> ";
