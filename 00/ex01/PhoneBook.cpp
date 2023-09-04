@@ -56,23 +56,58 @@ void	PhoneBook::print_multiple_char(char c, int n) {
 	}
 }
 
-int	abs(int num) {
-	if (num < 0)
-		return (num * -1);
-	return (num);
+bool	is_special_char(unsigned char c) {
+    return (c & 0xC0) == 0xC0;
+}
+
+typedef struct s_data {
+	int	len;
+	int	real_len;
+}	t_data;
+
+int	char_size(unsigned char c) {
+	unsigned char const	B1 = 0b00000000;
+	unsigned char const	B2 = 0b11000000;
+	unsigned char const	B3 = 0b11100000;
+	unsigned char const	B4 = 0b11110000;
+
+	if ((c & 0b10000000) == B1)
+		return (1);
+	if ((c & 0b11100000) == B2)
+		return (2);
+	if ((c & 0b11110000) == B3)
+		return (3);
+	if ((c & 0b11111000) == B4)
+		return (4);
+	return (1);
+}
+
+t_data	normalized_length(int limit, std::string& str) {
+	int	i = 0;
+	int	real_len = 0;
+	t_data	data;
+
+	while (i < (int) str.length()) {
+		real_len++;
+		i += char_size(str[i]);
+		if (real_len == limit)
+			break ;
+	}
+	data.len = i;
+	data.real_len = real_len;
+	return data;
 }
 
 void	PhoneBook::print_with_pipe(std::string str) {
 	std::string	limited;
+	t_data		len;
 
-	limited = str.substr(0, 10);
+	len = normalized_length(10, str);
+	limited = str.substr(0, len.len);
 	std::cout << "|";
 	std::cout << std::right;
-	std::cout.width(10);
-	if (str.length() > 10)
-		limited[9] = '.';
+	std::cout.width(len.len + (10 - len.real_len));
 	std::cout << limited;
-	//std::cout << "Padding: " << padding << std::endl;
 }
 
 void	PhoneBook::print_with_pipe(int index) {
