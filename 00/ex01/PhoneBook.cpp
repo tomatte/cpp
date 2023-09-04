@@ -34,7 +34,7 @@ int	PhoneBook::has_empty_field(Contact & c) {
 }
 
 void	PhoneBook::add_contact(Contact & contact) {
-	if (has_empty_field(contact)) {
+	if (PhoneBook::has_empty_field(contact)) {
 		std::cout << "Fail to add contact: empty field" << std::endl;
 		return ;
 	}
@@ -56,31 +56,30 @@ void	PhoneBook::print_multiple_char(char c, int n) {
 	}
 }
 
-int		PhoneBook::get_length(std::string str) {
-	int	negatives;
-	int	len;
-
-	negatives = 0;
-	for (len = 0; len < (int) str.length(); len++) {
-		if (str[len] < 0)
-			negatives++;
-	}
-	return (len - (negatives / 2));
+int	abs(int num) {
+	if (num < 0)
+		return (num * -1);
+	return (num);
 }
 
 void	PhoneBook::print_with_pipe(std::string str) {
 	std::string	limited;
 
+	limited = str.substr(0, 10);
 	std::cout << "|";
 	std::cout << std::right;
-	limited = str.substr(0, 10);
-	std::cout << std::setw(10) << limited;
+	std::cout.width(10);
+	if (str.length() > 10)
+		limited[9] = '.';
+	std::cout << limited;
+	//std::cout << "Padding: " << padding << std::endl;
 }
 
 void	PhoneBook::print_with_pipe(int index) {
 	std::cout << "|";
 	std::cout << std::right;
-	std::cout << std::setw(10) << index;
+	std::cout.width(10);
+	std::cout << index;
 }
 
 void	PhoneBook::show_contacts(void) const {

@@ -8,7 +8,6 @@ class Contact {
 	std::string _nickname;
 	std::string _dark_secret;
 	std::string	_phone_number;
-	static bool	is_empty(std::string str);
 	public:
 		Contact(void);
 		Contact(Contact const & rhs);

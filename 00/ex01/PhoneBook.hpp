@@ -17,7 +17,6 @@ class PhoneBook {
 	
 		PhoneBook &		operator=(PhoneBook const & rhs);
 
-		static int		get_length(std::string str);
 		Contact const &	get_contact(int i) const;
 		void			add_contact(Contact & contact);
 		void			show_contacts(void) const;
