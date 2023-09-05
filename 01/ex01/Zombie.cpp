@@ -2,7 +2,7 @@
 #include <iostream>
 
 Zombie::Zombie(void) {
-	std::cout << "Basic constructor: Danger!!! Zombie spawned!\n";
+	std::cout << "Default constructor: Danger!!! Zombie spawned!\n";
 }
 
 Zombie::Zombie(std::string name) : _name(name) {
