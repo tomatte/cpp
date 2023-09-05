@@ -1,4 +1,4 @@
-NAME		=	phonebook
+NAME		=	zombie
 
 SOURCES		=	main.cpp \
 				Zombie.cpp \

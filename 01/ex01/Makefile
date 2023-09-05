@@ -1,4 +1,4 @@
-NAME		=	phonebook
+NAME		=	horde
 
 SOURCES		=	main.cpp \
 				Zombie.cpp \
