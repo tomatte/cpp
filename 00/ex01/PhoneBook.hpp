@@ -9,7 +9,6 @@ class PhoneBook {
 	int			has_empty_field(Contact & c);
 	static void print_with_pipe(std::string str);
 	static void print_with_pipe(int index);
-	static void	print_multiple_char(char c, int n);
 	public:
 		PhoneBook(void);
 		PhoneBook(PhoneBook const & rhs);

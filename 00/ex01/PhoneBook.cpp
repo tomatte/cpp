@@ -50,16 +50,6 @@ Contact const &	PhoneBook::get_contact(int i) const {
 	return this->contacts[i];
 }
 
-void	PhoneBook::print_multiple_char(char c, int n) {
-	for (int i = 0; i < n; i++) {
-		std::cout << c;
-	}
-}
-
-bool	is_special_char(unsigned char c) {
-    return (c & 0xC0) == 0xC0;
-}
-
 typedef struct s_data {
 	int	len;
 	int	real_len;

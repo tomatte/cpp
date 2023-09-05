@@ -8,7 +8,7 @@ OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs
 
 CC			=	c++ -std=c++98
-CFLAGS		=	-Wall -Wextra #-Werror
+CFLAGS		=	-Wall -Wextra -Werror
 
 RM			=	rm -rf
 
