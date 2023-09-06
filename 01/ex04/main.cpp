@@ -6,12 +6,19 @@
 #define	OLD 2
 #define	NEW 3
 
-void	validate_argc(int argc) {
-	if (argc == 4)
-		return ;
-	std::cout << "Wrong number of arguments, expects 3\n";
-	std::cout << "Program finished.\n";
-	std::exit(1);
+void	few_validations(int argc, char *argv[]) {
+	std::string	s;
+
+	if (argc != 4) {
+		std::cout << "Wrong number of arguments, expects 3\n";
+		std::cout << "Program finished.\n";
+		std::exit(1);
+	}
+	s = argv[OLD];
+	if (s.empty()) {
+		std::cout << "Error: The string to be replaced can't be empty: exited\n";
+		exit(2);
+	}
 }
 
 void	open_file(std::ifstream & file, char const *file_name) {
@@ -33,34 +40,35 @@ void	open_file(std::ofstream & outfile, char const *file_name) {
 	exit(1);
 }
 
-void	search_and_replace(std::string & line, char **argv) {
+void	search_and_replace(std::string & chunck, char **argv) {
 	size_t	i;
 	std::string	modified;
 	std::string	s_old(argv[OLD]);
 	std::string	s_new(argv[NEW]);
 
 	while (1) {
-		if (line.empty())
+		if (chunck.empty())
 			break ;
-		i = line.find(argv[OLD]);
-		if (i == line.npos)
+		i = chunck.find(argv[OLD]);
+		if (i == chunck.npos)
 			break ;
-		modified += (line.substr(0, i) + s_new);
-		line = line.substr(i + s_old.length(), line.length());
+		modified += (chunck.substr(0, i) + s_new);
+		chunck = chunck.substr(i + s_old.length(), chunck.length());
 	}
-	modified += line;
-	std::cout << modified << "\n";
+	chunck = modified + chunck;
 }
 
 void	operation(std::ifstream & in, std::ofstream & out, char **argv) {
 	char	buffer[1024];
-	std::string	line;
-(void)out;
+	std::string	chunck;
+
 	while (in.eof() == false) {
 		in.getline(buffer, BUFF_SIZE - 1);
-		line = buffer;
-		search_and_replace(line, argv);
-		//out.write(line.c_str()); or something like this
+		chunck = buffer;
+		if (in.eof() == false)
+			chunck += "\n";
+		search_and_replace(chunck, argv);
+		out.write(chunck.c_str(), chunck.length());
 	}
 }
 
@@ -68,7 +76,7 @@ int	main(int argc, char *argv[]) {
 	std::ifstream	infile;
 	std::ofstream	outfile;
 
-	validate_argc(argc);
+	few_validations(argc, argv);
 	open_file(infile, argv[1]);
 	open_file(outfile, argv[1]);
 	operation(infile, outfile, argv);
