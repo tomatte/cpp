@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 08:02:03 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/07 08:02:04 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/07 10:54:35 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 #include <string>
 
 class Harl {
-	void	debug( void );
-	void	info( void );
-	void	warning( void );
-	void	error( void );
-	int		x;
+	void	debug(void);
+	void	info(void);
+	void	warning(void);
+	void	error(void);
 	public:
 		Harl(void);
 		~Harl(void);
