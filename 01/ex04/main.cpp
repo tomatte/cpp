@@ -6,7 +6,7 @@
 #define	OLD 2
 #define	NEW 3
 
-void	few_validations(int argc, char *argv[]) {
+void	some_validations(int argc, char *argv[]) {
 	std::string	s;
 
 	if (argc != 4) {
@@ -40,35 +40,35 @@ void	open_file(std::ofstream & outfile, char const *file_name) {
 	exit(1);
 }
 
-void	search_and_replace(std::string & chunck, char **argv) {
+void	search_and_replace(std::string & line, char **argv) {
 	size_t	i;
 	std::string	modified;
 	std::string	s_old(argv[OLD]);
 	std::string	s_new(argv[NEW]);
 
 	while (1) {
-		if (chunck.empty())
+		if (line.empty())
 			break ;
-		i = chunck.find(argv[OLD]);
-		if (i == chunck.npos)
+		i = line.find(argv[OLD]);
+		if (i == line.npos)
 			break ;
-		modified += (chunck.substr(0, i) + s_new);
-		chunck = chunck.substr(i + s_old.length(), chunck.length());
+		modified += (line.substr(0, i) + s_new);
+		line = line.substr(i + s_old.length(), line.length());
 	}
-	chunck = modified + chunck;
+	line = modified + line;
 }
 
 void	operation(std::ifstream & in, std::ofstream & out, char **argv) {
 	char	buffer[1024];
-	std::string	chunck;
+	std::string	line;
 
 	while (in.eof() == false) {
 		in.getline(buffer, BUFF_SIZE - 1);
-		chunck = buffer;
+		line = buffer;
 		if (in.eof() == false)
-			chunck += "\n";
-		search_and_replace(chunck, argv);
-		out.write(chunck.c_str(), chunck.length());
+			line += "\n";
+		search_and_replace(line, argv);
+		out.write(line.c_str(), line.length());
 	}
 }
 
@@ -76,7 +76,7 @@ int	main(int argc, char *argv[]) {
 	std::ifstream	infile;
 	std::ofstream	outfile;
 
-	few_validations(argc, argv);
+	some_validations(argc, argv);
 	open_file(infile, argv[1]);
 	open_file(outfile, argv[1]);
 	operation(infile, outfile, argv);
