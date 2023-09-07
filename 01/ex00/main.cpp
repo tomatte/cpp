@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 09:12:22 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/07 09:12:22 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/07 09:18:53 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Zombie	*newZombie(std::string name) {
 	return (new_zombie);
 }
 
-void randomChump( std::string name ) {
+void	randomChump(std::string name) {
 	Zombie	chump(name);
 
 	chump.announce();
