@@ -1,7 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/09/07 09:22:44 by dbrandao          #+#    #+#              #
+#    Updated: 2023/09/07 09:24:23 by dbrandao         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		=	horde
 
 SOURCES		=	main.cpp \
 				Zombie.cpp \
+				zombieHorde.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs
