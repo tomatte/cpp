@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 09:22:38 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/07 09:22:39 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/07 18:49:18 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include <string>
 
 class Zombie {
-	std::string	_name;
+	private:
+		std::string	_name;
 
 	public:
 		Zombie(void);

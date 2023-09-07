@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 09:33:18 by dbrandao          #+#    #+#              #
-#    Updated: 2023/09/07 10:51:15 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/09/07 19:07:15 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ $(OBJ_DIR)/%.o:	%.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all:	$(NAME)
+
+test:
 	./$(NAME) file1 "right" "here"
 	./$(NAME) file2 "hate" "love"
 	./$(NAME) file3 "three" ""

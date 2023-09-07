@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 09:32:34 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/07 09:32:34 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/07 18:49:36 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 #include <string>
 
 class HumanA {
-	Weapon &	weapon;
-	std::string	name;
+	private:
+		Weapon &	weapon;
+		std::string	name;
+
 	public:
 		HumanA(std::string name, Weapon & w);
 		~HumanA(void);

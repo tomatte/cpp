@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 09:33:15 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/07 09:33:16 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/07 19:10:18 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,25 @@ void	some_validations(int argc, char *argv[]) {
 	}
 }
 
-void	open_file(std::ifstream & file, char const *file_name) {
-	file.open(file_name);
-	if (!file == false)
+void	open_file(std::ifstream & infile, char const *file_name) {
+	infile.open(file_name);
+	if (!infile == false)
 		return ;
 	std::cout << "Error: failed to open " << file_name << ": exited\n";
 	exit(1);
 }
 
-void	open_file(std::ofstream & outfile, char const *file_name) {
+void	open_file(
+		std::ofstream & outfile,
+		char const *file_name,
+		std::ifstream & infile
+	) {
 	std::string	replace_file;
-
 	replace_file = std::string(file_name) + ".replace";
 	outfile.open(replace_file.c_str(), std::ios::trunc);
 	if (!outfile == false)
 		return ;
+	infile.close();
 	std::cout << "Error: failed to open " << file_name << ": exited\n";
 	exit(1);
 }
@@ -90,7 +94,7 @@ int	main(int argc, char *argv[]) {
 
 	some_validations(argc, argv);
 	open_file(infile, argv[1]);
-	open_file(outfile, argv[1]);
+	open_file(outfile, argv[1], infile);
 	operation(infile, outfile, argv);
 	infile.close();
 	outfile.close();

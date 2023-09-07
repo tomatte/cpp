@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 09:33:05 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/07 09:33:06 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/07 19:12:39 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 #include <string>
 
 class Weapon {
-	std::string	type;
+	private:
+		std::string	type;
+
 	public:
 		Weapon(std::string w_type);
 		~Weapon(void);
 
-		std::string &	getType(void);
+		std::string const &	getType(void);
 		void	setType(std::string new_type);
 };
 
