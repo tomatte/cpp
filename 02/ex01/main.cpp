@@ -6,13 +6,14 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 07:44:15 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/12 07:41:49 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/12 09:29:37 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Fixed.hpp"
 #include <cmath>
+#include "ft.hpp"
 
 void	print_bits(int n) {
 	for (int i = sizeof(n) * 8 - 1; i >= 0; i--) {
@@ -70,6 +71,7 @@ int	main(void) {
 	std::cout << "a: " << a.toFloat() << "\n";
 	std::cout << "b: " << b.toInt() << "\n";
 	std::cout << "b: " << b.toFloat() << "\n";
+
 /* 	Fixed a;
 	Fixed b( a );
 	Fixed c;

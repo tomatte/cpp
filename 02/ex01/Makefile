@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 09:12:19 by dbrandao          #+#    #+#              #
-#    Updated: 2023/09/10 08:20:21 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/09/12 09:13:13 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME		=	fixed
 
 SOURCES		=	main.cpp \
 				Fixed.cpp \
+				ft.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs
