@@ -4,13 +4,13 @@
 class Fixed {
 	private:
 		static int const	fractionalBits;
-		int	fixed_point;
+		int	fixed;
 		
 
 	public:
 		Fixed(void);
-		Fixed(int const fixed_point);
-		Fixed(float const fixed_point);
+		Fixed(int const n);
+		Fixed(float const n);
 		Fixed(Fixed const & rhs);
 		~Fixed(void);
 
