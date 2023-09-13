@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 07:09:54 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/12 09:28:39 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:04:44 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ Fixed &	Fixed::operator=(Fixed const & rhs) {
 	std::cout << "Copy assignment operator called\n";
 	return (*this);
 
+}
+
+std::ostream &	operator<<(std::ostream & o, Fixed const & rhs) {
+	o << rhs.toFloat();
+	return (o);
 }
 
 int		Fixed::getRawBits(void) const {
