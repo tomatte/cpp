@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 07:44:15 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 08:57:14 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/23 09:06:05 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int	main(void) {
 	Fixed n4((float) -10.1);
 	std::cout << "n3 + n4: " << n3 + n4 << std::endl;
 	std::cout << "n3 * n4: " << n3 * n4 << std::endl;
+
+	std::cout << "\n---------- TEST 5 ----------\n";
 	Fixed n5 = -1;
 	std::cout << "++n5: " << (++n5) << std::endl;
 	n5 = 1;
@@ -109,5 +111,17 @@ int	main(void) {
 	n6 = 1;
 	std::cout << "(n6++): " << (n6++) << std::endl;
 	std::cout << "n6++: " << n6++ << " | then: " << n6 << std::endl;
+
+	std::cout << "\n---------- TEST 6 ----------\n";
+	Fixed n7 = -1;
+	std::cout << "--n7: " << (--n7) << std::endl;
+	n7 = 1;
+	std::cout << "--n7: " << (--n7) << std::endl;
+
+	Fixed n8 = -1;
+	std::cout << "n8--: " << (n8--) << std::endl;
+	n8 = 1;
+	std::cout << "(n8--): " << (n8--) << std::endl;
+	std::cout << "n8--: " << n8-- << " | then: " << n8 << std::endl;
 	return (0);
 }

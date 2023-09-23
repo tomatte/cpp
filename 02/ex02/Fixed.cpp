@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 07:09:54 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 09:01:32 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/23 09:03:25 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,18 @@ Fixed	Fixed::operator++(int) {
 
 	post = this->toFloat();
 	this->fixed++;
+	return (Fixed(post));
+}
+
+Fixed &	Fixed::operator--(void) {
+	--(this->fixed);
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int) {
+	float	post;
+
+	post = this->toFloat();
+	this->fixed--;
 	return (Fixed(post));
 }
