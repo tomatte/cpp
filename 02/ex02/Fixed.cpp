@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 07:09:54 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/13 18:12:13 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/23 08:15:13 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ Fixed::Fixed(void) : fixed(0) {
 }
 
 Fixed::Fixed(int const n) : fixed(n << Fixed::fractionalBits) {
-	std::cout << "Parameter constructor called\n";
 }
+
 Fixed::Fixed(float const n) {
 	int const FIXED_POINT = (1 << Fixed::fractionalBits);
 
-	this->fixed = n * FIXED_POINT;
-	std::cout << "Parameter constructor called\n";
+		this->fixed = n * FIXED_POINT;
 }
 
 Fixed::Fixed(Fixed const & rhs) : fixed(rhs.fixed) {
@@ -57,18 +56,9 @@ void	Fixed::setRawBits(int const raw) {
 }
 
 float	Fixed::toFloat(void) const {
-	int		expoent;
 	float	number = 0;
 
-	for (int i = sizeof(int) * Fixed::fractionalBits - 1; i >= 0; i--) {
-		if (((1 << i) & this->fixed) != 0) {
-			expoent = (i - Fixed::fractionalBits);
-			if (expoent > 0)
-				number += ft::pow(2, expoent);
-			else
-				number += 1 / (float) ft::pow(2, ft::abs(expoent));
-		}
-	}
+	number = (float) this->fixed / (float)(1 << Fixed::fractionalBits);
 	return (number);
 }
 
@@ -102,4 +92,12 @@ bool	Fixed::operator==(Fixed const & rhs) const {
 
 bool	Fixed::operator!=(Fixed const & rhs) const {
 	return (this->fixed != rhs.fixed);
+}
+
+Fixed	Fixed::operator+(Fixed const & rhs) const {
+	return (Fixed(this->toFloat() + rhs.toFloat()));
+}
+
+Fixed	Fixed::operator-(Fixed const & rhs) const {
+	return (Fixed(this->toFloat() - rhs.toFloat()));
 }

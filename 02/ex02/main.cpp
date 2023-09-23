@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 07:44:15 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/13 20:18:22 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:28:25 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,18 @@ int	main(void) {
 	std::cout << "b > c: " << (b > c) << std::endl;
 	std::cout << "b == c: " << (b == c) << std::endl;
 	std::cout << "b != c: " << (b != c) << std::endl;
+
+	std::cout << "\n---------- TEST 4 ----------\n";
+	std::cout << "b + c: " << (b + c) << std::endl;
+	std::cout << "b - c: " << (b - c) << std::endl;
+	std::cout << "test: " << Fixed((float) -1.5) << std::endl;
+	Fixed n1(-5);
+	std::cout << "n1: " << n1 << std::endl;
+	Fixed n2(0);
+	std::cout << "n2: " << n2 << std::endl;
+	Fixed n3((float) -5.1);
+	Fixed n4((float) -10.1);
+	std::cout << "n3 + n4: " << n3 + n4 << std::endl;
+
 	return (0);
 }
