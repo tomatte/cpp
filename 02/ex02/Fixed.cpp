@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 07:09:54 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 08:15:13 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/23 09:01:32 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Fixed::Fixed(int const n) : fixed(n << Fixed::fractionalBits) {
 Fixed::Fixed(float const n) {
 	int const FIXED_POINT = (1 << Fixed::fractionalBits);
 
-		this->fixed = n * FIXED_POINT;
+	this->fixed = n * FIXED_POINT;
 }
 
 Fixed::Fixed(Fixed const & rhs) : fixed(rhs.fixed) {
@@ -37,7 +37,6 @@ Fixed &	Fixed::operator=(Fixed const & rhs) {
 	this->fixed = rhs.fixed;
 	std::cout << "Copy assignment operator called\n";
 	return (*this);
-
 }
 
 std::ostream &	operator<<(std::ostream & o, Fixed const & rhs) {
@@ -100,4 +99,21 @@ Fixed	Fixed::operator+(Fixed const & rhs) const {
 
 Fixed	Fixed::operator-(Fixed const & rhs) const {
 	return (Fixed(this->toFloat() - rhs.toFloat()));
+}
+
+Fixed	Fixed::operator*(Fixed const & rhs) const {
+	return (Fixed(this->toFloat() * rhs.toFloat()));
+}
+
+Fixed &	Fixed::operator++(void) {
+	++(this->fixed);
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int) {
+	float	post;
+
+	post = this->toFloat();
+	this->fixed++;
+	return (Fixed(post));
 }

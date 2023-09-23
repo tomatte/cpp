@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 07:44:15 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/21 16:28:25 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/23 08:57:14 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,16 @@ int	main(void) {
 	Fixed n3((float) -5.1);
 	Fixed n4((float) -10.1);
 	std::cout << "n3 + n4: " << n3 + n4 << std::endl;
+	std::cout << "n3 * n4: " << n3 * n4 << std::endl;
+	Fixed n5 = -1;
+	std::cout << "++n5: " << (++n5) << std::endl;
+	n5 = 1;
+	std::cout << "++n5: " << (++n5) << std::endl;
 
+	Fixed n6 = -1;
+	std::cout << "n6++: " << (n6++) << std::endl;
+	n6 = 1;
+	std::cout << "(n6++): " << (n6++) << std::endl;
+	std::cout << "n6++: " << n6++ << " | then: " << n6 << std::endl;
 	return (0);
 }

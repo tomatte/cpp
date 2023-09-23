@@ -24,6 +24,10 @@ class Fixed {
 
 		Fixed	operator+(Fixed const & rhs) const;
 		Fixed	operator-(Fixed const & rhs) const;
+		Fixed	operator*(Fixed const & rhs) const;
+		
+		Fixed &	operator++(void);
+		Fixed	operator++(int);
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
 		float	toFloat(void) const;
