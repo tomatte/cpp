@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 07:44:15 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 09:06:05 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/23 09:38:13 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,13 @@ int	main(void) {
 	n8 = 1;
 	std::cout << "(n8--): " << (n8--) << std::endl;
 	std::cout << "n8--: " << n8-- << " | then: " << n8 << std::endl;
+
+	std::cout << "\n---------- TEST 6 ----------\n";
+	Fixed	n10(3.14f);
+	Fixed	n9(3.0f);
+	std::cout << "max(n10, n9): " << Fixed::max(n10, n9) << std::endl;
+	std::cout << "max(n10, n9): " << Fixed::min(n10, n9) << std::endl;
+	std::cout << "max(b, c): " << Fixed::max(b, c) << std::endl;
+	std::cout << "max(b, c): " << Fixed::min(b, c) << std::endl;
 	return (0);
 }

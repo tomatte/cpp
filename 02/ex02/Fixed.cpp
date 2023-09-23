@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 07:09:54 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 09:03:25 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/23 09:35:13 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,32 @@ Fixed	Fixed::operator--(int) {
 	post = this->toFloat();
 	this->fixed--;
 	return (Fixed(post));
+}
+
+Fixed &	Fixed::min(Fixed & lhs, Fixed & rhs) {
+	if (rhs.toFloat() < lhs.toFloat())
+		return (rhs);
+	else
+		return (lhs);
+}
+
+Fixed const &	Fixed::min(Fixed const & lhs, Fixed const & rhs) {
+	if (rhs.toFloat() < lhs.toFloat())
+		return (rhs);
+	else
+		return (lhs);
+}
+
+Fixed &	Fixed::max(Fixed & lhs, Fixed & rhs) {
+	if (rhs.toFloat() > lhs.toFloat())
+		return (rhs);
+	else
+		return (lhs);
+}
+
+Fixed const &	Fixed::max(Fixed const & lhs, Fixed const & rhs) {
+	if (rhs.toFloat() > lhs.toFloat())
+		return (rhs);
+	else
+		return (lhs);
 }
