@@ -6,61 +6,13 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 07:44:15 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 09:38:13 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/24 07:14:41 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Fixed.hpp"
-#include <cmath>
 #include "ft.hpp"
-
-void	print_bits(int n) {
-	for (int i = sizeof(n) * 8 - 1; i >= 0; i--) {
-		if ((n & (1 << i) ) != 0)
-			std::cout << "1";
-		else
-			std::cout << "0";
-	}
-	std::cout << "\n";
-}
-
-# define NUM_FRAC_BITS 8
-# define FIXED_POINT (1 << NUM_FRAC_BITS)
-
-float	toFloat(int fint) {
-	int	expoent;
-	float	number = 0;
-
-	for (int i = sizeof(int) * 8 - 1; i >= 0; i--) {
-		if (((1 << i) & fint) != 0) { //verify if bit is 1
-			expoent = (i - NUM_FRAC_BITS);
-			if (expoent > 0)
-				number += std::pow(2, expoent);
-			else
-				number += 1 / std::pow(2, std::abs(expoent)); //this is the same as 2^-i, but in this case is (1 / 2)^i
-		}
-	}
-	return number;
-}
-
-/*(i - NUM_FRAC_BITS)
-	HOW TO REPRESENT NUMBERS
-
-	2^-¹ == (1/2)¹ == 1¹ / 2¹
-
-	2^-³ == (1/2)³ == 1³ / 2³
- */
-
-void	test(float n) {
-	int	fint = n * FIXED_POINT; //convert the float to fixed point number
-	float number = toFloat(fint);
-	std::cout << "float: " << number << "\n";
-	
-	//print_bits(fint);
-}
-
-
 
 int	main(void) {
 	Fixed a;
@@ -124,7 +76,7 @@ int	main(void) {
 	std::cout << "(n8--): " << (n8--) << std::endl;
 	std::cout << "n8--: " << n8-- << " | then: " << n8 << std::endl;
 
-	std::cout << "\n---------- TEST 6 ----------\n";
+	std::cout << "\n---------- TEST 7 ----------\n";
 	Fixed	n10(3.14f);
 	Fixed	n9(3.0f);
 	std::cout << "max(n10, n9): " << Fixed::max(n10, n9) << std::endl;
