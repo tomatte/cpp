@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 09:12:58 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/12 09:15:51 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/24 13:12:33 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ namespace ft {
 		return (result);
 	}
 
-	int	abs(int number) {
+	float	abs(float number) {
 		if (number < 0)
 			return (number * -1);
 		return (number);

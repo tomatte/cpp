@@ -5,7 +5,7 @@
 namespace ft {
 	int	pow(int num, int power);
 
-	int	abs(int number);
+	float	abs(float number);
 
 	typedef struct s_vector {
 		Fixed	x;

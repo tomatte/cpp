@@ -15,7 +15,8 @@ class Triangle {
 		ft::t_vector	B;
 		ft::t_vector	C;
 
-		Fixed calc_triangle_determinant(void) const;
+		Fixed calc_determinant(void) const;
+		Fixed calc_area(void) const;
 };
 
 #endif
