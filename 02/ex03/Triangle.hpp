@@ -7,10 +7,15 @@
 class Triangle {
 	public:
 		Triangle(void);
+		Triangle(Triangle const & rhs);
 		~Triangle(void);
-		ft::t_vector A;
-		ft::t_vector B;
-		ft::t_vector C;
+		Triangle & operator=(Triangle const & rhs);
+
+		ft::t_vector	A;
+		ft::t_vector	B;
+		ft::t_vector	C;
+
+		Fixed calc_triangle_determinant(void) const;
 };
 
 #endif
