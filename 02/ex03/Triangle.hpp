@@ -7,6 +7,10 @@
 class Triangle {
 	public:
 		Triangle(void);
+		Triangle(
+			float ax, float ay,
+			float bx, float by,
+			float cx, float cy);
 		Triangle(Triangle const & rhs);
 		~Triangle(void);
 		Triangle & operator=(Triangle const & rhs);

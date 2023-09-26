@@ -3,6 +3,19 @@
 Triangle::Triangle(void) {
 }
 
+Triangle::Triangle(
+		float ax, float ay,
+		float bx, float by,
+		float cx, float cy
+	) {
+	this->A.x = ax;
+	this->A.y = ay;
+	this->B.x = bx;
+	this->B.y = by;
+	this->C.x = cx;
+	this->C.y = cy;
+}
+
 Triangle::Triangle(Triangle const & rhs) : A(rhs.A), B(rhs.B), C(rhs.C) {
 }
 
