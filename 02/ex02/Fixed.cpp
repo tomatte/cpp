@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 07:09:54 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/23 09:35:13 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/26 09:55:39 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 int const Fixed::fractionalBits = 8;
 
 Fixed::Fixed(void) : fixed(0) {
-	std::cout << "Default constructor called\n";
 }
 
 Fixed::Fixed(int const n) : fixed(n << Fixed::fractionalBits) {
@@ -30,12 +29,10 @@ Fixed::Fixed(float const n) {
 }
 
 Fixed::Fixed(Fixed const & rhs) : fixed(rhs.fixed) {
-	std::cout << "Copy constructor called\n";
 }
 
 Fixed &	Fixed::operator=(Fixed const & rhs) {
 	this->fixed = rhs.fixed;
-	std::cout << "Copy assignment operator called\n";
 	return (*this);
 }
 
@@ -45,12 +42,10 @@ std::ostream &	operator<<(std::ostream & o, Fixed const & rhs) {
 }
 
 int		Fixed::getRawBits(void) const {
-	std::cout << "getRawBits member function called\n";
 	return (this->fixed);
 }
 
 void	Fixed::setRawBits(int const raw) {
-	std::cout << "setRawBits member function called\n";
 	this->fixed = raw;
 }
 
@@ -66,7 +61,6 @@ int	Fixed::toInt(void) const {
 }
 
 Fixed::~Fixed(void) {
-	std::cout << "Destructor called\n";
 }
 
 bool	Fixed::operator<(Fixed const & rhs) const {
@@ -103,6 +97,10 @@ Fixed	Fixed::operator-(Fixed const & rhs) const {
 
 Fixed	Fixed::operator*(Fixed const & rhs) const {
 	return (Fixed(this->toFloat() * rhs.toFloat()));
+}
+
+Fixed	Fixed::operator/(Fixed const & rhs) const {
+	return (Fixed(this->toFloat() / rhs.toFloat()));
 }
 
 Fixed &	Fixed::operator++(void) {
