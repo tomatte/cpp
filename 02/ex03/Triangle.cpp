@@ -9,6 +9,13 @@ Triangle::Triangle(Triangle const & rhs) : A(rhs.A), B(rhs.B), C(rhs.C) {
 Triangle::~Triangle(void) {
 }
 
+Triangle & Triangle::operator=(Triangle const & rhs) {
+	this->A = rhs.A;
+	this->B = rhs.B;
+	this->C = rhs.C;
+	return (*this);
+}
+
 Fixed Triangle::calc_determinant(void) const {
 	Fixed	part1;
 	Fixed	part2;

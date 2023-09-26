@@ -6,7 +6,7 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 07:44:15 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/09/24 14:33:54 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/09/26 10:43:02 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,40 @@ Triangle	just_a_triangle(
 	return (triangle);
 }
 
-int	verify_point_is_inside_triangle(ft::t_vector point, Triangle & t) {
-	Triangle	triangle(t);
+bool	is_point_inside_triangle(ft::t_vector point, Triangle & t) {
+	Triangle	triangle;
 	Fixed	abc_area;
 	Fixed	pab_area;
 	Fixed	pac_area;
 	Fixed	pcb_area;
 	Fixed	p_sum;
 
-	abc_area = triangle.calc_area();
+	abc_area = t.calc_area();
+
+	triangle = t;
 	triangle.C = point;
 	pab_area = triangle.calc_area();
-	triangle.C = t.C;
+
+	triangle = t;
 	triangle.B = point;
 	pac_area = triangle.calc_area();
-	triangle.B = t.B;
+
+	triangle = t;
 	triangle.A = point;
 	pcb_area = triangle.calc_area();
-	triangle.A = t.A;
+
 	p_sum = pab_area + pac_area + pcb_area;
-	if (ft::abs(p_sum.toFloat() - abc_area.toFloat()) < 0.1) {
-		std::cout << "(" << point.x << ", " << point.y << ") is inside triangle!!!\n";
-		return (1);
-	}
-	std::cout << "(" << point.x << ", " << point.y << ") is outside triangle.\n";
-	return (0);
+	std::cout << p_sum << " | " << abc_area << "\n";
+	if (ft::abs(p_sum.toFloat() - abc_area.toFloat()) < 0.1)
+		return (true);
+	return (false);
+}
+
+void	verify_point_is_inside_triangle(ft::t_vector point, Triangle & t) {
+	if (is_point_inside_triangle(point, t))
+		std::cout << "(" << point.x << ", " << point.y << ") is inside triangle!!! Yeeeeeeeaaahh!!!\n";
+	else
+		std::cout << "(" << point.x << ", " << point.y << ") is outside triangle :(\n";
 }
 
 int	main(void) {
