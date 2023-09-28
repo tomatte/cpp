@@ -3,6 +3,8 @@
 
 int	ClapTrap::total = 0;
 
+ClapTrap	*ClapTrap::clap_traps[];
+
 void	ClapTrap::store_clap_trap(ClapTrap *clap_trap)
 {
 	ClapTrap::total++;
@@ -27,6 +29,10 @@ ClapTrap::ClapTrap(std::string name) : name(name), hit_points(10),
 energy_points(10), attack_damage(0)
 {
 	store_clap_trap(this);
+}
+
+ClapTrap::~ClapTrap(void)
+{
 }
 
 void	ClapTrap::attack(std::string const & target)

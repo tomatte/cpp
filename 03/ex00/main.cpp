@@ -1,7 +1,11 @@
 #include <iostream>
+#include "ClapTrap.hpp"
 
 int	main(void)
 {
-	std::cout << "GG!!!\n";
+	ClapTrap	julia("Julia");
+	ClapTrap	james("James");
+
+	julia.attack("James");
 	return (0);
 }

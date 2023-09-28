@@ -6,13 +6,14 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/09/28 14:24:33 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/09/28 15:24:13 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	clap_trap
 
 SOURCES		=	main.cpp \
+				ClapTrap.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs
