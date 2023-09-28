@@ -10,7 +10,8 @@ class ClapTrap
 		int			hit_points;
 		int			energy_points;
 		int			attack_damage;
-		
+		bool		can_act(void) const;
+
 		static ClapTrap *clap_traps[15];
 		static int		total;
 		static void		store_clap_trap(ClapTrap *clap_trap);

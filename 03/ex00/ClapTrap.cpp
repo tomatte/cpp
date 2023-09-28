@@ -35,17 +35,50 @@ ClapTrap::~ClapTrap(void)
 {
 }
 
+bool	ClapTrap::can_act(void) const
+{
+	if (this->hit_points <= 0)
+	{
+		std::cout << "ClapTrap " << this->name << " is dead x_x\n";
+		return (false);
+	}
+	if (this->energy_points <= 0)
+	{
+		std::cout << "ClapTrap " << this->name << " is so tired!\n";
+		return (false);
+	}
+	return (true);
+}
+
+void	ClapTrap::takeDamage(unsigned int amount)
+{
+	this->hit_points -= amount;
+	std::cout << "ClapTrap " << this->name << " lost " << amount << " hit_points.\n";
+}
+
+void	ClapTrap::beRepaired(unsigned int amount)
+{
+	if (this->can_act() == false)
+		return ;
+	this->hit_points += amount;
+	this->energy_points--;
+	std::cout << "ClapTrap " << this->name << " repaired " << amount << " hit_points.\n";
+}
+
 void	ClapTrap::attack(std::string const & target)
 {
 	ClapTrap	*clap_target;
 
+	if (this->can_act() == false)
+		return ;
 	clap_target = find_clap_trap(target);
 	if (clap_target == NULL)
 	{
 		std::cout << "Target " << target << "not found.\n";
 		return ;
 	}
-	clap_target->hit_points -= this->attack_damage;
+	clap_target->takeDamage(this->attack_damage);
+	this->energy_points--;
 	std::cout << "ClapTrap " << this->name << " attacks " << clap_target->name \
 		<< ", causing " << this->attack_damage << " points of damage!\n";
 }
