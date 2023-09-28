@@ -77,7 +77,7 @@ void	ClapTrap::attack(std::string const & target)
 	clap_target = find_clap_trap(target);
 	if (clap_target == NULL)
 	{
-		std::cout << "Target " << target << "not found.\n";
+		std::cout << "Target " << target << " doesn't exist.\n";
 		return ;
 	}
 	clap_target->takeDamage(this->attack_damage);

@@ -11,5 +11,11 @@ int	main(void)
 		julia.attack("James");
 	}
 	julia.beRepaired(10);
+
+	std::cout << std::endl;
+	james.attack("Emanuel");
+	james.beRepaired(0);
+	james.takeDamage(10);
+	james.beRepaired(999);
 	return (0);
 }
