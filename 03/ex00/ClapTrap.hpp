@@ -3,7 +3,8 @@
 
 # include <iostream>
 
-class ClapTrap {
+class ClapTrap
+{
 	private:
 		std::string	name;
 		int			hit_points;
@@ -13,6 +14,7 @@ class ClapTrap {
 		static ClapTrap *clap_traps[15];
 		static int		total;
 		static void		store_clap_trap(ClapTrap *clap_trap);
+		static ClapTrap	*find_clap_trap(std::string const & name);
 
 	public:
 		ClapTrap(void);
