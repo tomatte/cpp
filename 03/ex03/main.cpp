@@ -2,6 +2,7 @@
 #include "FragTrap.hpp"
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 #include <cstdlib>
 
 void	fight(ScavTrap & s, FragTrap & f)
@@ -18,27 +19,7 @@ void	fight(ScavTrap & s, FragTrap & f)
 
 int	main(void)
 {
-	ClapTrap	clap("Billy");
-	ScavTrap	scav("Lully");
-	FragTrap	frag("Blade");
-
-	std::cout << std::endl;
-
-	frag.highFivesGuys();
-	clap.beRepaired(100);
-	scav.guardGate();
-	fight(scav, frag);
-	std::cout << std::endl;
-
-	std::cout << clap.get_name() << "'s hit points: " << clap.get_hit_points() << "\n";
-	std::cout << scav.get_name() << "'s hit points: " << scav.get_hit_points() << "\n";
-	std::cout << frag.get_name() << "'s hit points: " << frag.get_hit_points() << "\n";
-
-	std::cout << std::endl;
-	clap.beRepaired(999);
-	frag.highFivesGuys();
-	scav.guardGate();
-	std::cout << std::endl;
+	DiamondTrap	diamond("Hulk");
 
 	return (0);
 }

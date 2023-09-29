@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/09/29 16:43:14 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/09/29 19:50:14 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,13 @@ RED			=	"\033[0;31m"
 GREEN		=	"\033[0;32m"
 NC			=	"\033[0m"
 
-NAME		=	frag_trap
+NAME		=	diamond_trap
 
 SOURCES		=	main.cpp \
 				ClapTrap.cpp \
 				ScavTrap.cpp \
 				FragTrap.cpp \
+				DiamondTrap.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs
