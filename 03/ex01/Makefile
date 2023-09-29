@@ -6,11 +6,11 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/09/28 17:20:25 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/09/29 12:26:20 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	clap_trap
+NAME		=	scav_trap
 
 SOURCES		=	main.cpp \
 				ClapTrap.cpp \

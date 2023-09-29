@@ -32,8 +32,8 @@ void	ScavTrap::attack(std::string const & target)
 		std::cout << "Target " << target << " doesn't exist.\n";
 		return ;
 	}
-	clap_target->takeDamage(this->get_attack_damage());
-	this->sum_energy_points(-1);
 	std::cout << "ScavTrap " << this->get_name() << " attacks " << clap_target->get_name() \
 		<< ", causing " << this->get_attack_damage() << " points of damage!\n";
+	clap_target->takeDamage(this->get_attack_damage());
+	this->sum_energy_points(-1);
 }
