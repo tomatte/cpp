@@ -26,6 +26,14 @@ energy_points(10), attack_damage(0)
 	std::cout << "ClapTrap default constructor called.\n";
 }
 
+ClapTrap::ClapTrap(ClapTrap const & rhs) : 
+name(rhs.name), hit_points(rhs.hit_points),
+energy_points(rhs.energy_points), attack_damage(rhs.attack_damage)
+{
+	std::cout << "ClapTrap copy constructor called.\n";
+}
+
+
 ClapTrap::ClapTrap(std::string name) : name(name), hit_points(10), 
 energy_points(10), attack_damage(0)
 {

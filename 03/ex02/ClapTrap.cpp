@@ -33,6 +33,13 @@ energy_points(10), attack_damage(0)
 	std::cout << "ClapTrap constructed.\n";
 }
 
+ClapTrap::ClapTrap(ClapTrap const & rhs) : 
+name(rhs.name), hit_points(rhs.hit_points),
+energy_points(rhs.energy_points), attack_damage(rhs.attack_damage)
+{
+	std::cout << "ClapTrap copy constructor called.\n";
+}
+
 ClapTrap::~ClapTrap(void)
 {
 	std::cout << "ClapTrap destructed.\n";
