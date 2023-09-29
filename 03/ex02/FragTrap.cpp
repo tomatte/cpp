@@ -10,8 +10,8 @@ FragTrap::FragTrap(void) : ClapTrap()
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	this->set_hit_points(100);
-	this->set_energy_points(50);
-	this->set_attack_damage(20);
+	this->set_energy_points(100);
+	this->set_attack_damage(30);
 	std::cout << "FragTrap constructed.\n";
 }
 
@@ -38,15 +38,7 @@ void	FragTrap::attack(std::string const & target)
 	this->sum_energy_points(-1);
 }
 
-void	FragTrap::guardGate(void)
+void	FragTrap::highFivesGuys(void)
 {
-	if (this->in_gate_keeper_mode == true)
-	{
-		std::cout << "FragTrap " << this->get_name() << " is already in Gate keeper mode!\n";
-		return ;
-	}
-	std::cout << "FragTrap " << this->get_name() << " is now in Gate keeper mode.\n";
-	this->set_attack_damage(this->get_attack_damage() / 2);
-	this->sum_energy_points(100);
-	this->set_hit_points(500);
+	std::cout << this->get_name() << ": Let's high five guys!?!?!!!" << std::endl;
 }

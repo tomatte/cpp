@@ -5,15 +5,18 @@
 int	main(void)
 {
 	ClapTrap	clap("Billy");
-	FragTrap	scav("Lully");
+	FragTrap	frag("Lully");
 
 	std::cout << std::endl;
 
-	scav.guardGate();
+	frag.highFivesGuys();
 	clap.beRepaired(5);
 	clap.attack("Lully");
-	scav.attack("Billy");
+	frag.attack("Billy");
 	clap.beRepaired(10);
+
+	frag.highFivesGuys();
+	frag.highFivesGuys();
 
 	std::cout << std::endl;
 	return (0);

@@ -5,9 +5,6 @@
 
 class FragTrap : public ClapTrap
 {
-	private:
-		bool	in_gate_keeper_mode;
-
 	public:
 		FragTrap(void);
 		FragTrap(std::string name);
@@ -17,7 +14,7 @@ class FragTrap : public ClapTrap
 		FragTrap & operator=(FragTrap const & rhs);
 
 		void	attack(std::string const & target);
-		void	guardGate(void);
+		void	highFivesGuys(void);
 };
 
 #endif
