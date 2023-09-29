@@ -1,5 +1,5 @@
-#ifndef CLAPTRAP
-# define CLAPTRAP
+#ifndef CLAPTRAP_H
+# define CLAPTRAP_H
 
 # include <iostream>
 
@@ -23,9 +23,8 @@ class ClapTrap
 		void		set_energy_points(int amount);
 		void		set_attack_damage(int amount);
 		void		sum_energy_points(int amunt);
-		int			get_energy_points(void);
-		int			get_attack_damage(void);
-
+		int			get_energy_points(void) const;
+		int			get_attack_damage(void) const;
 
 	public:
 		ClapTrap(void);
@@ -39,7 +38,9 @@ class ClapTrap
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 		
-		std::string	get_name(void);
+		std::string	get_name(void) const;
+		int			get_hit_points(void) const;
+		bool		is_dead(void) const;
 };
 
 #endif

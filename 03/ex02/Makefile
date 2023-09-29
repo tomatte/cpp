@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/09/29 16:29:06 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/09/29 16:43:14 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ NAME		=	frag_trap
 
 SOURCES		=	main.cpp \
 				ClapTrap.cpp \
+				ScavTrap.cpp \
 				FragTrap.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))

@@ -40,5 +40,10 @@ void	FragTrap::attack(std::string const & target)
 
 void	FragTrap::highFivesGuys(void)
 {
+	if (this->is_dead())
+	{
+		std::cout << "FragTrap " << this->get_name() << " is dead!\n";
+		return ;
+	}
 	std::cout << this->get_name() << ": Let's high five guys!?!?!!!" << std::endl;
 }

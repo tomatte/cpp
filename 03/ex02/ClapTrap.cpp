@@ -118,12 +118,27 @@ void	ClapTrap::sum_energy_points(int amount)
 	this->energy_points += amount;
 }
 
-std::string	ClapTrap::get_name(void)
+std::string	ClapTrap::get_name(void) const
 {
 	return (this->name);
 }
 
-int	ClapTrap::get_attack_damage(void)
+int	ClapTrap::get_attack_damage(void) const
 {
 	return (this->attack_damage);
+}
+
+int	ClapTrap::get_hit_points(void) const
+{
+	return (this->hit_points);
+}
+
+int	ClapTrap::get_energy_points(void) const
+{
+	return (this->energy_points);
+}
+
+bool	ClapTrap::is_dead(void) const
+{
+	return (this->hit_points <= 0);
 }
