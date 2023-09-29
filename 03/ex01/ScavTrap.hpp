@@ -1,5 +1,6 @@
 #ifndef SCAVTRAP
 # define SCAVTRAP
+#include <iostream>
 #include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap
@@ -12,6 +13,7 @@ class ScavTrap : public ClapTrap
 
 		ScavTrap & operator=(ScavTrap const & rhs);
 
+		void	attack(std::string const & target);
 };
 
 #endif

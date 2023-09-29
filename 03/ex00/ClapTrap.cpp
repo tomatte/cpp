@@ -23,19 +23,19 @@ ClapTrap	*ClapTrap::find_clap_trap(std::string const & name)
 ClapTrap::ClapTrap(void) : name(""), hit_points(10), 
 energy_points(10), attack_damage(0)
 {
-	std::cout << "Default constructor called.\n";
+	std::cout << "ClapTrap default constructor called.\n";
 }
 
 ClapTrap::ClapTrap(std::string name) : name(name), hit_points(10), 
 energy_points(10), attack_damage(0)
 {
 	store_clap_trap(this);
-	std::cout << "String constructor called.\n";
+	std::cout << "ClapTrap constructed.\n";
 }
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "Destructor called.\n";
+	std::cout << "ClapTrap destructed.\n";
 }
 
 ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
