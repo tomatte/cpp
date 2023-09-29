@@ -1,5 +1,5 @@
-#ifndef CLAPTRAP
-# define CLAPTRAP
+#ifndef CLAPTRAP_H
+# define CLAPTRAP_H
 
 # include <iostream>
 
