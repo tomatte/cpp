@@ -6,9 +6,13 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/09/29 12:26:20 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/09/29 12:39:59 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+RED			=	"\033[0;31m"
+GREEN		=	"\033[0;32m"
+NC			=	"\033[0m"
 
 NAME		=	scav_trap
 
@@ -31,6 +35,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ_DIR) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $@
+	@echo "\n"Executable: $(GREEN) $(NAME) $(NC)
 
 $(OBJ_DIR):
 	mkdir -p objs

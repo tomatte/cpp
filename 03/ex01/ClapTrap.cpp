@@ -65,7 +65,7 @@ bool	ClapTrap::can_act(void) const
 void	ClapTrap::takeDamage(unsigned int amount)
 {
 	this->hit_points -= amount;
-	std::cout << "ClapTrap " << this->name << " lost " << amount << " hit_points. " \
+	std::cout << this->name << " lost " << amount << " hit_points. " \
 		<< "Remaining: " << this->hit_points << std::endl;
 }
 
@@ -75,7 +75,8 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		return ;
 	this->hit_points += amount;
 	this->energy_points--;
-	std::cout << this->name << " repaired " << amount << " hit_points.\n";
+	std::cout << this->name << " repaired " << amount << " hit_points. " \
+		<< "Total: " << this->hit_points << "\n";
 }
 
 void	ClapTrap::attack(std::string const & target)

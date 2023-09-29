@@ -37,3 +37,16 @@ void	ScavTrap::attack(std::string const & target)
 	clap_target->takeDamage(this->get_attack_damage());
 	this->sum_energy_points(-1);
 }
+
+void	ScavTrap::guardGate(void)
+{
+	if (this->in_gate_keeper_mode == true)
+	{
+		std::cout << "ScavTrap " << this->get_name() << " is already in Gate keeper mode!\n";
+		return ;
+	}
+	std::cout << "ScavTrap " << this->get_name() << " is now in Gate keeper mode.\n";
+	this->set_attack_damage(this->get_attack_damage() / 2);
+	this->sum_energy_points(100);
+	this->set_hit_points(500);
+}
