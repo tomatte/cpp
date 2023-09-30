@@ -16,9 +16,10 @@ FragTrap(), ScavTrap()
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"),
 FragTrap(), ScavTrap(), name(name)
 {
-	this->set_hit_points(100);
-	this->set_energy_points(50);
-	this->set_attack_damage(30);
+	this->set_hit_points(FragTrap::hit_points);
+	this->set_energy_points(ScavTrap::energy_points);
+	this->set_attack_damage(FragTrap::attack_damage);
+	std::cout << "FragAttack: " << FragTrap::attack_damage << "\n";
 	std::cout << "DiamondTrap string constructor called!\n";
 }
 
