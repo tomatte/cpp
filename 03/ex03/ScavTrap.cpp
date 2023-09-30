@@ -4,7 +4,7 @@
 
 ScavTrap::ScavTrap(void) : ClapTrap()
 {
-	std::cout << "ScavTrap constructed.\n";
+	std::cout << "ScavTrap default constructor called.\n";
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)

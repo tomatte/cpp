@@ -21,5 +21,7 @@ int	main(void)
 {
 	DiamondTrap	diamond("Hulk");
 
+	diamond.guardGate();
+	std::cout << "Diamond: " << diamond.get_name() << "\n";
 	return (0);
 }
