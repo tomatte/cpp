@@ -15,6 +15,11 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	std::cout << "ScavTrap constructed.\n";
 }
 
+ScavTrap::ScavTrap(ScavTrap const & rhs) : ClapTrap(rhs),
+in_gate_keeper_mode(rhs.in_gate_keeper_mode)
+{
+}
+
 ScavTrap::~ScavTrap(void)
 {
 	std::cout << "ScavTrap got destructed!\n";

@@ -15,6 +15,10 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	std::cout << "FragTrap constructed.\n";
 }
 
+FragTrap::FragTrap(FragTrap const & rhs) : ClapTrap(rhs)
+{
+}
+
 FragTrap::~FragTrap(void)
 {
 	std::cout << "FragTrap got destructed!\n";
