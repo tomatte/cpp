@@ -20,6 +20,12 @@ FragTrap::~FragTrap(void)
 	std::cout << "FragTrap got destructed!\n";
 }
 
+FragTrap & FragTrap::operator=(FragTrap const & rhs)
+{
+	ClapTrap::operator=(rhs);
+	return (*this);
+}
+
 void	FragTrap::attack(std::string const & target)
 {
 	ClapTrap	*clap_target;

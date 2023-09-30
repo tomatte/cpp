@@ -20,6 +20,12 @@ ScavTrap::~ScavTrap(void)
 	std::cout << "ScavTrap got destructed!\n";
 }
 
+ScavTrap & ScavTrap::operator=(ScavTrap const & rhs)
+{
+	ClapTrap::operator=(rhs);
+	return (*this);
+}
+
 void	ScavTrap::attack(std::string const & target)
 {
 	ClapTrap	*clap_target;
