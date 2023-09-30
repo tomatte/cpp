@@ -18,6 +18,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 ScavTrap::ScavTrap(ScavTrap const & rhs) : ClapTrap(rhs),
 in_gate_keeper_mode(rhs.in_gate_keeper_mode)
 {
+	std::cout << "ScavTrap copy constructor called.\n";
 }
 
 ScavTrap::~ScavTrap(void)
