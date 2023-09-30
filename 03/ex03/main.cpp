@@ -20,9 +20,15 @@ void	fight(ScavTrap & s, FragTrap & f)
 int	main(void)
 {
 	DiamondTrap	diamond("Hulk");
+	DiamondTrap	copy;
 	ScavTrap	aux("Max");
+	copy = diamond;
+	std::cout << std::endl;
 
-	std::cout << "Diamond: " << diamond.get_hit_points() << "\n";
-	diamond.attack("Max");
+	copy.attack("Max");
+	copy.whoAmI();
+
+
+	std::cout << std::endl;
 	return (0);
 }
