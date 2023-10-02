@@ -120,11 +120,6 @@ void	ClapTrap::set_attack_damage(int amount)
 	this->attack_damage = amount;
 }
 
-void	ClapTrap::sum_energy_points(int amount)
-{
-	this->energy_points += amount;
-}
-
 std::string	ClapTrap::get_name(void) const
 {
 	return (this->name);

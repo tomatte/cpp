@@ -14,7 +14,8 @@ void	ClapTrap::store_clap_trap(ClapTrap *clap_trap)
 ClapTrap	*ClapTrap::find_clap_trap(std::string const & name)
 {
 	for (int i = 0; i < ClapTrap::total; i++) {
-		if (ClapTrap::clap_traps[i]->name == name)
+		if (ClapTrap::clap_traps[i]->name == name ||
+			ClapTrap::clap_traps[i]->name == (name + "_clap_name"))
 			return (ClapTrap::clap_traps[i]);
 	}
 	return NULL;
@@ -118,11 +119,6 @@ void	ClapTrap::set_energy_points(int amount)
 void	ClapTrap::set_attack_damage(int amount)
 {
 	this->attack_damage = amount;
-}
-
-void	ClapTrap::sum_energy_points(int amount)
-{
-	this->energy_points += amount;
 }
 
 std::string	ClapTrap::get_name(void) const

@@ -6,15 +6,15 @@
 class ClapTrap
 {
 	private:
-		std::string	name;
-		int			hit_points;
-		int			energy_points;
-		int			attack_damage;
 
 		static ClapTrap *clap_traps[15];
 		static int		total;
 
 	protected:
+		std::string	name;
+		int			hit_points;
+		int			energy_points;
+		int			attack_damage;
 		static void		store_clap_trap(ClapTrap *clap_trap);
 		static ClapTrap	*find_clap_trap(std::string const & name);
 
@@ -22,7 +22,6 @@ class ClapTrap
 		void		set_hit_points(int amount);
 		void		set_energy_points(int amount);
 		void		set_attack_damage(int amount);
-		void		sum_energy_points(int amunt);
 		int			get_energy_points(void) const;
 		int			get_attack_damage(void) const;
 

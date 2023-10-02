@@ -46,18 +46,18 @@ void	FragTrap::attack(std::string const & target)
 		std::cout << "Target " << target << " doesn't exist.\n";
 		return ;
 	}
-	std::cout << "FragTrap " << this->get_name() << " attacks " << clap_target->get_name() \
-		<< ", causing " << this->get_attack_damage() << " points of damage!\n";
-	clap_target->takeDamage(this->get_attack_damage());
-	this->sum_energy_points(-1);
+	std::cout << "FragTrap " << this->name << " attacks " << clap_target->get_name() \
+		<< ", causing " << this->attack_damage << " points of damage!\n";
+	clap_target->takeDamage(this->attack_damage);
+	this->energy_points--;
 }
 
 void	FragTrap::highFivesGuys(void)
 {
 	if (this->is_dead())
 	{
-		std::cout << "FragTrap " << this->get_name() << " is dead!\n";
+		std::cout << "FragTrap " << this->name << " is dead!\n";
 		return ;
 	}
-	std::cout << this->get_name() << ": Let's high five guys!?!?!!!" << std::endl;
+	std::cout << this->name << ": Let's high five guys!?!?!!!" << std::endl;
 }

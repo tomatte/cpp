@@ -4,14 +4,17 @@
 
 FragTrap::FragTrap(void) : ClapTrap()
 {
+	this->hit_points = 100;
+	this->energy_points = 100;
+	this->attack_damage = 30;
 	std::cout << "FragTrap constructed.\n";
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	this->set_hit_points(100);
-	this->set_energy_points(100);
-	this->set_attack_damage(30);
+	this->hit_points = 100;
+	this->energy_points = 100;
+	this->attack_damage = 30;
 	std::cout << "FragTrap constructed.\n";
 }
 
@@ -43,10 +46,10 @@ void	FragTrap::attack(std::string const & target)
 		std::cout << "Target " << target << " doesn't exist.\n";
 		return ;
 	}
-	std::cout << "FragTrap " << this->get_name() << " attacks " << clap_target->get_name() \
-		<< ", causing " << this->get_attack_damage() << " points of damage!\n";
-	clap_target->takeDamage(this->get_attack_damage());
-	this->sum_energy_points(-1);
+	std::cout << "FragTrap " << this->name << " attacks " << clap_target->get_name() \
+		<< ", causing " << this->attack_damage << " points of damage!\n";
+	clap_target->takeDamage(this->attack_damage);
+	this->energy_points--;
 }
 
 void	FragTrap::highFivesGuys(void)

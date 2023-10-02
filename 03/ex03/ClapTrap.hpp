@@ -20,7 +20,6 @@ class ClapTrap
 		void		set_hit_points(int amount);
 		void		set_energy_points(int amount);
 		void		set_attack_damage(int amount);
-		void		sum_energy_points(int amunt);
 		int			get_energy_points(void) const;
 		int			get_attack_damage(void) const;
 
