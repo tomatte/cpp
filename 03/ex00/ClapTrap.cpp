@@ -38,7 +38,7 @@ ClapTrap::ClapTrap(std::string name) : name(name), hit_points(10),
 energy_points(10), attack_damage(0)
 {
 	store_clap_trap(this);
-	std::cout << "ClapTrap constructed.\n";
+	std::cout << "ClapTrap string constructor called.\n";
 }
 
 ClapTrap::~ClapTrap(void)

@@ -6,10 +6,8 @@ int	main(void)
 	ClapTrap	julia("Julia");
 	ClapTrap	james("James");
 
-	for (int i = 0; i < 12; i++)
-	{
-		julia.attack("James");
-	}
+	std::cout << std::endl;
+	julia.attack("James");
 	julia.beRepaired(10);
 
 	std::cout << std::endl;

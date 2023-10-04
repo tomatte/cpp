@@ -6,9 +6,13 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/09/28 15:24:13 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/04 20:01:09 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+RED			=	"\033[0;31m"
+GREEN		=	"\033[0;32m"
+NC			=	"\033[0m"
 
 NAME		=	clap_trap
 
@@ -30,6 +34,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ_DIR) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $@
+	@echo "\n"Executable: $(GREEN) $(NAME) $(NC)
 
 $(OBJ_DIR):
 	mkdir -p objs
