@@ -15,12 +15,15 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->hit_points = 100;
 	this->energy_points = 50;
 	this->attack_damage = 20;
-	std::cout << "ScavTrap constructed.\n";
+	std::cout << "ScavTrap string constructor called.\n";
 }
 
 ScavTrap::ScavTrap(ScavTrap const & rhs) : ClapTrap(rhs),
 in_gate_keeper_mode(rhs.in_gate_keeper_mode)
 {
+	this->hit_points = rhs.hit_points;
+	this->energy_points = rhs.energy_points;
+	this->attack_damage = rhs.attack_damage;
 	std::cout << "ScavTrap copy constructor called.\n";
 }
 
@@ -50,7 +53,7 @@ void	ScavTrap::attack(std::string const & target)
 	std::cout << "ScavTrap " << this->get_name() << " attacks " << clap_target->get_name() \
 		<< ", causing " << this->get_attack_damage() << " points of damage!\n";
 	clap_target->takeDamage(this->get_attack_damage());
-	this->sum_energy_points(-1);
+	this->energy_points--;
 }
 
 void	ScavTrap::guardGate(void)
@@ -67,7 +70,7 @@ void	ScavTrap::guardGate(void)
 	}
 	std::cout << "ScavTrap " << this->get_name() << " is now in Gate keeper mode.\n";
 	this->in_gate_keeper_mode = true;
-	this->set_attack_damage(this->get_attack_damage() / 2);
-	this->sum_energy_points(100);
-	this->set_hit_points(500);
+	this->attack_damage /= 2;
+	this->energy_points = 100;
+	this->hit_points = 500;
 }

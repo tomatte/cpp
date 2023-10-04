@@ -6,11 +6,6 @@
 class ClapTrap
 {
 	private:
-		std::string	name;
-		int			hit_points;
-		int			energy_points;
-		int			attack_damage;
-
 		static ClapTrap *clap_traps[15];
 		static int		total;
 
@@ -18,6 +13,10 @@ class ClapTrap
 		static void		store_clap_trap(ClapTrap *clap_trap);
 		static ClapTrap	*find_clap_trap(std::string const & name);
 
+		std::string	name;
+		int			hit_points;
+		int			energy_points;
+		int			attack_damage;
 		bool		can_act(void) const;
 		void		set_hit_points(int amount);
 		void		set_energy_points(int amount);

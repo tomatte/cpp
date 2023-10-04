@@ -25,6 +25,10 @@ FragTrap(), ScavTrap(), name(name)
 DiamondTrap::DiamondTrap(DiamondTrap const & rhs) :
 ClapTrap(rhs), FragTrap(rhs), ScavTrap(rhs), name(rhs.name)
 {
+	this->set_hit_points(FragTrap::hit_points);
+	this->set_energy_points(ScavTrap::energy_points);
+	this->set_attack_damage(FragTrap::attack_damage);
+	std::cout << "DiamondTrap copy constructor called!\n";
 }
 
 DiamondTrap::~DiamondTrap(void)

@@ -21,6 +21,9 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 ScavTrap::ScavTrap(ScavTrap const & rhs) : ClapTrap(rhs),
 in_gate_keeper_mode(rhs.in_gate_keeper_mode)
 {
+	this->hit_points = rhs.hit_points;
+	this->energy_points = rhs.energy_points;
+	this->attack_damage = rhs.attack_damage;
 	std::cout << "ScavTrap copy constructor called.\n";
 }
 

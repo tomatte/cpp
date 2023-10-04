@@ -9,15 +9,18 @@ ScavTrap::ScavTrap(void) : ClapTrap()
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	this->set_hit_points(100);
-	this->set_energy_points(50);
-	this->set_attack_damage(20);
+	this->hit_points = 100;
+	this->energy_points = 50;
+	this->attack_damage = 20;
 	std::cout << "ScavTrap constructed.\n";
 }
 
 ScavTrap::ScavTrap(ScavTrap const & rhs) : ClapTrap(rhs),
 in_gate_keeper_mode(rhs.in_gate_keeper_mode)
 {
+	this->hit_points = rhs.hit_points;
+	this->energy_points = rhs.energy_points;
+	this->attack_damage = rhs.attack_damage;
 	std::cout << "ScavTrap copy constructor called.\n";
 }
 

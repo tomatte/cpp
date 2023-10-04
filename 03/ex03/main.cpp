@@ -19,13 +19,25 @@ void	fight(ScavTrap & s, FragTrap & f)
 
 int	main(void)
 {
+	std::cout << "Constructing diamond ClapTrap: \n";
 	DiamondTrap	diamond("Hulk");
-	ScavTrap	scav("Max");
+	std::cout << "\n";
+
+	std::cout << "Constructing diamond_copy ClapTrap: \n";
+	DiamondTrap	diamond_copy(diamond);
+	std::cout << "\n";
+
+	ClapTrap	clap("Max");
 
 	std::cout << std::endl;
 
 	diamond.attack("Max");
 	diamond.attack("Hulk");
+	diamond.guardGate();
+	diamond.beRepaired(50);
+	diamond.highFivesGuys();
+	diamond.whoAmI();
+	diamond_copy.whoAmI();
 
 	std::cout << std::endl;
 	return (0);
