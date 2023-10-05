@@ -7,8 +7,23 @@
 
 int	main(void)
 {
-	const Animal	*cat = new Cat();
+	const int		N = 10;
+	const Animal	*animals[N];
 
-	cat->makeSound();
+	//NEED TO TEST IF COPIES ARE DEEP OR SHALLOW, IT NEEDS TO BE DEEP
+
+	for (int i = 0; i < N / 2; i++)
+		animals[i] = new Cat();
+
+	for (int i = N / 2; i < N; i++)
+		animals[i] = new Dog();
+
+	std::cout << std::endl;
+	for (int i = 0; i < N; i++)
+		animals[i]->makeSound();
+
+	std::cout << std::endl;
+	for (int i = 0; i < N; i++)
+		delete animals[i];
 	return (0);
 }
