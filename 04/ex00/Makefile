@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/10/05 07:56:52 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/05 15:25:51 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ SOURCES		=	main.cpp \
 				Animal.cpp \
 				Dog.cpp \
 				Cat.cpp \
+				WrongAnimal.cpp \
+				WrongCat.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs
