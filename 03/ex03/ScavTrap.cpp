@@ -35,6 +35,10 @@ ScavTrap::~ScavTrap(void)
 ScavTrap & ScavTrap::operator=(ScavTrap const & rhs)
 {
 	ClapTrap::operator=(rhs);
+	this->hit_points = rhs.hit_points;
+	this->energy_points = rhs.energy_points;
+	this->attack_damage = rhs.attack_damage;
+	this->in_gate_keeper_mode = rhs.in_gate_keeper_mode;
 	return (*this);
 }
 

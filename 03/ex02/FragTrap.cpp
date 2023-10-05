@@ -34,6 +34,9 @@ FragTrap::~FragTrap(void)
 FragTrap & FragTrap::operator=(FragTrap const & rhs)
 {
 	ClapTrap::operator=(rhs);
+	this->hit_points = rhs.hit_points;
+	this->energy_points = rhs.energy_points;
+	this->attack_damage = rhs.attack_damage;
 	return (*this);
 }
 
@@ -59,8 +62,8 @@ void	FragTrap::highFivesGuys(void)
 {
 	if (this->is_dead())
 	{
-		std::cout << "FragTrap " << this->get_name() << " is dead!\n";
+		std::cout << "FragTrap " << this->name << " is dead!\n";
 		return ;
 	}
-	std::cout << this->get_name() << ": Let's high five guys!?!?!!!" << std::endl;
+	std::cout << this->name << ": Let's high five guys!?!?!!!" << std::endl;
 }

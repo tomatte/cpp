@@ -38,10 +38,10 @@ DiamondTrap::~DiamondTrap(void)
 
 DiamondTrap & DiamondTrap::operator=(DiamondTrap const & rhs)
 {
-	this->name = rhs.name;
 	ClapTrap::operator=(rhs);
-	ScavTrap::operator=(rhs);
 	FragTrap::operator=(rhs);
+	ScavTrap::operator=(rhs);
+	this->name = rhs.name;
 	return (*this);
 }
 

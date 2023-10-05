@@ -104,33 +104,7 @@ void	ClapTrap::attack(std::string const & target)
 	this->energy_points--;
 }
 
-
-void	ClapTrap::set_hit_points(int amount)
-{
-	this->hit_points = amount;
-}
-
-void	ClapTrap::set_energy_points(int amount)
-{
-	this->energy_points = amount;
-}
-
-void	ClapTrap::set_attack_damage(int amount)
-{
-	this->attack_damage = amount;
-}
-
-void	ClapTrap::sum_energy_points(int amount)
-{
-	this->energy_points += amount;
-}
-
-std::string	ClapTrap::get_name(void)
+std::string	ClapTrap::get_name(void) const
 {
 	return (this->name);
-}
-
-int	ClapTrap::get_attack_damage(void)
-{
-	return (this->attack_damage);
 }

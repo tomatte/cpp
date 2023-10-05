@@ -34,6 +34,9 @@ FragTrap::~FragTrap(void)
 FragTrap & FragTrap::operator=(FragTrap const & rhs)
 {
 	ClapTrap::operator=(rhs);
+	this->hit_points = rhs.hit_points;
+	this->energy_points = rhs.energy_points;
+	this->attack_damage = rhs.attack_damage;
 	return (*this);
 }
 
