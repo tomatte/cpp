@@ -13,7 +13,7 @@ WrongAnimal::WrongAnimal(WrongAnimal const & rhs) : type(rhs.type)
 
 WrongAnimal::~WrongAnimal(void)
 {
-	std::cout << "WrongAnimal destructor constructor called." << std::endl;
+	std::cout << "WrongAnimal destructor called." << std::endl;
 }
 
 WrongAnimal & WrongAnimal::operator=(WrongAnimal const & rhs)

@@ -13,7 +13,7 @@ Animal::Animal(Animal const & rhs) : type(rhs.type)
 
 Animal::~Animal(void)
 {
-	std::cout << "Animal destructor constructor called." << std::endl;
+	std::cout << "Animal destructor called." << std::endl;
 }
 
 Animal & Animal::operator=(Animal const & rhs)

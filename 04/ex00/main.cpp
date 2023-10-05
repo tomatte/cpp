@@ -25,5 +25,12 @@ int	main(void)
 	std::cout << wrong_cat->getType() << " " << std::endl;
 	wrong_animal->makeSound();
 	wrong_cat->makeSound();
+
+	std::cout << std::endl;
+	delete i;
+	delete j;
+	delete meta;
+	delete wrong_animal;
+	delete wrong_cat;
 	return (0);
 }
