@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/10/05 15:25:51 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/05 17:51:33 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ RED			=	"\033[0;31m"
 GREEN		=	"\033[0;32m"
 NC			=	"\033[0m"
 
-NAME		=	animals
+NAME		=	brain
 
 SOURCES		=	main.cpp \
 				Animal.cpp \
@@ -22,6 +22,7 @@ SOURCES		=	main.cpp \
 				Cat.cpp \
 				WrongAnimal.cpp \
 				WrongCat.cpp \
+				Brain.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs
