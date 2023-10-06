@@ -22,7 +22,7 @@ class Character : ICharacter
 
 		Character & operator=(Character const & rhs); //ok
 		std::string	const & getName() const; //ok
-		void 				equip(AMateria* m);
+		void 				equip(AMateria* m); //ok
 		void 				unequip(int idx);
 		void 				use(int idx, ICharacter& target);
 };

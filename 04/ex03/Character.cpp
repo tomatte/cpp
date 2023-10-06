@@ -39,7 +39,14 @@ std::string	const & Character::getName() const
 
 void	Character::equip(AMateria* m)
 {
-
+	for (int i = 0; i < MAX_ITEMS; i++)
+	{
+		if (this->_invetory[i] == NULL)
+		{
+			this->_invetory[i] = m;
+			return ;
+		}
+	}
 }
 
 void	Character::unequip(int idx)

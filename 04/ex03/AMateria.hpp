@@ -5,6 +5,9 @@
 
 class AMateria
 {
+	private:
+		static AMateria	*ground[100]; //store unequiped materias
+
 	protected:
 		std::string const type;
 
@@ -18,6 +21,9 @@ class AMateria
 		std::string const & getType() const; //Returns the materia type
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
+
+		void	put_on_ground(AMateria *m);
+		void	clear_ground(void);
 };
 
 #endif
