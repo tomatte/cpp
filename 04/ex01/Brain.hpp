@@ -12,7 +12,9 @@ class Brain
 		Brain(Brain const & rhs);
 		~Brain(void);
 
-		Brain & operator=(Brain const & rhs);
+		Brain & 	operator=(Brain const & rhs);
+		void		set_idea(int index, std::string const & idea);
+		std::string	get_idea(int index) const;
 };
 
 #endif

@@ -17,6 +17,8 @@ class Dog : public Animal
 		Dog & operator=(Dog const & rhs);
 
 		virtual void	makeSound(void) const;
+		void			set_idea(int index, std::string const & idea);
+		std::string		get_idea(int index) const;
 };
 
 #endif
