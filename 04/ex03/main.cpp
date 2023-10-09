@@ -9,11 +9,10 @@ int	main(void)
 {
 	ICharacter	*player = new Character("John");
 	ICharacter	*player2 = new Character("Max");
-	AMateria	*ice = new Ice();
-	AMateria	*cure = new Cure();
 
-	player->equip(ice);
-	player2->equip(cure);
+	player->equip(new Ice());
+	player->equip(new Cure());
+	player2->equip(new Cure());
 	player->use(0, *player2);
 	player2->use(0, *player2);
 	player->unequip(0);

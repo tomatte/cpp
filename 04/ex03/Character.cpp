@@ -26,6 +26,11 @@ Character::Character(void) : _name(""), _items(0)
 
 Character::~Character(void)
 {
+	for (int i = 0; i < MAX_ITEMS; i++)
+	{
+		if (this->_invetory[i] != NULL)
+			delete this->_invetory[i];
+	}
 }
 
 Character & Character::operator=(Character const & rhs)
