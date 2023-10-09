@@ -7,6 +7,7 @@ class Ice : public AMateria
 	public:
 		Ice(void);
 		Ice(Ice const & rhs);
+		Ice(AMateria const & rhs);
 		~Ice(void);
 
 		Ice & operator=(Ice const & rhs);

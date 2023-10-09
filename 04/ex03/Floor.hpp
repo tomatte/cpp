@@ -1,11 +1,12 @@
 #ifndef FLOOR_H
 # define FLOOR_H
 # include "AMateria.hpp"
+# include "ft.hpp"
 
 class Floor
 {
 	private:
-		//AMateria linked list
+		ft::t_lst	*materias;
 
 	public:
 		Floor(void);

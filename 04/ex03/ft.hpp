@@ -12,6 +12,7 @@ namespace ft
 
 	void	add_to_list(t_lst **list, AMateria *materia);
 	void	clear_list(t_lst **lst);
+	t_lst	*dup_list(t_lst *lst);
 }
 
 

@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/10/09 08:27:35 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/09 11:10:00 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SOURCES		=	main.cpp \
 				Cure.cpp \
 				Ice.cpp \
 				ft.cpp \
+				Floor.cpp \
 
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))

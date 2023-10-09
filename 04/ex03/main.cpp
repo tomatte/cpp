@@ -2,19 +2,21 @@
 #include "AMateria.hpp"
 #include "Ice.hpp"
 #include "Character.hpp"
-#include "ft.hpp"
+#include "Floor.hpp"
 
 int	main(void)
 {
-	ft::t_lst	*list = NULL;
 	ICharacter	*player = new Character("John");
 	AMateria	*ice = new Ice();
 	AMateria	*ice2 = new Ice();
+	Floor		floor;
+	Floor		floor2;
 
-	ft::add_to_list(&list, ice);
-	ft::add_to_list(&list, ice2);
+	floor.add_materia(ice);
+	floor.add_materia(ice2);
+	floor2 = floor;
 	ice->use(*player);
-
-	ft::clear_list(&list);
+	floor.clear_floor();
+	floor2.clear_floor();
 	return (0);
 }

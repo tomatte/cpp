@@ -1,4 +1,6 @@
 #include "AMateria.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 #include "ft.hpp"
 
 namespace ft {
@@ -36,5 +38,22 @@ namespace ft {
 			delete aux;
 		}
 		*lst = NULL;
+	}
+
+	t_lst	*dup_list(t_lst *lst)
+	{
+		t_lst		*dup = NULL;
+		AMateria	*m;
+
+		while (lst)
+		{
+			if (lst->materia->getType() == "ice")
+				m = new Ice(*lst->materia);
+			// else
+			// 	m = new Cure(*lst->materia);
+			add_to_list(&dup, m);
+			lst = lst->next;
+		}
+		return dup;
 	}
 }

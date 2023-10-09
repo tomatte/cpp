@@ -11,6 +11,10 @@ Ice::Ice(Ice const & rhs) : AMateria(rhs)
 {
 }
 
+Ice::Ice(AMateria const & rhs) : AMateria(rhs)
+{
+}
+
 Ice::~Ice(void)
 {
 	std::cout << "Ice destructor called." << std::endl;
