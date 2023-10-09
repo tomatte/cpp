@@ -1,5 +1,7 @@
+#include "AMateria.hpp"
 #include "Character.hpp"
 #include "ICharacter.hpp"
+#include "Floor.hpp"
 
 void	Character::clear_inventory(AMateria *_invetory[MAX_ITEMS])
 {
@@ -51,10 +53,15 @@ void	Character::equip(AMateria* m)
 
 void	Character::unequip(int idx)
 {
-
+	if (idx < 0 || idx >= MAX_ITEMS)
+		return ;
+	AMateria::floor->add_materia(this->_invetory[idx]);
+	this->_invetory[idx] = NULL;
 }
 
 void	Character::use(int idx, ICharacter& target)
 {
-
+	if (idx < 0 || idx >= MAX_ITEMS)
+		return ;
+	this->_invetory[idx]->use(target);
 }

@@ -3,9 +3,13 @@
 # include <string>
 
 class ICharacter;
+class Floor;
 
 class AMateria
 {
+	private:
+		static void		init_floor(void);
+
 	protected:
 		std::string const type;
 
@@ -19,6 +23,8 @@ class AMateria
 		std::string const & getType() const; //Returns the materia type
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
+
+		static Floor	*floor;
 };
 
 #endif

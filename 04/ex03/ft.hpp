@@ -1,6 +1,7 @@
 #ifndef FT_H
 # define FT_H
-# include "AMateria.hpp"
+
+class AMateria;
 
 namespace ft
 {
