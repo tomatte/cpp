@@ -1,5 +1,6 @@
 #include "AMateria.hpp"
 #include <iostream>
+#include "ICharacter.hpp"
 
 AMateria::AMateria(void)
 {
@@ -30,10 +31,5 @@ std::string const & AMateria::getType() const
 
 void AMateria::use(ICharacter& target)
 {
-	std::cout << "materia" << std::endl;
-}
-
-void	AMateria::put_on_ground(AMateria *m)
-{
-
+	std::cout << "* use materia on " << target.getName() << " *"<< std::endl;
 }

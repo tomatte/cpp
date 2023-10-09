@@ -28,8 +28,7 @@ Cure & Cure::operator=(Cure const & rhs)
 
 AMateria* Cure::clone() const
 {
-	Cure	*materia = new Cure(*this);
-	return (materia);
+	return (new Cure(*this));
 }
 
 void Cure::use(ICharacter& target)
