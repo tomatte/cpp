@@ -17,8 +17,8 @@ int	main(void)
 	player->use(0, *player2);
 	player2->use(0, *player2);
 	player->unequip(0);
-	AMateria::floor->clear_floor();
-	delete AMateria::floor;
+	player2->unequip(0);
+	AMateria::floor.clear_floor();
 	delete player2;
 	delete player;
 	return (0);

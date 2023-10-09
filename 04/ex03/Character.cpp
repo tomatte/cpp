@@ -55,7 +55,7 @@ void	Character::unequip(int idx)
 {
 	if (idx < 0 || idx >= MAX_ITEMS)
 		return ;
-	AMateria::floor->add_materia(this->_invetory[idx]);
+	AMateria::floor.add_materia(this->_invetory[idx]);
 	this->_invetory[idx] = NULL;
 }
 

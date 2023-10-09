@@ -3,27 +3,18 @@
 #include <iostream>
 #include "ICharacter.hpp"
 
-Floor	*AMateria::floor = NULL;
-
-void	AMateria::init_floor(void)
-{
-	if (AMateria::floor == NULL)
-		AMateria::floor = new Floor();
-}
+Floor	AMateria::floor;
 
 AMateria::AMateria(void)
 {
-	AMateria::init_floor();
 }
 
 AMateria::AMateria(std::string const & type) : type(type)
 {
-	AMateria::init_floor();
 }
 
 AMateria::AMateria(AMateria const & rhs) : type(rhs.type)
 {
-	AMateria::init_floor();
 }
 
 AMateria::~AMateria(void)

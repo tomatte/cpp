@@ -7,9 +7,6 @@ class Floor;
 
 class AMateria
 {
-	private:
-		static void		init_floor(void);
-
 	protected:
 		std::string const type;
 
@@ -24,7 +21,7 @@ class AMateria
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
 
-		static Floor	*floor;
+		static Floor	floor;
 };
 
 #endif
