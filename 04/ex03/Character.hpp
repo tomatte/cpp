@@ -5,7 +5,7 @@
 # include <string>
 # define MAX_ITEMS 4
 
-class Character : ICharacter
+class Character : public ICharacter
 {
 	private:
 		std::string	_name;

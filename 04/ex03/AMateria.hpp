@@ -6,7 +6,7 @@
 class AMateria
 {
 	private:
-		static AMateria	*ground[100]; //store unequiped materias
+		
 
 	protected:
 		std::string const type;
@@ -15,7 +15,7 @@ class AMateria
 		AMateria(void);
 		AMateria(std::string const & type);
 		AMateria(AMateria const & rhs);
-		~AMateria(void);
+		virtual ~AMateria(void);
 		
 		AMateria & operator=(AMateria const & rhs);
 		std::string const & getType() const; //Returns the materia type

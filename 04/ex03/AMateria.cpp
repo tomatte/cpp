@@ -26,3 +26,8 @@ void AMateria::use(ICharacter& target)
 {
 	std::cout << "materia" << std::endl;
 }
+
+void	AMateria::put_on_ground(AMateria *m)
+{
+
+}

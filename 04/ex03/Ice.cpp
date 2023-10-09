@@ -1,7 +1,8 @@
 #include "Ice.hpp"
 #include <iostream>
+#include "AMateria.hpp"
 
-Ice::Ice(void)
+Ice::Ice(void) : AMateria("ice")
 {
 }
 
@@ -11,6 +12,7 @@ Ice::Ice(Ice const & rhs) : AMateria(rhs)
 
 Ice::~Ice(void)
 {
+	std::cout << "Ice destructor called." << std::endl;
 }
 
 Ice & Ice::operator=(Ice const & rhs)

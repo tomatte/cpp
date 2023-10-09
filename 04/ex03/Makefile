@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/10/06 09:10:32 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/06 17:00:18 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,12 @@ NC			=	"\033[0m"
 NAME		=	materia
 
 SOURCES		=	main.cpp \
+				Character.cpp \
+				AMateria.cpp \
+				Cure.cpp \
+				Ice.cpp \
+				ft.cpp \
+
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs

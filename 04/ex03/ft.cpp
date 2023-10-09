@@ -6,11 +6,12 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 09:12:58 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/10/06 16:57:06 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/10/09 08:15:10 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.hpp"
+#include "AMateria.hpp"
 
 namespace ft {
 	typedef struct s_lst
