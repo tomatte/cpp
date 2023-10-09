@@ -16,7 +16,7 @@ class Character : public ICharacter
 
 	public:
 		Character(void); //ok
-		Character(std::string & name);
+		Character(std::string const & name);
 		Character(Character const & rhs); //ok
 		~Character(void); //ok
 

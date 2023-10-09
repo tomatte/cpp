@@ -12,7 +12,7 @@ Character::Character(Character const & rhs) : _name(rhs._name), _items(rhs._item
 	for (int i = 0; i < MAX_ITEMS; i++)
 		*this->_invetory[i] = *rhs._invetory[i];
 }
-Character::Character(std::string & name) : _name(name), _items(0)
+Character::Character(std::string const & name) : _name(name), _items(0)
 {
 	Character::clear_inventory(this->_invetory);
 }

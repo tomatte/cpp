@@ -1,24 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft.cpp                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 09:12:58 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/10/09 08:29:10 by dbrandao         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "AMateria.hpp"
+#include "ft.hpp"
 
 namespace ft {
-	typedef struct s_lst
-	{
-		AMateria	*materia;
-		s_lst		*next;
-	}	t_lst;
-
 	void	add_to_list(t_lst **list, AMateria *materia)
 	{
 		t_lst	*aux;
@@ -49,8 +32,8 @@ namespace ft {
 			if (aux == NULL)
 				break ;
 			delete aux->materia;
-			delete aux;
 			*lst = (*lst)->next;
+			delete aux;
 		}
 		*lst = NULL;
 	}
