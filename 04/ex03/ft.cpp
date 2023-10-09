@@ -49,8 +49,8 @@ namespace ft {
 		{
 			if (lst->materia->getType() == "ice")
 				m = new Ice(*lst->materia);
-			// else
-			// 	m = new Cure(*lst->materia);
+			else
+				m = new Cure(*lst->materia);
 			add_to_list(&dup, m);
 			lst = lst->next;
 		}

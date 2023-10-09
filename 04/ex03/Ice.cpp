@@ -22,7 +22,8 @@ Ice::~Ice(void)
 
 Ice & Ice::operator=(Ice const & rhs)
 {
-
+	(void) rhs;
+	return (*this);
 }
 
 AMateria* Ice::clone() const
