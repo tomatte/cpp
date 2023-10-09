@@ -1,7 +1,8 @@
 #ifndef ICHARACTER_H
 # define ICHARACTER_H
-# include "AMateria.hpp"
 # include <string>
+
+class AMateria;
 
 class ICharacter
 {

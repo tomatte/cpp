@@ -6,18 +6,17 @@
 /*   By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 09:12:58 by dbrandao          #+#    #+#             */
-/*   Updated: 2023/10/09 08:15:10 by dbrandao         ###   ########.fr       */
+/*   Updated: 2023/10/09 08:29:10 by dbrandao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.hpp"
 #include "AMateria.hpp"
 
 namespace ft {
 	typedef struct s_lst
 	{
 		AMateria	*materia;
-		t_lst		*next;
+		s_lst		*next;
 	}	t_lst;
 
 	void	add_to_list(t_lst **list, AMateria *materia)

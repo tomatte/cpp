@@ -54,7 +54,7 @@ void	Character::unequip(int idx)
 
 }
 
-void	use(int idx, ICharacter& target)
+void	Character::use(int idx, ICharacter& target)
 {
 
 }

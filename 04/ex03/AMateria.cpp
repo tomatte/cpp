@@ -17,6 +17,12 @@ AMateria::~AMateria(void)
 {
 }
 
+AMateria & AMateria::operator=(AMateria const & rhs)
+{
+	return (*this);
+}
+
+
 std::string const & AMateria::getType() const
 {
 	return (this->type);
