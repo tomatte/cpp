@@ -42,7 +42,6 @@ Character::~Character(void)
 
 Character & Character::operator=(Character const & rhs)
 {
-	std::cout << "Character copy asignment operator called.\n";
 	this->_name = rhs._name;
 	Character::clear_inventory(this->_invetory);
 	for (int i = 0; i < MAX_ITEMS; i++)

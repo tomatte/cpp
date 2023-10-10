@@ -17,7 +17,6 @@ Cure::Cure(AMateria const & rhs) : AMateria(rhs)
 
 Cure::~Cure(void)
 {
-	std::cout << "Cure destructor called." << std::endl;
 }
 
 Cure & Cure::operator=(Cure const & rhs)
