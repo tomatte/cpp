@@ -2,6 +2,7 @@
 #include "AMateria.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
+#include "Floor.hpp"
 
 MateriaSource::MateriaSource(void)
 {
@@ -48,6 +49,7 @@ void MateriaSource::learnMateria(AMateria *m)
 			return ;
 		}
 	}
+	AMateria::floor.add_materia(m);
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)

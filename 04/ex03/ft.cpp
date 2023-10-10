@@ -12,6 +12,7 @@ namespace ft {
 		if (materia == NULL)
 			return ;
 		node = new t_lst;
+		node->next = NULL;
 		node->materia = materia;
 		if (*list == NULL)
 		{

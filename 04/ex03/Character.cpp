@@ -71,6 +71,7 @@ void	Character::equip(AMateria* m)
 			return ;
 		}
 	}
+	AMateria::floor.add_materia(m);
 }
 
 void	Character::unequip(int idx)
