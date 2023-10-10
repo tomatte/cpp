@@ -10,7 +10,6 @@ class Character : public ICharacter
 	private:
 		std::string	_name;
 		AMateria	*_invetory[MAX_ITEMS];
-		int			_items;
 
 		static void	clear_inventory(AMateria *_invetory[MAX_ITEMS]); //ok
 
