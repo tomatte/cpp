@@ -3,6 +3,8 @@
 # include <stdexcept>
 # include <string>
 
+class Form;
+
 class Bureaucrat
 {
 	private:
@@ -23,6 +25,7 @@ class Bureaucrat
 		int			getGrade(void) const;
 		void		increment_grade(void);
 		void		decrement_grade(void);
+		void		signForm(Form & form);
 
 		class GradeTooLowException : public std::exception
 		{

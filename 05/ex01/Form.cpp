@@ -2,6 +2,7 @@
 # include <string>
 # include <stdexcept>
 # include <iostream>
+# include "Bureaucrat.hpp"
 
 Form::Form(void) : _name("Default"), _signed(false),
 _sign_grade(1), _execution_grade(1)
@@ -50,32 +51,40 @@ void	Form::error_check(void) const
 		throw Form::GradeTooLowException();
 }
 
-std::string	Form::get_name(void) const
+std::string	Form::getName(void) const
 {
 	return (this->_name);
 }
 
-bool		Form::get_signed(void) const
+bool		Form::getSigned(void) const
 {
 	return (this->_signed);
 }
 
-int			Form::get_sign_grade(void) const
+int			Form::getSignGrade(void) const
 {
 	return (this->_sign_grade);
 }
 
-int			Form::get_execution_grade(void) const
+int			Form::getExecutionGrade(void) const
 {
 	return (this->_execution_grade);
+}
+
+void		Form::beSigned(Bureaucrat & b)
+{
+	if (b.getGrade() <= this->_sign_grade)
+		this->_signed = true;
+	else
+		throw Form::GradeTooLowException();
 }
 
 std::ostream &	operator<<(std::ostream & o, Form const & rhs)
 {
 	o << "*FORM DATA*\n";
-	o << "name: " << rhs.get_name() << "\n";
-	o << "signed: " << rhs.get_signed() << "\n";
-	o << "sign grade: " << rhs.get_sign_grade() << "\n";
-	o << "execution grade: " << rhs.get_execution_grade() << "\n";
+	o << "name: " << rhs.getName() << "\n";
+	o << "signed: " << rhs.getSigned() << "\n";
+	o << "sign grade: " << rhs.getSignGrade() << "\n";
+	o << "execution grade: " << rhs.getExecutionGrade() << "\n";
 	return (o); 
 }

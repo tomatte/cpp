@@ -4,6 +4,8 @@
 # include <stdexcept>
 # include <iostream>
 
+class Bureaucrat;
+
 class Form
 {
 	private:
@@ -20,10 +22,11 @@ class Form
 		Form(Form const & rhs);
 		~Form(void);
 
-		std::string	get_name(void) const;
-		bool		get_signed(void) const;
-		int			get_sign_grade(void) const;
-		int			get_execution_grade(void) const;
+		std::string	getName(void) const;
+		bool		getSigned(void) const;
+		int			getSignGrade(void) const;
+		int			getExecutionGrade(void) const;
+		void		beSigned(Bureaucrat & b);
 
 		class GradeTooHighException : public std::exception
 		{
