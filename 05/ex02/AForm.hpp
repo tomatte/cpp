@@ -6,9 +6,10 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 	private:
+		AForm(void);
 		std::string	_name;
 		bool		_signed;
 		int const	_sign_grade;
@@ -17,10 +18,10 @@ class Form
 		void	error_check(void) const;
 	
 	public:
-		Form(void);
-		Form(std::string name, int sign_grade, int execution_grade);
-		Form(Form const & rhs);
-		~Form(void);
+		AForm(void);
+		AForm(std::string name, int sign_grade, int execution_grade);
+		AForm(AForm const & rhs);
+		virtual ~AForm(void) = 0;
 
 		std::string	getName(void) const;
 		bool		getSigned(void) const;
@@ -40,9 +41,9 @@ class Form
 				virtual const char	*what(void) const throw();
 		};
 
-		Form & operator=(Form const & rhs);
+		AForm & operator=(AForm const & rhs);
 };
 
-std::ostream & operator<<(std::ostream & o, Form const & rhs);
+std::ostream & operator<<(std::ostream & o, AForm const & rhs);
 
 #endif

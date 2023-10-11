@@ -1,8 +1,8 @@
 #include "Form.hpp"
-# include <string>
-# include <stdexcept>
-# include <iostream>
-# include "Bureaucrat.hpp"
+#include <string>
+#include <stdexcept>
+#include <iostream>
+#include "Bureaucrat.hpp"
 
 Form::Form(void) : _name("Default"), _signed(false),
 _sign_grade(1), _execution_grade(1)

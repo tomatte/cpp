@@ -1,12 +1,12 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 #include <stdexcept>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 
 int main(void)
 {
-	Form		form("form_01", 10, 20);
+	AForm		form("form_01", 10, 20);
 	Bureaucrat	josh("Josh", 5);
 	Bureaucrat	ada("Ada", 15);
 
