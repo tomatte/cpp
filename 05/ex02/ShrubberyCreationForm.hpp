@@ -8,6 +8,8 @@ class ShrubberyCreationForm : public AForm
 	private:
 		std::string	_target;
 
+		static std::string	getTree(void);
+
 	public:
 		ShrubberyCreationForm(void);
 		ShrubberyCreationForm(std::string target);
