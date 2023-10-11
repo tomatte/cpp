@@ -1,5 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 #include "AForm.hpp"
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) : 
 AForm("ShrubberyCreationForm", 145, 137), _target("none")
@@ -20,8 +21,19 @@ ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm c
 {
 	AForm::operator=(rhs);
 	this->_target = rhs._target;
+	return (*this);
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
+}
+
+void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+{
+	std::ofstream	file;
+	std::string		file_name(this->_target + "_shrubbery");
+
+	(void) executor;
+	file.open(file_name.c_str(), std::ios::trunc);
+	file.close();
 }

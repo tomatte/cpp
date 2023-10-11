@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/10/11 13:08:48 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/11 18:38:42 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ NAME		=	exceptions
 
 SOURCES		=	main.cpp \
 				Bureaucrat.cpp \
-				Form.cpp \
+				AForm.cpp \
+				ShrubberyCreationForm.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs

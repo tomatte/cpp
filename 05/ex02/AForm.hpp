@@ -18,16 +18,17 @@ class AForm
 		void	error_check(void) const;
 	
 	public:
-		AForm(void);
+		virtual ~AForm(void) = 0;
 		AForm(std::string name, int sign_grade, int execution_grade);
 		AForm(AForm const & rhs);
-		virtual ~AForm(void) = 0;
 
 		std::string	getName(void) const;
 		bool		getSigned(void) const;
 		int			getSignGrade(void) const;
 		int			getExecutionGrade(void) const;
 		void		beSigned(Bureaucrat & b);
+
+		virtual void	execute(Bureaucrat const & executor) const = 0;
 
 		class GradeTooHighException : public std::exception
 		{

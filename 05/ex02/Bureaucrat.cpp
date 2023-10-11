@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name(""), _grade(75)
 {
@@ -70,7 +70,7 @@ void		Bureaucrat::decrement_grade(void)
 		throw Bureaucrat::GradeTooLowException();
 }
 
-void		Bureaucrat::signForm(Form & form)
+void		Bureaucrat::signForm(AForm & form)
 {
 	try
 	{
