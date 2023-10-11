@@ -2,6 +2,7 @@
 # define FORM_H
 # include <string>
 # include <stdexcept>
+# include <iostream>
 
 class Form
 {
@@ -15,10 +16,14 @@ class Form
 	
 	public:
 		Form(void);
-		Form(std::string & name, int sign_grade, int execution_grade);
+		Form(std::string name, int sign_grade, int execution_grade);
 		Form(Form const & rhs);
 		~Form(void);
 
+		std::string	get_name(void) const;
+		bool		get_signed(void) const;
+		int			get_sign_grade(void) const;
+		int			get_execution_grade(void) const;
 
 		class GradeTooHighException : public std::exception
 		{
@@ -34,5 +39,7 @@ class Form
 
 		Form & operator=(Form const & rhs);
 };
+
+std::ostream & operator<<(std::ostream & o, Form const & rhs);
 
 #endif
