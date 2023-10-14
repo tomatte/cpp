@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/10/10 07:39:58 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/12 08:55:00 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SOURCES		=	main.cpp \
 				ft.cpp \
 				Floor.cpp \
 				MateriaSource.cpp \
+				ColorOut.cpp \
 
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))

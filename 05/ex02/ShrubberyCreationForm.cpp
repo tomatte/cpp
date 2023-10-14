@@ -1,6 +1,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "AForm.hpp"
 #include <fstream>
+#include "Bureaucrat.hpp"
 
  std::string	ShrubberyCreationForm::getTree(void)
 {
@@ -50,6 +51,8 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	std::string		file_name(this->_target + "_shrubbery");
 	std::string		tree;
 
+	if (executor.getGrade() > this->getExecutionGrade())
+		throw AForm::GradeTooLowException();
 	(void) executor;
 	file.open(file_name.c_str(), std::ios::trunc);
 	tree = ShrubberyCreationForm::getTree();
