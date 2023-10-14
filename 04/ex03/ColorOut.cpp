@@ -38,7 +38,7 @@ ColorOut::t_color operator<<(ColorOut::t_color c, std::string & str)
 	return (c);
 }
 
-ColorOut::t_color operator<<(ColorOut::t_color c, std::string str)
+ColorOut::t_color operator<<(ColorOut::t_color c, const std::string & str)
 {
 	std::cout << (const char *) c.color;
 	std::cout << str;

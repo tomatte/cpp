@@ -40,8 +40,7 @@ class ColorOut
 };
 
 ColorOut::t_color operator<<(ColorOut::t_color c, std::string & str);
-ColorOut::t_color operator<<(ColorOut::t_color c, std::string str);
-ColorOut::t_color operator<<(ColorOut::t_color c, const char *str);
+ColorOut::t_color operator<<(ColorOut::t_color c, const std::string & str);
 ColorOut::t_color operator<<(ColorOut::t_color c, const char *str);
 ColorOut::t_color operator<<(ColorOut::t_color c, std::ostream & (*f)(std::ostream & o));
 

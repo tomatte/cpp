@@ -65,6 +65,7 @@ int main()
 	std::cout << "soraka equips ice through materia_source and use it against anivia\n";
 	soraka.equip(materia_source->createMateria("ice"));
 	soraka.use(0, anivia);
+	std::cout << std::endl;
 
 	delete materia_source;
 	AMateria::floor.clear_floor();

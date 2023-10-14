@@ -5,6 +5,7 @@
 #include "Ice.hpp"
 #include "Cure.hpp"
 #include <iostream>
+#include "ColorOut.hpp"
 
 void	Character::clear_inventory(AMateria *_invetory[MAX_ITEMS])
 {
@@ -20,28 +21,33 @@ void	Character::clear_inventory(AMateria *_invetory[MAX_ITEMS])
 
 Character::Character(Character const & rhs) : _name(rhs._name)
 {
+	ColorOut::green << "Character copy constructor called." << std::endl;
 	for (int i = 0; i < MAX_ITEMS; i++)
 		*this->_invetory[i] = *rhs._invetory[i];
 }
 Character::Character(std::string const & name) : _name(name)
 {
+	ColorOut::green << "Character string constructor called." << std::endl;
 	for (int i = 0; i < MAX_ITEMS; i++)
 		this->_invetory[i] = NULL;
 }
 
 Character::Character(void) : _name("")
 {
+	ColorOut::green << "Character default constructor called." << std::endl;
 	for (int i = 0; i < MAX_ITEMS; i++)
 		this->_invetory[i] = NULL;
 }
 
 Character::~Character(void)
 {
+	ColorOut::magenta << "Character destructor called." << std::endl;
 	Character::clear_inventory(this->_invetory);
 }
 
 Character & Character::operator=(Character const & rhs)
 {
+	ColorOut::none << "Character copy asignment operator called." << std::endl;
 	this->_name = rhs._name;
 	Character::clear_inventory(this->_invetory);
 	for (int i = 0; i < MAX_ITEMS; i++)
@@ -67,6 +73,7 @@ void	Character::equip(AMateria* m)
 	{
 		if (this->_invetory[i] == NULL)
 		{
+			ColorOut::yellow << this->_name << " equiped " << m->getType() << "." << std::endl;
 			this->_invetory[i] = m;
 			return ;
 		}

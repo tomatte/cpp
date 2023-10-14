@@ -7,7 +7,7 @@
 
 Ice::Ice(void) : AMateria("ice")
 {
-	ColorOut::green << "Ice default constructor called.\n";
+	ColorOut::green << "Ice created.\n";
 }
 
 Ice::Ice(Ice const & rhs) : AMateria(rhs)
@@ -19,12 +19,12 @@ Ice::Ice(Ice const & rhs) : AMateria(rhs)
 Ice::Ice(AMateria const & rhs) : AMateria(rhs)
 {
 	(void) rhs;
-	ColorOut::green << "Ice materia constructor called.\n";
+	ColorOut::green << "Ice created through another ice.\n";
 }
 
 Ice::~Ice(void)
 {
-	ColorOut::magenta << "Ice destructor called.\n";
+	ColorOut::magenta << "Ice destructed.\n";
 }
 
 Ice & Ice::operator=(Ice const & rhs)
@@ -36,7 +36,7 @@ Ice & Ice::operator=(Ice const & rhs)
 
 AMateria* Ice::clone() const
 {
-	std::cout << "Ice cloned.\n";
+	ColorOut::yellow << "Ice cloned.\n";
 	return (new Ice(*this));
 }
 
