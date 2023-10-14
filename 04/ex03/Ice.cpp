@@ -7,24 +7,24 @@
 
 Ice::Ice(void) : AMateria("ice")
 {
-	std::cout << "Ice default constructor called.\n";
+	ColorOut::green << "Ice default constructor called.\n";
 }
 
 Ice::Ice(Ice const & rhs) : AMateria(rhs)
 {
 	(void) rhs;
-	std::cout << "Ice copy constructor called.\n";
+	ColorOut::green << "Ice copy constructor called.\n";
 }
 
 Ice::Ice(AMateria const & rhs) : AMateria(rhs)
 {
 	(void) rhs;
-	std::cout << "Ice materia constructor called.\n";
+	ColorOut::green << "Ice materia constructor called.\n";
 }
 
 Ice::~Ice(void)
 {
-	ColorOut::red << "Ice destructor called.\n";
+	ColorOut::magenta << "Ice destructor called.\n";
 }
 
 Ice & Ice::operator=(Ice const & rhs)
@@ -42,5 +42,5 @@ AMateria* Ice::clone() const
 
 void Ice::use(ICharacter& target)
 {
-	ColorOut::blue << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+	ColorOut::blue_b << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

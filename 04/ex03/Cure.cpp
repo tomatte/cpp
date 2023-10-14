@@ -2,6 +2,7 @@
 #include <iostream>
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
+#include "ColorOut.hpp"
 
 Cure::Cure(void) : AMateria("cure")
 {
@@ -32,5 +33,5 @@ AMateria* Cure::clone() const
 
 void Cure::use(ICharacter& target)
 {
-	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+	ColorOut::green_b << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
