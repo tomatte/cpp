@@ -16,6 +16,9 @@ class AForm
 		int const	_execution_grade;
 
 		void	error_check(void) const;
+
+	protected:
+		void	verify_execution_requirements(Bureaucrat const & executor) const;
 	
 	public:
 		virtual ~AForm(void) = 0;
@@ -37,6 +40,12 @@ class AForm
 		};
 
 		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char	*what(void) const throw();
+		};
+
+		class NotSignedException : public std::exception
 		{
 			public:
 				virtual const char	*what(void) const throw();

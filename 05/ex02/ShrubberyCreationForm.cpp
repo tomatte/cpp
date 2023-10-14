@@ -51,11 +51,8 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	std::string		file_name(this->_target + "_shrubbery");
 	std::string		tree;
 
-	if (executor.getGrade() > this->getExecutionGrade())
-		throw AForm::GradeTooLowException();
-	(void) executor;
+	this->verify_execution_requirements(executor);
 	file.open(file_name.c_str(), std::ios::trunc);
-	tree = ShrubberyCreationForm::getTree();
-	file.write(tree.c_str(), tree.length());
+	file << ShrubberyCreationForm::getTree();
 	file.close();
 }

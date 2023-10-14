@@ -43,12 +43,25 @@ const char	*AForm::GradeTooLowException::what(void) const throw()
 	return "Grade is too low.";
 }
 
+const char	*AForm::NotSignedException::what(void) const throw()
+{
+	return "Form is not signed.";
+}
+
 void	AForm::error_check(void) const
 {
 	if (this->_execution_grade < 1 || this->_sign_grade < 1)
 		throw AForm::GradeTooHighException();
 	if (this->_execution_grade > 150 || this->_sign_grade > 150)
 		throw AForm::GradeTooLowException();
+}
+
+void	AForm::verify_execution_requirements(Bureaucrat const & executor) const
+{
+	if (executor.getGrade() > this->getExecutionGrade())
+		throw AForm::GradeTooLowException();
+	if (this->getSigned() == false)
+		throw AForm::NotSignedException();
 }
 
 std::string	AForm::getName(void) const
