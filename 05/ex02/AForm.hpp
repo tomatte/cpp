@@ -14,11 +14,13 @@ class AForm
 		bool		_signed;
 		int const	_sign_grade;
 		int const	_execution_grade;
+		std::string	_target;
 
 		void	error_check(void) const;
 
 	protected:
 		void	verify_execution_requirements(Bureaucrat const & executor) const;
+		void	setTarget(std::string target);
 	
 	public:
 		virtual ~AForm(void) = 0;
@@ -26,6 +28,7 @@ class AForm
 		AForm(AForm const & rhs);
 
 		std::string	getName(void) const;
+		std::string	getTarget(void) const;
 		bool		getSigned(void) const;
 		int			getSignGrade(void) const;
 		int			getExecutionGrade(void) const;

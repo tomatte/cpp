@@ -5,24 +5,27 @@
 #include "ColorOut.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(void) : 
-AForm("PresidentialPardonForm", 25, 5), _target("none")
+AForm("presidential pardon", 25, 5)
 {
+	this->setTarget("none");
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : 
-AForm("PresidentialPardonForm", 25, 5), _target(target)
+AForm("presidential pardon", 25, 5)
 {
+	this->setTarget(target);
 }
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const & rhs) : 
-AForm(rhs), _target(rhs._target)
+AForm(rhs)
 {
+	this->setTarget(rhs.getTarget());
 }
 
 PresidentialPardonForm & PresidentialPardonForm::operator=(PresidentialPardonForm const & rhs)
 {
 	AForm::operator=(rhs);
-	this->_target = rhs._target;
+	this->setTarget(rhs.getTarget());
 	return (*this);
 }
 
@@ -33,5 +36,5 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	this->verify_execution_requirements(executor);
-	ColorOut::blue << "* " << this->_target << " has been pardoned by Zaphod Beeblebrox *\n";
+	ColorOut::blue << "* " << this->getTarget() << " has been pardoned by Zaphod Beeblebrox *\n";
 }

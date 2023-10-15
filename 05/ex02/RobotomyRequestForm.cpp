@@ -7,24 +7,27 @@
 #include "ColorOut.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(void) : 
-AForm("RobotomyRequestForm", 72, 45), _target("none")
+AForm("robotomy request", 72, 45)
 {
+	this->setTarget("none");
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : 
-AForm("RobotomyRequestForm", 72, 45), _target(target)
+AForm("robotomy request", 72, 45)
 {
+	this->setTarget(target);
 }
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const & rhs) : 
-AForm(rhs), _target(rhs._target)
+AForm(rhs)
 {
+	this->setTarget(rhs.getTarget());
 }
 
 RobotomyRequestForm & RobotomyRequestForm::operator=(RobotomyRequestForm const & rhs)
 {
 	AForm::operator=(rhs);
-	this->_target = rhs._target;
+	this->setTarget(rhs.getTarget());
 	return (*this);
 }
 
@@ -54,8 +57,8 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	seed = time(NULL) + clock();
 	srand(seed);
 	if (rand() % 2)
-		ColorOut::green_b << this->_target
+		ColorOut::green_b << this->getTarget()
 			<< " has been robotomized successfully!!!\n";
 	else
-		ColorOut::red << this->_target << " robotomization failed X_x\n";
+		ColorOut::red << this->getTarget() << " robotomization failed X_x\n";
 }

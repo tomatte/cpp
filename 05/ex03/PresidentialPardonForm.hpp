@@ -5,11 +5,6 @@
 
 class PresidentialPardonForm : public AForm
 {
-	private:
-		std::string	_target;
-
-		static std::string	getTree(void);
-
 	public:
 		PresidentialPardonForm(void);
 		PresidentialPardonForm(std::string target);

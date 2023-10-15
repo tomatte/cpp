@@ -20,24 +20,27 @@
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) : 
-AForm("ShrubberyCreationForm", 145, 137), _target("none")
+AForm("shrubbery creation", 145, 137)
 {
+	this->setTarget("none");
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : 
-AForm("ShrubberyCreationForm", 145, 137), _target(target)
+AForm("shrubbery creation", 145, 137)
 {
+	this->setTarget(target);
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & rhs) : 
-AForm(rhs), _target(rhs._target)
+AForm(rhs)
 {
+	this->setTarget(rhs.getTarget());
 }
 
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm const & rhs)
 {
 	AForm::operator=(rhs);
-	this->_target = rhs._target;
+	this->setTarget(rhs.getTarget());
 	return (*this);
 }
 
@@ -48,7 +51,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	std::ofstream	file;
-	std::string		file_name(this->_target + "_shrubbery");
+	std::string		file_name(this->getTarget() + "_shrubbery");
 	std::string		tree;
 
 	this->verify_execution_requirements(executor);

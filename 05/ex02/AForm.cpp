@@ -63,6 +63,16 @@ void	AForm::verify_execution_requirements(Bureaucrat const & executor) const
 		throw AForm::GradeTooLowException();
 }
 
+void	AForm::setTarget(std::string target)
+{
+	this->_target = target;
+}
+
+std::string	AForm::getTarget(void) const
+{
+	return (this->_target);
+}
+
 std::string	AForm::getName(void) const
 {
 	return (this->_name);
