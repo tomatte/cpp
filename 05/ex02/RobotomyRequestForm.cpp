@@ -36,15 +36,26 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	clock_t	start_time;
 	int	seed;
+	int	aux;
 
 	this->verify_execution_requirements(executor);
 	start_time = clock();
-	ColorOut::yellow << "[!] Vrrrrrrrmmmmmm...   " << std::endl;
-	seed = time(NULL) + start_time;
+	ColorOut::yellow << "[!] Vrrrrrrrmmmmmm";
+	aux = 0;
+	while (clock() < start_time + 1800000)
+	{
+		if (aux < clock())
+		{
+			ColorOut::yellow << "." << std::flush;
+			aux += 200000;
+		}
+	}
+	std::cout << std::endl;
+	seed = time(NULL) + clock();
 	srand(seed);
-	while (clock() < start_time + 900000);
 	if (rand() % 2)
-		ColorOut::green_b << executor.getName() << " has been robotomized successfully!!!\n";
+		ColorOut::green_b << executor.getName()
+			<< " has been robotomized successfully!!!\n";
 	else
 		ColorOut::red << executor.getName() << " robotomization failed X_x\n";
 }

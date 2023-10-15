@@ -11,21 +11,23 @@
 
 int main(void)
 {
-	Bureaucrat				josh("Josh", 1);
+	Bureaucrat				josh("Josh", 137);
+	Bureaucrat				mary("Mary", 45);
+	Bureaucrat				ariel("Ariel", 1);
 	AForm	*shrub = new ShrubberyCreationForm("home");
 	AForm	*robotomy = new RobotomyRequestForm("Josh");
 
 	std::cout << "----------- Shrubbery Test -----------\n";
-	/* Fail  */
-	josh.executeForm(*shrub);
-
-	/* Success  */
-	shrub->beSigned(josh);
+	josh.signForm(*shrub);
 	josh.executeForm(*shrub);
 
 	std::cout << "\n----------- Robotomy Test -----------\n";
+	josh.signForm(*robotomy);
 	josh.executeForm(*robotomy);
-	robotomy->beSigned(josh);
-	josh.executeForm(*robotomy);
+	std::cout << std::endl;
+	mary.signForm(*robotomy);
+	mary.executeForm(*robotomy);
+
+
 	return (0);
 }

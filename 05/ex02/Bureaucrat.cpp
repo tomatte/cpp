@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 #include "AForm.hpp"
+#include "ColorOut.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name(""), _grade(75)
 {
@@ -75,12 +76,14 @@ void		Bureaucrat::signForm(AForm & form)
 	try
 	{
 		form.beSigned(*this);
+		ColorOut::green << "o ";
 		std::cout << this->getName() << " signed " << form.getName() << "\n";
 	}
 	catch(std::exception & e)
 	{
+		ColorOut::yellow << "! ";
 		std::cout << this->getName() << " couldn't sign " << form.getName() \
-		<< " because " << e.what() << "\n";
+			<< ": " << e.what() << "\n";
 	}
 }
 
@@ -89,10 +92,12 @@ void	Bureaucrat::executeForm(AForm const & form)
 	try
 	{
 		form.execute(*this);
+		ColorOut::green << "o ";
 		std::cout << this->getName() << " executed " << form.getName() << std::endl;
 	}
 	catch (std::exception & e)
 	{
+		ColorOut::yellow << "! ";
 		std::cout << this->getName() << " failed to execute " << 
 			form.getName() << ": " << e.what() << std::endl;
 	}

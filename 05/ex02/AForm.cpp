@@ -58,10 +58,10 @@ void	AForm::error_check(void) const
 
 void	AForm::verify_execution_requirements(Bureaucrat const & executor) const
 {
-	if (executor.getGrade() > this->getExecutionGrade())
-		throw AForm::GradeTooLowException();
 	if (this->getSigned() == false)
 		throw AForm::NotSignedException();
+	if (executor.getGrade() > this->getExecutionGrade())
+		throw AForm::GradeTooLowException();
 }
 
 std::string	AForm::getName(void) const
