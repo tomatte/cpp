@@ -1,13 +1,9 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
-#include <stdexcept>
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
-
-#include <cstdlib>
-#include <ctime>
-
+#include "PresidentialPardonForm.hpp"
 
 int main(void)
 {
@@ -16,6 +12,7 @@ int main(void)
 	Bureaucrat				ariel("Ariel", 1);
 	AForm	*shrub = new ShrubberyCreationForm("home");
 	AForm	*robotomy = new RobotomyRequestForm("Josh");
+	AForm	*pardon = new PresidentialPardonForm("Mary");
 
 	std::cout << "----------- Shrubbery Test -----------\n";
 	josh.signForm(*shrub);
@@ -28,6 +25,8 @@ int main(void)
 	mary.signForm(*robotomy);
 	mary.executeForm(*robotomy);
 
-
+	std::cout << "\n----------- Presidential Pardon Test -----------\n";
+	ariel.signForm(*pardon);
+	ariel.executeForm(*pardon);
 	return (0);
 }
