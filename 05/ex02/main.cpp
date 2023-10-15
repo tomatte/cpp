@@ -28,6 +28,7 @@ int main(void)
 	ariel.signForm(*shrub2);
 	ariel.executeForm(*shrub2);
 	ariel.signForm(*pardon);
+	mary.executeForm(*pardon);
 	ariel.executeForm(*pardon);
 
 	std::cout << "\n----------- Robotomy Success -----------\n";
