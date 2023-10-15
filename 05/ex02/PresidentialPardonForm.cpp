@@ -33,5 +33,5 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	this->verify_execution_requirements(executor);
-	ColorOut::blue << this->_target << " has been pardoned by Zaphod Beeblebrox\n";
+	ColorOut::blue << "* " << this->_target << " has been pardoned by Zaphod Beeblebrox *\n";
 }

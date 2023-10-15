@@ -54,8 +54,8 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	seed = time(NULL) + clock();
 	srand(seed);
 	if (rand() % 2)
-		ColorOut::green_b << executor.getName()
+		ColorOut::green_b << this->_target
 			<< " has been robotomized successfully!!!\n";
 	else
-		ColorOut::red << executor.getName() << " robotomization failed X_x\n";
+		ColorOut::red << this->_target << " robotomization failed X_x\n";
 }
