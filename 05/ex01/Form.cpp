@@ -28,7 +28,6 @@ Form::~Form(void)
 
 Form & Form::operator=(Form const & rhs)
 {
-	this->_name = rhs._name;
 	this->_signed = rhs._signed;
 	return (*this);
 }

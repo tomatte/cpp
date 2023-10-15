@@ -82,7 +82,7 @@ void		Bureaucrat::signForm(AForm & form)
 	{
 		ColorOut::yellow << "! ";
 		std::cout << this->getName() << " couldn't sign " << form.getName() \
-			<< ": " << e.what() << "\n";
+		<< " because " << e.what() << "\n";
 	}
 }
 

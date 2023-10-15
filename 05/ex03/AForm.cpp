@@ -28,7 +28,6 @@ AForm::~AForm(void)
 
 AForm & AForm::operator=(AForm const & rhs)
 {
-	this->_name = rhs._name;
 	this->_signed = rhs._signed;
 	return (*this);
 }
