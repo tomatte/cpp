@@ -20,12 +20,12 @@
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) : 
-AForm("ShrubberyCreationForm", 145, 137), _target("none")
+AForm("shrubbery creation", 145, 137), _target("none")
 {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : 
-AForm("ShrubberyCreationForm", 145, 137), _target(target)
+AForm("shrubbery creation", 145, 137), _target(target)
 {
 }
 

@@ -5,12 +5,12 @@
 #include "ColorOut.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(void) : 
-AForm("PresidentialPardonForm", 25, 5), _target("none")
+AForm("presidential pardon", 25, 5), _target("none")
 {
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : 
-AForm("PresidentialPardonForm", 25, 5), _target(target)
+AForm("presidential pardon", 25, 5), _target(target)
 {
 }
 

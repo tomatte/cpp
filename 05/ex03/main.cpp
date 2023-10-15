@@ -4,40 +4,41 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main(void)
 {
-	Bureaucrat				josh("Josh", 137);
-	Bureaucrat				mary("Mary", 45);
-	Bureaucrat				ariel("Ariel", 1);
-	AForm	*shrub = new ShrubberyCreationForm("home");
-	AForm	*shrub2 = new ShrubberyCreationForm("farm");
-	AForm	*robotomy = new RobotomyRequestForm("Josh");
-	AForm	*pardon = new PresidentialPardonForm("Mary");
+	AForm	*form;
+	Intern	intern;
+	Bureaucrat	james("James", 45);
 
-	std::cout << "----------- Shrubbery Test -----------\n";
-	josh.signForm(*shrub);
-	josh.executeForm(*shrub);
+	form = intern.makeForm("helicopter request", "Willian");
 
-	std::cout << "\n----------- Robotomy Fail -----------\n";
-	josh.signForm(*robotomy);
-	josh.executeForm(*robotomy);
+	std::cout << "\n---------- Presidential Pardon Form ----------\n"; 
+	form = intern.makeForm("presidential pardon", "James");
+	if (form)
+	{
+		james.signForm(*form);
+		james.executeForm(*form);
+		delete form;
+	}
 
+	std::cout << "\n---------- Shrubbery Creation Form ----------\n"; 
+	form = intern.makeForm("shrubbery creation", "hotel");
+	if (form)
+	{
+		james.signForm(*form);
+		james.executeForm(*form);
+		delete form;
+	}
 
-	std::cout << "\n----------- Presidential Pardon Test -----------\n";
-	ariel.signForm(*shrub2);
-	ariel.executeForm(*shrub2);
-	ariel.signForm(*pardon);
-	mary.executeForm(*pardon);
-	ariel.executeForm(*pardon);
-
-	std::cout << "\n----------- Robotomy Success -----------\n";
-	mary.signForm(*robotomy);
-	mary.executeForm(*robotomy);
-
-	delete shrub;
-	delete robotomy;
-	delete pardon;
-	delete shrub2;
+	std::cout << "\n---------- Robotomy Request Form ----------\n"; 
+	form = intern.makeForm("robotomy request", "Willian");
+	if (form)
+	{
+		james.signForm(*form);
+		james.executeForm(*form);
+		delete form;
+	}
 	return (0);
 }

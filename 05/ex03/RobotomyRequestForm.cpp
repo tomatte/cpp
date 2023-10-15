@@ -7,12 +7,12 @@
 #include "ColorOut.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(void) : 
-AForm("RobotomyRequestForm", 72, 45), _target("none")
+AForm("robotomy request", 72, 45), _target("none")
 {
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : 
-AForm("RobotomyRequestForm", 72, 45), _target(target)
+AForm("robotomy request", 72, 45), _target(target)
 {
 }
 
