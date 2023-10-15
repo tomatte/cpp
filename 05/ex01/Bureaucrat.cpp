@@ -24,7 +24,6 @@ Bureaucrat::~Bureaucrat(void)
 Bureaucrat & Bureaucrat::operator=(Bureaucrat const & rhs)
 {
 	this->_grade = rhs._grade;
-	this->_name = rhs._name;
 	return (*this);
 }
 

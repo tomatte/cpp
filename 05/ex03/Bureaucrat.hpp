@@ -8,7 +8,7 @@ class AForm;
 class Bureaucrat
 {
 	private:
-		std::string	_name;
+		std::string const	_name;
 		int	_grade;
 
 		void	error_check(void) const;
