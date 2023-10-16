@@ -57,7 +57,10 @@ AForm	*Intern::makeForm(std::string form, std::string target)
 	for (int i = 0; i < 3; i++)
 	{
 		if (Intern::formNames[i] == form)
+		{
+			ColorOut::green << "Intern creates " << form << "\n";
 			return (Intern::createFormFunctions[i](target));
+		}
 	}
 	ColorOut::yellow << "! ";
 	std::cout << "Error: '" << form << "' form doesn't exist.\n";
