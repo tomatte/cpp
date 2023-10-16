@@ -11,23 +11,32 @@ double	ScalarConverter::n_double;
 void	ScalarConverter::print_everything(void)
 {
 	std::cout << "--------------------------------------------------" << std::endl;
-	std::cout << "Char: ";
+	std::cout << "char: ";
 	if (ScalarConverter::n_char < 32 || ScalarConverter::n_char == 127)
-		std::cout << "non-printable" << std::endl;
+		std::cout << "Non displayable" << std::endl;
 	else
 		std::cout << ScalarConverter::n_char << std::endl;
-	std::cout << "Int: " << ScalarConverter::n_int << std::endl;
-	std::cout << "Float: " << ScalarConverter::n_float << std::endl;
-	std::cout << "Double: " << ScalarConverter::n_double << std::endl;
+	std::cout << "int: " << ScalarConverter::n_int << std::endl;
+	std::cout << "float: " << ScalarConverter::n_float << "f" << std::endl;
+	std::cout << "double: " << ScalarConverter::n_double << std::endl;
 	std::cout << "--------------------------------------------------" << std::endl;
 }
 
+void	ScalarConverter::print_nothing(void)
+{
+	std::cout << "--------------------------------------------------" << std::endl;
+	std::cout << "Char: impossible" << std::endl;
+	std::cout << "Int: impossible" << std::endl;
+	std::cout << "Float: nanf" << std::endl;
+	std::cout << "Double: nan" << std::endl;
+	std::cout << "--------------------------------------------------" << std::endl;
+}
 
 bool	(*ScalarConverter::convertions[4])(std::string) = {
 		ScalarConverter::convert_to_double,
 		ScalarConverter::convert_to_float,
-		ScalarConverter::convert_to_char,
-		ScalarConverter::convert_to_int
+		ScalarConverter::convert_to_int,
+		ScalarConverter::convert_to_char
 	};
 
 bool	ScalarConverter::convert_to_char(std::string literal)
@@ -44,15 +53,9 @@ bool	ScalarConverter::convert_to_char(std::string literal)
 
 bool	ScalarConverter::convert_to_int(std::string literal)
 {
-	try
-	{
-		ScalarConverter::n_int = std::atoi(literal.c_str());
-	}
-	catch (std::exception & e)
-	{
-		(void) e;
+	if (literal.find_first_not_of("0123456789") != std::string::npos)
 		return (false);
-	}
+	ScalarConverter::n_int = std::atoi(literal.c_str());
 	ScalarConverter::n_char = static_cast<char>(ScalarConverter::n_int);
 	ScalarConverter::n_double = static_cast<double>(ScalarConverter::n_int);
 	ScalarConverter::n_float = static_cast<float>(ScalarConverter::n_int);
@@ -62,18 +65,31 @@ bool	ScalarConverter::convert_to_int(std::string literal)
 
 bool	ScalarConverter::convert_to_float(std::string literal)
 {
-	return (false);
+	std::string	aux;
+
+	if (literal.find('f') == std::string::npos)
+		return (false);
+	if (literal.find('.') == std::string::npos)
+		return (false);
+	aux = literal.substr(0, literal.length() - 1);
+	ScalarConverter::n_float = static_cast<float>(std::atof(aux.c_str()));
+	if (ScalarConverter::n_float == 0 && literal != "0.0")
+		return (false);
+	ScalarConverter::n_char = static_cast<char>(ScalarConverter::n_float);
+	ScalarConverter::n_int = static_cast<int>(ScalarConverter::n_float);
+	ScalarConverter::n_double = static_cast<double>(ScalarConverter::n_float);
+	ScalarConverter::print_everything();
+	return (true);
 }
 
 bool	ScalarConverter::convert_to_double(std::string literal)
 {
 	if (literal.find('f') != std::string::npos)
 		return (false);
-	std::cout << "Hello \n";
-	if (literal.find('.') == false)
+	if (literal.find('.') == std::string::npos)
 		return (false);
 	ScalarConverter::n_double = std::atof(literal.c_str());
-	if (n_double == 0 && literal != "0.0")
+	if (ScalarConverter::n_double == 0 && literal != "0.0")
 		return (false);
 	ScalarConverter::n_char = static_cast<char>(ScalarConverter::n_double);
 	ScalarConverter::n_int = static_cast<int>(ScalarConverter::n_double);
@@ -89,6 +105,7 @@ void	ScalarConverter::convert(std::string literal)
 		if (ScalarConverter::convertions[i](literal))
 			return ;
 	}
+	ScalarConverter::print_nothing();
 }
 
 ScalarConverter::ScalarConverter(void)

@@ -17,6 +17,7 @@ class ScalarConverter
 		static double	n_double;
 
 		static void		print_everything(void);
+		static void		print_nothing(void);
 
 		static bool		convert_to_char(std::string literal);
 		static bool		convert_to_int(std::string literal);
