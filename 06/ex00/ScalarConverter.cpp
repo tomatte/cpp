@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <limits>
 
 char	ScalarConverter::n_char;
 int		ScalarConverter::n_int;
@@ -11,7 +12,6 @@ double	ScalarConverter::n_double;
 void		ScalarConverter::trim_zeros(std::string & literal)
 {
 	int	i = 0;
-	int	dot;
 
 	if (literal[i] == '.')
 		return ;
@@ -54,21 +54,13 @@ void	ScalarConverter::print_everything(void)
 	std::cout << "--------------------------------------------------" << std::endl;
 }
 
-void	ScalarConverter::print_nothing(void)
-{
-	std::cout << "--------------------------------------------------" << std::endl;
-	std::cout << "char: impossible" << std::endl;
-	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: nanf" << std::endl;
-	std::cout << "double: nan" << std::endl;
-	std::cout << "--------------------------------------------------" << std::endl;
-}
-
-bool	(*ScalarConverter::convertions[4])(std::string) = {
+bool	(*ScalarConverter::convertions[OPERATIONS])(std::string) = {
 		ScalarConverter::convert_to_double,
 		ScalarConverter::convert_to_float,
 		ScalarConverter::convert_to_int,
-		ScalarConverter::convert_to_char
+		ScalarConverter::convert_to_char,
+		ScalarConverter::convert_double_specials,
+		ScalarConverter::convert_float_specials
 	};
 
 bool	ScalarConverter::convert_to_char(std::string literal)
@@ -86,6 +78,8 @@ bool	ScalarConverter::convert_to_char(std::string literal)
 bool	ScalarConverter::convert_to_int(std::string literal)
 {
 	if (literal.find_first_not_of("-0123456789") != std::string::npos)
+		return (false);
+	if (literal[0] == '-' && literal.length() == 1)
 		return (false);
 	ScalarConverter::n_int = std::atoi(literal.c_str());
 	ScalarConverter::n_char = static_cast<char>(ScalarConverter::n_int);
@@ -132,15 +126,51 @@ bool	ScalarConverter::convert_to_double(std::string literal)
 	return (true);
 }
 
+bool		ScalarConverter::convert_double_specials(std::string literal)
+{
+	if (literal != "nan" && literal != "+inf" && literal != "-inf")
+		return (false);
+	if (literal == "nan")
+		ScalarConverter::n_double = std::numeric_limits<double>::quiet_NaN();
+	else if (literal == "-inf")
+		ScalarConverter::n_double = -std::numeric_limits<double>::infinity();
+	else
+		ScalarConverter::n_double = std::numeric_limits<double>::infinity();
+	ScalarConverter::n_float = static_cast<float>(ScalarConverter::n_double);
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: " << ScalarConverter::n_float << 'f' << std::endl;
+	std::cout << "double: " << ScalarConverter::n_double << std::endl;
+	return (true);
+}
+
+bool		ScalarConverter::convert_float_specials(std::string literal)
+{
+	if (literal != "nanf" && literal != "inff" && literal != "+inff" && literal != "-inff")
+		return (false);
+	if (literal == "nanf")
+		ScalarConverter::n_float = std::numeric_limits<float>::quiet_NaN();
+	else if (literal == "-inff")
+		ScalarConverter::n_float = -std::numeric_limits<float>::infinity();
+	else
+		ScalarConverter::n_float = std::numeric_limits<float>::infinity();
+	ScalarConverter::n_double = static_cast<float>(ScalarConverter::n_float);
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: " << ScalarConverter::n_float << 'f' << std::endl;
+	std::cout << "double: " << ScalarConverter::n_double << std::endl;
+	return (true);
+}
+
 void	ScalarConverter::convert(std::string literal)
 {
 	ScalarConverter::trim_zeros(literal);
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < OPERATIONS; i++)
 	{
 		if (ScalarConverter::convertions[i](literal))
 			return ;
 	}
-	ScalarConverter::print_nothing();
+	std::cout << "Type conversion is not possible." << std::endl;
 }
 
 ScalarConverter::ScalarConverter(void)

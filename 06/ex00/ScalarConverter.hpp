@@ -1,6 +1,7 @@
 #ifndef SCALARCONVERTER_H
 # define SCALARCONVERTER_H
 # include <string>
+# define OPERATIONS 6
 
 class ScalarConverter
 {
@@ -18,13 +19,14 @@ class ScalarConverter
 
 		static void		trim_zeros(std::string & literal);
 		static void		print_everything(void);
-		static void		print_nothing(void);
 
 		static bool		convert_to_char(std::string literal);
 		static bool		convert_to_int(std::string literal);
 		static bool		convert_to_float(std::string literal);
 		static bool		convert_to_double(std::string literal);
-		static bool		(*convertions[4])(std::string);
+		static bool		convert_double_specials(std::string literal);
+		static bool		convert_float_specials(std::string literal);
+		static bool		(*convertions[OPERATIONS])(std::string);
 
 	public:
 		static void	convert(std::string literal);
