@@ -14,7 +14,7 @@ void		ScalarConverter::trim_zeros(std::string & literal)
 	int	i = 0;
 
 	if (literal[i] == '.')
-		return ;
+		literal = "error";
 	while (literal[i] == '0')
 		i++;
 	if (literal[i] != '.' || !literal[i])
@@ -32,26 +32,58 @@ void		ScalarConverter::trim_zeros(std::string & literal)
 		literal = "0.0f";
 }
 
-void	ScalarConverter::print_everything(void)
+void		ScalarConverter::print_char(void)
 {
-	std::cout << "--------------------------------------------------" << std::endl;
+	int	num;
+
+	num = static_cast<int>(ScalarConverter::n_double);
 	std::cout << "char: ";
-	if (ScalarConverter::n_char < 32 || ScalarConverter::n_char == 127)
-		std::cout << "Non displayable" << std::endl;
+	if (num > std::numeric_limits<char>::max() || num < std::numeric_limits<char>::min())
+		std::cout << "impossible";
+	else if (ScalarConverter::n_char < 32 || ScalarConverter::n_char == 127)
+		std::cout << "Non displayable";
 	else
-		std::cout << '\'' << ScalarConverter::n_char << '\'' << std::endl;
-	std::cout << "int: " << ScalarConverter::n_int << std::endl;
-	std::cout << "float: " << ScalarConverter::n_float;
-	if (ScalarConverter::n_float != static_cast<int>(ScalarConverter::n_float))
-		std::cout << "f" << std::endl;
-	else
-		std::cout << ".0f" << std::endl;
+		std::cout << '\'' << ScalarConverter::n_char << '\'';
+	std::cout << std::endl;
+}
+
+void		ScalarConverter::print_double(void)
+{
 	std::cout << "double: " << ScalarConverter::n_double;
 	if (ScalarConverter::n_double == static_cast<int>(ScalarConverter::n_double))
-		std::cout << ".0" << std::endl;
+		std::cout << ".0";
+	std::cout << std::endl;
+}
+
+void		ScalarConverter::print_float(void)
+{
+	std::cout << "float: " << ScalarConverter::n_float;
+	if (ScalarConverter::n_float != static_cast<int>(ScalarConverter::n_float))
+		std::cout << "f";
 	else
-		std::cout << std::endl;
-	std::cout << "--------------------------------------------------" << std::endl;
+		std::cout << ".0f";
+	std::cout << std::endl;
+}
+
+void		ScalarConverter::print_int(void)
+{
+	long int	num;
+
+	num = static_cast<long int>(ScalarConverter::n_double);
+	std::cout << "int: ";
+	if (num > ScalarConverter::n_int || num < ScalarConverter::n_int)
+		std::cout << "impossible";
+	else
+		std::cout << ScalarConverter::n_int;
+	std::cout << std::endl;
+}
+
+void	ScalarConverter::print_everything(void)
+{
+	ScalarConverter::print_char();
+	ScalarConverter::print_int();
+	ScalarConverter::print_float();
+	ScalarConverter::print_double();
 }
 
 bool	(*ScalarConverter::convertions[OPERATIONS])(std::string) = {
@@ -77,11 +109,20 @@ bool	ScalarConverter::convert_to_char(std::string literal)
 
 bool	ScalarConverter::convert_to_int(std::string literal)
 {
+	long int	number;
+
 	if (literal.find_first_not_of("-0123456789") != std::string::npos)
 		return (false);
 	if (literal[0] == '-' && literal.length() == 1)
 		return (false);
-	ScalarConverter::n_int = std::atoi(literal.c_str());
+	number = std::atol(literal.c_str());
+	if (number > std::numeric_limits<int>::max() ||
+		number < std::numeric_limits<int>::min())
+	{
+		std::cout << "Error: integer overflow" << std::endl;
+		return (true);
+	}
+	ScalarConverter::n_int = static_cast<int>(number);
 	ScalarConverter::n_char = static_cast<char>(ScalarConverter::n_int);
 	ScalarConverter::n_double = static_cast<double>(ScalarConverter::n_int);
 	ScalarConverter::n_float = static_cast<float>(ScalarConverter::n_int);
