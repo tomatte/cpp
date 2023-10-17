@@ -18,6 +18,7 @@ class ScalarConverter
 		static double	n_double;
 
 		static void		trim_zeros(std::string & literal);
+		static bool		is_number_ok(std::string & literal);
 		static void		print_char(void);
 		static void		print_double(void);
 		static void		print_float(void);

@@ -9,12 +9,33 @@ int		ScalarConverter::n_int;
 float	ScalarConverter::n_float;
 double	ScalarConverter::n_double;
 
+bool		ScalarConverter::is_number_ok(std::string & literal)
+{
+	if (literal.length() == 0)
+		return (false);
+	if (literal.length() == 1)
+		return (true);
+	if (literal.find('.') != std::string::npos && 
+		literal.substr(literal.find('.') + 1).find('.') != std::string::npos)
+	{
+		return (false);
+	}
+	if (literal[literal.length() - 1] == '.')
+		return (false);
+	if (literal[0] == '.')
+		return (false);
+	if (literal.substr(1).find_first_of("-+") != std::string::npos)
+		return (false);
+	std::cout << "testando\n";
+	return (true);
+}
+
 void		ScalarConverter::trim_zeros(std::string & literal)
 {
 	int	i = 0;
 
-	if (literal[i] == '.')
-		literal = "error";
+	if (literal.length() <= 1)
+		return ;
 	while (literal[i] == '0')
 		i++;
 	if (literal[i] != '.' || !literal[i])
@@ -109,20 +130,16 @@ bool	ScalarConverter::convert_to_char(std::string literal)
 
 bool	ScalarConverter::convert_to_int(std::string literal)
 {
-	long int	number;
+	long int	num;
 
 	if (literal.find_first_not_of("-0123456789") != std::string::npos)
 		return (false);
 	if (literal[0] == '-' && literal.length() == 1)
 		return (false);
-	number = std::atol(literal.c_str());
-	if (number > std::numeric_limits<int>::max() ||
-		number < std::numeric_limits<int>::min())
-	{
-		std::cout << "Error: integer overflow" << std::endl;
-		return (true);
-	}
-	ScalarConverter::n_int = static_cast<int>(number);
+	num = std::atol(literal.c_str());
+	if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min())
+		return (false);
+	ScalarConverter::n_int = static_cast<int>(num);
 	ScalarConverter::n_char = static_cast<char>(ScalarConverter::n_int);
 	ScalarConverter::n_double = static_cast<double>(ScalarConverter::n_int);
 	ScalarConverter::n_float = static_cast<float>(ScalarConverter::n_int);
@@ -177,11 +194,10 @@ bool		ScalarConverter::convert_double_specials(std::string literal)
 		ScalarConverter::n_double = -std::numeric_limits<double>::infinity();
 	else
 		ScalarConverter::n_double = std::numeric_limits<double>::infinity();
+	ScalarConverter::n_char = static_cast<char>(ScalarConverter::n_double);
+	ScalarConverter::n_int = static_cast<int>(ScalarConverter::n_double);
 	ScalarConverter::n_float = static_cast<float>(ScalarConverter::n_double);
-	std::cout << "char: impossible" << std::endl;
-	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: " << ScalarConverter::n_float << 'f' << std::endl;
-	std::cout << "double: " << ScalarConverter::n_double << std::endl;
+	ScalarConverter::print_everything();
 	return (true);
 }
 
@@ -195,16 +211,20 @@ bool		ScalarConverter::convert_float_specials(std::string literal)
 		ScalarConverter::n_float = -std::numeric_limits<float>::infinity();
 	else
 		ScalarConverter::n_float = std::numeric_limits<float>::infinity();
-	ScalarConverter::n_double = static_cast<float>(ScalarConverter::n_float);
-	std::cout << "char: impossible" << std::endl;
-	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: " << ScalarConverter::n_float << 'f' << std::endl;
-	std::cout << "double: " << ScalarConverter::n_double << std::endl;
+	ScalarConverter::n_char = static_cast<char>(ScalarConverter::n_float);
+	ScalarConverter::n_int = static_cast<int>(ScalarConverter::n_float);
+	ScalarConverter::n_double = static_cast<double>(ScalarConverter::n_float);
+	ScalarConverter::print_everything();
 	return (true);
 }
 
 void	ScalarConverter::convert(std::string literal)
 {
+	if (ScalarConverter::is_number_ok(literal) == false)
+	{
+		std::cout << "Type conversion is not possible." << std::endl;
+		return ;
+	}
 	ScalarConverter::trim_zeros(literal);
 	for (int i = 0; i < OPERATIONS; i++)
 	{
