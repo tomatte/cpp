@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/10/17 19:26:32 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/17 19:13:07 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,9 @@ GREEN		=	"\033[0;32m"
 BLUE		=	"\033[0;34m"
 NC			=	"\033[0m"
 
-NAME		=	convert
+NAME		=	templated
 
 SOURCES		=	main.cpp \
-				ScalarConverter.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs

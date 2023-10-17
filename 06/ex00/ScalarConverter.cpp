@@ -26,7 +26,6 @@ bool		ScalarConverter::is_number_ok(std::string & literal)
 		return (false);
 	if (literal.substr(1).find_first_of("-+") != std::string::npos)
 		return (false);
-	std::cout << "testando\n";
 	return (true);
 }
 
@@ -46,7 +45,10 @@ void		ScalarConverter::trim_zeros(std::string & literal)
 	if (literal[i] && literal[i] != 'f')
 		return ;
 	if (!literal[i])
+	{
 		literal = "0.0";
+		return ;
+	}
 	if (literal.substr(literal.find('f')).length() > 1)
 		return ;
 	else
