@@ -8,6 +8,30 @@ int		ScalarConverter::n_int;
 float	ScalarConverter::n_float;
 double	ScalarConverter::n_double;
 
+void		ScalarConverter::trim_zeros(std::string & literal)
+{
+	int	i = 0;
+	int	dot;
+
+	if (literal[i] == '.')
+		return ;
+	while (literal[i] == '0')
+		i++;
+	if (literal[i] != '.' || !literal[i])
+		return ;
+	if (!literal[i + 1])
+		return ;
+	while (literal[++i] == '0');
+	if (literal[i] && literal[i] != 'f')
+		return ;
+	if (!literal[i])
+		literal = "0.0";
+	if (literal.substr(literal.find('f')).length() > 1)
+		return ;
+	else
+		literal = "0.0f";
+}
+
 void	ScalarConverter::print_everything(void)
 {
 	std::cout << "--------------------------------------------------" << std::endl;
@@ -15,7 +39,7 @@ void	ScalarConverter::print_everything(void)
 	if (ScalarConverter::n_char < 32 || ScalarConverter::n_char == 127)
 		std::cout << "Non displayable" << std::endl;
 	else
-		std::cout << ScalarConverter::n_char << std::endl;
+		std::cout << '\'' << ScalarConverter::n_char << '\'' << std::endl;
 	std::cout << "int: " << ScalarConverter::n_int << std::endl;
 	std::cout << "float: " << ScalarConverter::n_float;
 	if (ScalarConverter::n_float != static_cast<int>(ScalarConverter::n_float))
@@ -61,7 +85,7 @@ bool	ScalarConverter::convert_to_char(std::string literal)
 
 bool	ScalarConverter::convert_to_int(std::string literal)
 {
-	if (literal.find_first_not_of("0123456789") != std::string::npos)
+	if (literal.find_first_not_of("-0123456789") != std::string::npos)
 		return (false);
 	ScalarConverter::n_int = std::atoi(literal.c_str());
 	ScalarConverter::n_char = static_cast<char>(ScalarConverter::n_int);
@@ -77,11 +101,13 @@ bool	ScalarConverter::convert_to_float(std::string literal)
 
 	if (literal.find('f') == std::string::npos)
 		return (false);
+	if (literal.substr(literal.find('f')).length() != 1)
+		return (false);
 	if (literal.find('.') == std::string::npos)
 		return (false);
 	aux = literal.substr(0, literal.length() - 1);
 	ScalarConverter::n_float = static_cast<float>(std::atof(aux.c_str()));
-	if (ScalarConverter::n_float == 0 && literal != "0.0")
+	if (ScalarConverter::n_float == 0 && literal != "0.0f")
 		return (false);
 	ScalarConverter::n_char = static_cast<char>(ScalarConverter::n_float);
 	ScalarConverter::n_int = static_cast<int>(ScalarConverter::n_float);
@@ -108,6 +134,7 @@ bool	ScalarConverter::convert_to_double(std::string literal)
 
 void	ScalarConverter::convert(std::string literal)
 {
+	ScalarConverter::trim_zeros(literal);
 	for (int i = 0; i < 4; i++)
 	{
 		if (ScalarConverter::convertions[i](literal))

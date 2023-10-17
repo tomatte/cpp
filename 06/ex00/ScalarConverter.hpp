@@ -16,6 +16,7 @@ class ScalarConverter
 		static float	n_float;
 		static double	n_double;
 
+		static void		trim_zeros(std::string & literal);
 		static void		print_everything(void);
 		static void		print_nothing(void);
 
