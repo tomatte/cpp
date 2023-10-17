@@ -17,18 +17,26 @@ void	ScalarConverter::print_everything(void)
 	else
 		std::cout << ScalarConverter::n_char << std::endl;
 	std::cout << "int: " << ScalarConverter::n_int << std::endl;
-	std::cout << "float: " << ScalarConverter::n_float << "f" << std::endl;
-	std::cout << "double: " << ScalarConverter::n_double << std::endl;
+	std::cout << "float: " << ScalarConverter::n_float;
+	if (ScalarConverter::n_float != static_cast<int>(ScalarConverter::n_float))
+		std::cout << "f" << std::endl;
+	else
+		std::cout << ".0f" << std::endl;
+	std::cout << "double: " << ScalarConverter::n_double;
+	if (ScalarConverter::n_double == static_cast<int>(ScalarConverter::n_double))
+		std::cout << ".0" << std::endl;
+	else
+		std::cout << std::endl;
 	std::cout << "--------------------------------------------------" << std::endl;
 }
 
 void	ScalarConverter::print_nothing(void)
 {
 	std::cout << "--------------------------------------------------" << std::endl;
-	std::cout << "Char: impossible" << std::endl;
-	std::cout << "Int: impossible" << std::endl;
-	std::cout << "Float: nanf" << std::endl;
-	std::cout << "Double: nan" << std::endl;
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: nanf" << std::endl;
+	std::cout << "double: nan" << std::endl;
 	std::cout << "--------------------------------------------------" << std::endl;
 }
 
