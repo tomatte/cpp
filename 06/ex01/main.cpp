@@ -5,12 +5,11 @@
 
 void	print_data(Data *data)
 {
-	std::cout << "----------------------" << std::endl;
 	std::cout << "Name: " << data->name << std::endl;
 	std::cout << "Age: " << data->age << std::endl;
 	std::cout << "Country: " << data->country << std::endl;
 	std::cout << "Money: " << data->money << std::endl;
-	std::cout << "----------------------" << std::endl;
+	std::cout << std::endl;
 }
 
 Data*	original_pointer;
@@ -35,6 +34,17 @@ void	print_serialized_data(uintptr_t serialized_data)
 	print_data(data);
 }
 
+void	test2(void)
+{
+	Data		data = {25, "Luna", "Chile", 99999.9};
+	const uintptr_t	serialized = Serializer::serialize(&data);
+	std::cout << "\n\n----------------- Test 2 -----------------\n";
+	print_serialized_data(serialized);
+	std::cout << "Serialized value:   " << serialized << std::endl;
+	std::cout << "Data pointer:       " << &data << std::endl;
+	std::cout << "Deserialized value: " << Serializer::deserialize(serialized) << std::endl;
+}
+
 int main(void)
 {
 	uintptr_t	serialized_data;
@@ -48,6 +58,7 @@ int main(void)
 	std::cout << "Deserialized data: " << deserialized_data << std::endl;
 	std::cout << "Original pointer:  " << original_pointer << std::endl;
 
+	test2();
 	delete deserialized_data;
 	return (0);
 }
