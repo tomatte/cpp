@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/10/18 11:27:15 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/18 11:27:39 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ GREEN		=	"\033[0;32m"
 BLUE		=	"\033[0;34m"
 NC			=	"\033[0m"
 
-NAME		=	whatever
+NAME		=	iter
 
 SOURCES		=	main.cpp \
 
