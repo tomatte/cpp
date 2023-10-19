@@ -1,7 +1,9 @@
 #include <iostream>
 #include "Array.hpp"
-#define BLUE_B "\033[0;34;1m"		/* Blue Bold */
-#define NONE "\033[0m"			/* None */
+# define NONE "\033[0m"			/* None */
+# define YELLOW  "\033[33m"		/* Yellow */
+# define BLUE_B "\033[0;34;1m"	/* Blue Bold */
+
 
 
 void	test_integers(void)
@@ -41,6 +43,47 @@ void	test_stringers(void)
 	std::cout << "After asign values: " << BLUE_B << stringers << NONE << std::endl;
 }
 
+void	test_copies1(void)
+{
+	Array<std::string>	words(3);
+
+	words[0] = "love";
+	words[1] = "wisdom";
+	words[2] = "life";
+
+	std::cout << "\n----------- test copy constructor -----------" << std::endl;
+	std::cout << "words:    " << BLUE_B << words << NONE << std::endl;
+	Array<std::string>	copy_one(words);
+	std::cout << "copy_one: " << YELLOW << copy_one << NONE << std::endl;
+	copy_one[1] = "exceptions";
+	copy_one[2] = "casts";
+	copy_one[0] = "templates";
+	std::cout << "\nafter copy_one modification: " << std::endl;
+	std::cout << "words:    " << BLUE_B << words << NONE << std::endl;
+	std::cout << "copy_one: " << YELLOW << copy_one << NONE << std::endl;
+}
+
+void	test_copies2(void)
+{
+	Array<std::string>	words(3);
+
+	words[0] = "earth";
+	words[1] = "moon";
+	words[2] = "sun";
+
+	std::cout << "\n----------- test copy asignment operator -----------" << std::endl;
+	std::cout << "words:    " << BLUE_B << words << NONE << std::endl;
+	Array<std::string>	copy_two;
+	copy_two = words;
+	std::cout << "copy_two: " << YELLOW << copy_two << NONE << std::endl;
+	copy_two[0] = "blue";
+	copy_two[1] = "silver";
+	copy_two[2] = "yellow";
+	std::cout << "\nafter copy_two modification: " << std::endl;
+	std::cout << "words:    " << BLUE_B << words << NONE << std::endl;
+	std::cout << "copy_two: " << YELLOW << copy_two << NONE << std::endl;
+}
+
 int	main(void)
 {
 
@@ -48,6 +91,8 @@ int	main(void)
 	test_integers();
 	test_floaters();
 	test_stringers();
+	test_copies1();
+	test_copies2();
 
 	return (0);
 }
