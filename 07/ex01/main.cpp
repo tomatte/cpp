@@ -1,5 +1,6 @@
 #include <iostream>
 #include "iter.hpp"
+#include "aux.hpp"
 
 int	main(void)
 {
