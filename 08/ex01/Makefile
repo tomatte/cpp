@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/10/20 17:46:31 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/20 18:57:34 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ GREEN		=	"\033[0;32m"
 BLUE		=	"\033[0;34m"
 NC			=	"\033[0m"
 
-NAME		=	easyfind
+NAME		=	span
 
 SOURCES		=	main.cpp \
 				Span.cpp \
@@ -24,7 +24,7 @@ OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs
 
 CC			=	c++ -std=c++98
-CFLAGS		=	-Wall -Wextra
+CFLAGS		=	-Wall -Wextra -Werror
 
 RM			=	rm -rf
 

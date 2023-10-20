@@ -10,6 +10,8 @@ private:
 	unsigned int		_N;
 	std::vector<int>	_numbers;
 
+	static int	abs(int n);
+
 	class MaxLimitException : public std::exception
 	{
 		public:
@@ -34,7 +36,6 @@ public:
 	void	addNumber(int number);
 	int		shortestSpan(void) const;
 	int		longestSpan(void) const;
-	int		getStored(void) const;
 	int		getMax(void) const;
 };
 
