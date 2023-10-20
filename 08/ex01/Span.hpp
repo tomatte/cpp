@@ -2,6 +2,7 @@
 # define SPAN_H
 # include <stdexcept>
 # include <vector>
+# include <ostream>
 
 class Span
 {
@@ -36,5 +37,7 @@ public:
 	int		getStored(void) const;
 	int		getMax(void) const;
 };
+
+std::ostream & operator<<(std::ostream & o, Span const & span);
 
 #endif

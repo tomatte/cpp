@@ -1,10 +1,16 @@
 #include <iostream>
-#include "easyfind.hpp"
 #include <vector>
 #include <list>
-#include "ColorOut.hpp"
+#include "Span.hpp"
 
 int	main(void)
 {
+	Span	numbers(3);
+
+	numbers.addNumber(10);
+	numbers.addNumber(1);
+	numbers.addNumber(2);
+
+	std::cout << numbers << std::endl;
 	return (0);
 }

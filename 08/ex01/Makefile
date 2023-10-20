@@ -6,7 +6,7 @@
 #    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/10/20 12:58:38 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/20 17:46:31 by dbrandao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,13 @@ NC			=	"\033[0m"
 NAME		=	easyfind
 
 SOURCES		=	main.cpp \
-				ColorOut.cpp \
+				Span.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs
 
 CC			=	c++ -std=c++98
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra
 
 RM			=	rm -rf
 
