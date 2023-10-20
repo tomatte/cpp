@@ -1,27 +1,38 @@
 #include "Span.hpp"
 
-Span::Span(void) : _N(0), _numbers(NULL), _stored(0)
+Span::Span(void) : _N(0)
 {
 }
 
-Span::Span(unsigned int N) : _N(N), _numbers(NULL), _stored(0)
+Span::Span(unsigned int N) : _N(N)
 {
 }
 
-Span::Span(Span const & rhs) : _N(), _numbers(NULL), _stored(0)
+Span::Span(Span const & rhs) : _N(rhs.getMax())
 {
-
+	this->_numbers.clear();
+	this->_numbers.insert(
+		this->_numbers.begin(), 
+		rhs.getNumbers().begin(), 
+		rhs.getNumbers().end()
+	);
 }
 
 Span::~Span(void)
 {
-
+	this->_numbers.clear();
 }
 
 
 Span & Span::operator=(Span const & rhs)
 {
-
+	this->_numbers.clear();
+	this->_numbers.insert(
+		this->_numbers.begin(), 
+		rhs.getNumbers().begin(), 
+		rhs.getNumbers().end()
+	);
+	this->_N = rhs._N;
 }
 
 void	Span::addNumber(int number)
@@ -39,7 +50,7 @@ int		Span::longestSpan(void) const
 
 }
 
-int		Span::getNumber(int index) const
+const std::vector<int> & Span::getNumbers(void) const
 {
 
 }

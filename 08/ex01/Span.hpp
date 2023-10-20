@@ -1,13 +1,13 @@
 #ifndef SPAN_H
 # define SPAN_H
 # include <stdexcept>
+# include <vector>
 
 class Span
 {
 private:
-	unsigned int	_N;
-	int				*_numbers;
-	int				_stored;
+	unsigned int		_N;
+	std::vector<int>	_numbers;
 
 	class MaxLimitException : public std::exception
 	{
@@ -29,10 +29,10 @@ public:
 
 	Span & operator=(Span const & rhs);
 
+	const std::vector<int> & getNumbers(void) const;
 	void	addNumber(int number);
 	int		shortestSpan(void) const;
 	int		longestSpan(void) const;
-	int		getNumber(int index) const;
 	int		getStored(void) const;
 	int		getMax(void) const;
 };
