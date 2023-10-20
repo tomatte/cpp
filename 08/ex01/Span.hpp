@@ -4,6 +4,8 @@
 # include <vector>
 # include <ostream>
 
+typedef std::vector<int>::iterator ft_iterator;
+
 class Span
 {
 private:
@@ -34,6 +36,7 @@ public:
 
 	const std::vector<int> & getNumbers(void) const;
 	void	addNumber(int number);
+	void	addNumbersBulk(ft_iterator begin, ft_iterator end);
 	int		shortestSpan(void) const;
 	int		longestSpan(void) const;
 	int		getMax(void) const;

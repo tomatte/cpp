@@ -52,6 +52,16 @@ void	Span::addNumber(int number)
 	this->_numbers.push_back(number);
 }
 
+void	Span::addNumbersBulk(ft_iterator begin, ft_iterator end)
+{
+	for (ft_iterator i = begin; i != end; i++)
+	{
+		if (this->_numbers.size() >= this->_N)
+			throw Span::MaxLimitException();
+		this->_numbers.push_back(*i);
+	}
+}
+
 int		Span::shortestSpan(void) const
 {
 	std::vector<int>::const_iterator	i;
@@ -105,12 +115,12 @@ int		Span::getMax(void) const
 
 const char	*Span::TooFewNumbersException::what(void) const throw()
 {
-	return ("reached limit of numbers");
+	return ("too few numbers to execute operation");
 }
 
 const char	*Span::MaxLimitException::what(void) const throw()
 {
-	return ("too few numbers to execute operation");
+	return ("reached limit of numbers");
 }
 
 std::ostream & operator<<(std::ostream & o, Span const & span)
