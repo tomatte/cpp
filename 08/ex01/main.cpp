@@ -50,9 +50,22 @@ void	my_test_one(void)
 	}
 }
 
+void	ten_thousand_test(void)
+{
+	Span				big_span(10000);
+	std::vector<int>	list = generate_list(10000, 4000000000);
+	
+	big_span.addNumbersBulk(list.begin(), list.end());
+	std::cout << "\n---------- TEN THOUSAND TEST ----------" << std::endl;
+	std::cout << big_span << std::endl;
+	std::cout << "\nShortest span: " << big_span.shortestSpan() << std::endl;
+	std::cout << "Longest span: " << big_span.longestSpan() << std::endl;
+}
+
 int	main(void)
 {
 	subject_test();
 	my_test_one();
+	//ten_thousand_test();
 	return (0);
 }
