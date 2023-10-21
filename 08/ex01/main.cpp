@@ -32,13 +32,11 @@ void	my_test_one(void)
 {
 	Span	span(51);
 
-	std::cout << "\n---------- my_test_one ----------" << std::endl;
+	std::cout << "\n********** my_test_one **********\n" << std::endl;
 	std::vector<int>	aux = generate_list(30, 1000);
 	std::vector<int>	aux2 = generate_list(30, 1000);
 	span.addNumbersBulk(aux.begin(), aux.end());
-	std::cout << span << std::endl;
-	std::cout << "Shortest: " << span.shortestSpan() << std::endl;
-	std::cout << "Longest: " << span.longestSpan() << std::endl;
+	span.results();
 	try
 	{
 		span.addNumbersBulk(aux2.begin(), aux2.end());
