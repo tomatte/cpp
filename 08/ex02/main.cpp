@@ -65,19 +65,30 @@ void	list_subject_test(void)
 	std::list<int> s(mstack);
 }
 
-int	main(void)
+void	my_simple_test(void)
 {
 	MutantStack<int>	mutant;
 
-	MutantStack<int>::iterator	it;
-
+	std::cout << "\n-------- my_simple_test --------" << std::endl;
 	mutant.push(1);
 	mutant.push(5);
 	mutant.push(10);
-	for (it = mutant.begin(); it != mutant.end(); it++)
-		std::cout << "it: " << *it << std::endl;
-	//std::for_each(mutant.begin(), mutant.end(), print<int>);
+	MutantStack<int>	copy(mutant);
+	MutantStack<int> const &	const_ref = copy;
+	std::cout << "size: " << mutant.size() << std::endl;
+
+	MutantStack<int>::const_reverse_iterator	rit;
+	rit = mutant.rbegin();
+	std::cout << "first const_reverse_iterator item: " << *rit << std::endl;
+	std::cout << "\nusing const reference to pass rerse iterator to for_each and a print func: " << std::endl;
+
+	std::for_each(const_ref.rbegin(), const_ref.rend(), print<int>);
+}
+
+int	main(void)
+{
 	mutant_subject_test();
 	list_subject_test();
+	my_simple_test();
 	return (0);
 }
