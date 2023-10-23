@@ -69,12 +69,9 @@ void	Span::addNumber(int number)
 
 void	Span::addNumbersBulk(ft_iterator begin, ft_iterator end)
 {
-	for (ft_iterator i = begin; i != end; i++)
-	{
-		if (this->_numbers.size() >= this->_N)
-			throw Span::MaxLimitException();
-		this->_numbers.push_back(*i);
-	}
+	this->_numbers.insert(this->_numbers.end(), begin, end);
+	if (this->_numbers.size() > this->_N)
+		throw Span::MaxLimitException();
 }
 
 int		Span::shortestSpan(void)
