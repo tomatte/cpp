@@ -65,7 +65,7 @@ void	list_subject_test(void)
 	std::list<int> s(mstack);
 }
 
-void	my_simple_test(void)
+void	my_tests(void)
 {
 	MutantStack<int>	mutant;
 
@@ -83,12 +83,13 @@ void	my_simple_test(void)
 	std::cout << "\nusing const reference to pass rerse iterator to for_each and a print func: " << std::endl;
 
 	std::for_each(const_ref.rbegin(), const_ref.rend(), print<int>);
+	std::cout << "\nfind(5): " << *(std::find(mutant.begin(), mutant.end(), 5)) << std::endl;  
 }
 
 int	main(void)
 {
 	mutant_subject_test();
 	list_subject_test();
-	my_simple_test();
+	my_tests();
 	return (0);
 }
