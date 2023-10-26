@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dbrandao <dbrandao@student.42sp.org.br     +#+  +:+       +#+         #
+#    By: bede-car <car@student.42sp.org.br>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 14:24:00 by dbrandao          #+#    #+#              #
-#    Updated: 2023/10/22 15:00:36 by dbrandao         ###   ########.fr        #
+#    Updated: 2023/10/26 09:44:12 by bede-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ NC			=	"\033[0m"
 NAME		=	btc
 
 SOURCES		=	main.cpp \
+				BitcoinExchange.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs
@@ -46,5 +47,10 @@ fclean: clean
 	$(RM) $(NAME)
 
 re:	fclean all
+
+#compile without -Werror
+nf: CFLAGS = -Wall -Wextra
+nf: all
+nfr: fclean nf
 
 .PHONY:	all clean fclean re

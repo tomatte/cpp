@@ -1,9 +1,11 @@
 #include <iostream>
-#include <vector>
-#include <list>
+#include <map>
+#include "BitcoinExchange.hpp"
+
 
 int	main(void)
 {
-	std::cout << "bora" << std::endl;
+	BitcoinExchange	exchange;
+
 	return (0);
 }
