@@ -3,7 +3,7 @@
 #include "BitcoinExchange.hpp"
 
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	BitcoinExchange	exchange;
 
@@ -11,5 +11,6 @@ int	main(void)
 		std::cout << "VALID!\n";
 	else
 		std::cout << "INVALID :(\n";
+
 	return (0);
 }

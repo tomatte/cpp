@@ -12,8 +12,7 @@ typedef std::map<std::string, double> t_data;
 class BitcoinExchange
 {
 	private:
-
-		void	extract_data(std::string data_file);
+		static void	extract_data(t_data & storage, std::string filename);
 
 	public:
 		static bool	is_valid_date(const char *str);
@@ -24,7 +23,8 @@ class BitcoinExchange
 
 		BitcoinExchange & operator=(BitcoinExchange const & rhs);
 
-		t_data	btc_data;
+		t_data	prices;
+		t_data	ammounts;
 };
 
 #endif
