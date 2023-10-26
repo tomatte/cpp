@@ -1,5 +1,15 @@
 #include "BitcoinExchange.hpp"
 
+bool	BitcoinExchange::is_valid_date(const char *str)
+{
+	if (str == NULL)
+		return (false);
+
+	const char	format[] = "%Y-%m-%d";
+	std::tm	date;
+	return (strptime(str, format, &date) != NULL);
+}
+
 void	BitcoinExchange::extract_data(std::string data_file)
 {
 	std::ifstream	file;

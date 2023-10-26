@@ -5,15 +5,18 @@
 # include <iostream>
 # include <fstream>
 # include <cstdlib>
+# include <ctime>
 
 typedef std::map<std::string, double> t_data;
 
 class BitcoinExchange
 {
 	private:
+
 		void	extract_data(std::string data_file);
 
 	public:
+		static bool	is_valid_date(const char *str);
 
 		BitcoinExchange(void);
 		BitcoinExchange(BitcoinExchange const & rhs);
@@ -24,4 +27,4 @@ class BitcoinExchange
 		t_data	btc_data;
 };
 
-#endif;
+#endif
