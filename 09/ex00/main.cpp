@@ -21,5 +21,17 @@ int	main(int argc, char *argv[])
 		std::cout << e.what() << std::endl;
 		return (2);
 	}
+
+	std::cout << std::endl;
+	BitcoinExchange	copy(exchange);
+	std::cout << "--- Copy ---" << std::endl; 
+	try
+	{
+		copy.convert_values(argv[1]);
+	}
+	catch (std::runtime_error & e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	return (0);
 }

@@ -13,16 +13,17 @@
 # include <algorithm>
 
 typedef std::map<std::string, double> t_data;
+typedef std::pair<std::string, double> t_pair;
 
 class BitcoinExchange
 {
 	private:
 		static double		read_number(std::string & line, std::string & delim);
 		static std::string	read_date(std::string & line, std::string & delim);
+		static void			deep_copy(const t_data & src, t_data & dst);
 
 		void	extract_data(std::string filename);
 		void	print_convertion(std::string key, double value);
-		t_data	database;
 
 	public:
 		static bool	is_valid_date(const char *str);
@@ -36,6 +37,7 @@ class BitcoinExchange
 		void			convert_values(std::string filename);
 		void			init_database(std::string filename);
 		t_data const	get_database(void) const;
+		t_data	database;
 };
 
 #endif

@@ -4,19 +4,29 @@ BitcoinExchange::BitcoinExchange(void)
 {
 }
 
+void			BitcoinExchange::deep_copy(const t_data & src, t_data & dst)
+{
+	t_data::const_iterator	it;
+
+	dst.clear();
+	for (it = src.begin(); it != src.end(); it++)
+		dst[(*it).first] = (*it).second;
+}
+
 BitcoinExchange::BitcoinExchange(BitcoinExchange const & rhs)
 {
-	(void)rhs;
+	deep_copy(rhs.get_database(), this->database);
+}
+
+
+BitcoinExchange & BitcoinExchange::operator=(BitcoinExchange const & rhs)
+{
+	deep_copy(rhs.get_database(), this->database);
+	return (*this);
 }
 
 BitcoinExchange::~BitcoinExchange(void)
 {
-}
-
-BitcoinExchange & BitcoinExchange::operator=(BitcoinExchange const & rhs)
-{
-	(void)rhs;
-	return (*this);
 }
 
 t_data const	BitcoinExchange::get_database(void) const
