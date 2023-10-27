@@ -57,7 +57,7 @@ double	BitcoinExchange::read_number(std::string & line, std::string & delim)
 	ss >> number;
 	if (ss.fail())
 	{
-		std::cout << "Error: invalid number => " << line << "'" << value << "'" << std::endl;
+		std::cout << "Error: invalid number => " << line << std::endl;
 		throw std::exception();
 	}
 	if (number < 0)
@@ -73,6 +73,25 @@ double	BitcoinExchange::read_number(std::string & line, std::string & delim)
 	return (number);
 }
 
+std::string	BitcoinExchange::read_date(std::string & line, std::string & delim)
+{
+	size_t				n;
+	std::string			date;
+
+	n = line.find_first_of(delim);
+	if (n == std::string::npos)
+	{
+		std::cout << "Error: bad input => " << line << std::endl;
+		throw std::exception();
+	}
+	date = line.substr(0, n);
+	if (is_valid_date(date.c_str()) == false)
+	{
+		std::cout << "Error: invalid date => " << line << std::endl;
+		throw std::exception();
+	}
+	return (date);
+}
 
 void	BitcoinExchange::convert_values(std::string filename)
 {
@@ -80,8 +99,7 @@ void	BitcoinExchange::convert_values(std::string filename)
 	std::string			delim(" | ");
 	char				buffer[256];
 	std::string			line;
-	std::string			key;
-	size_t				n;
+	std::string			date;
 	double				number;
 	double				price;
 
@@ -95,25 +113,17 @@ void	BitcoinExchange::convert_values(std::string filename)
 	{
 		file.getline(buffer, 256);
 		line = buffer;
-		n = line.find_first_of(delim);
-		if (n == std::string::npos)
+		try 
 		{
-			std::cout << "Error: bad input => " << line << std::endl;
-			continue ;
+			date = read_date(line, delim);
+			number = read_number(line, delim);
 		}
-		key = line.substr(0, n);
-		if (is_valid_date(key.c_str()) == false)
-		{
-			std::cout << "Error: invalid date => " << line << std::endl;
-			continue ;
-		}
-		try { number = read_number(line, delim); }
 		catch (...)
 		{
 			//print error message
 			continue ;
 		}
-		print_convertion(key, number);
+		print_convertion(date, number);
 	}
 	file.close();
 }

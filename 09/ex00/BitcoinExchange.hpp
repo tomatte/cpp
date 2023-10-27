@@ -16,7 +16,8 @@ typedef std::map<std::string, double> t_data;
 class BitcoinExchange
 {
 	private:
-		static double	read_number(std::string & line, std::string & delim);
+		static double		read_number(std::string & line, std::string & delim);
+		static std::string	read_date(std::string & line, std::string & delim);
 
 		void	extract_data(std::string filename);
 		void	print_convertion(std::string key, double value);
