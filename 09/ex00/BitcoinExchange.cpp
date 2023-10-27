@@ -1,5 +1,34 @@
 #include "BitcoinExchange.hpp"
 
+BitcoinExchange::BitcoinExchange(void)
+{
+}
+
+BitcoinExchange::BitcoinExchange(BitcoinExchange const & rhs)
+{
+	(void)rhs;
+}
+
+BitcoinExchange::~BitcoinExchange(void)
+{
+}
+
+BitcoinExchange & BitcoinExchange::operator=(BitcoinExchange const & rhs)
+{
+	(void)rhs;
+	return (*this);
+}
+
+t_data const	BitcoinExchange::get_database(void) const
+{
+	return (this->database);
+}
+
+void	BitcoinExchange::init_database(std::string filename)
+{
+	extract_data(filename);
+}
+
 bool	BitcoinExchange::is_valid_date(const char *str)
 {
 	if (str == NULL)
@@ -23,15 +52,15 @@ void	BitcoinExchange::extract_data(std::string filename)
 	{
 		file.getline(key, 256, ',');
 		file.getline(value, 256);
-		this->prices[key] = std::atof(value);
+		this->database[key] = std::atof(value);
 	}
 	file.close();
 }
 
 void	BitcoinExchange::print_convertion(std::string key, double value)
 {
-	t_data::iterator it = this->prices.lower_bound(key);
-	if (it != this->prices.begin() && (*it).first != key)
+	t_data::iterator it = this->database.lower_bound(key);
+	if (it != this->database.begin() && (*it).first != key)
 		it--;
 	std::cout << key << " => " << value << " = " 
 		<< (*it).second * value << "\n";
@@ -78,7 +107,6 @@ void	BitcoinExchange::convert_values(std::string filename)
 	std::string			line;
 	std::string			date;
 	double				number;
-	double				price;
 
 	if (file.fail())
 		throw std::runtime_error("Error opening '" + filename + "'");
@@ -91,37 +119,12 @@ void	BitcoinExchange::convert_values(std::string filename)
 		{
 			date = read_date(line, delim);
 			number = read_number(line, delim);
+			print_convertion(date, number);
 		}
 		catch (std::runtime_error & e)
 		{
 			std::cout << e.what() << "\n";
-			continue ;
 		}
-		print_convertion(date, number);
 	}
 	file.close();
-}
-
-BitcoinExchange::BitcoinExchange(void)
-{
-}
-
-BitcoinExchange::BitcoinExchange(BitcoinExchange const & rhs)
-{
-
-}
-
-BitcoinExchange::~BitcoinExchange(void)
-{
-
-}
-
-BitcoinExchange & BitcoinExchange::operator=(BitcoinExchange const & rhs)
-{
-
-}
-
-void	BitcoinExchange::init_prices(std::string filename)
-{
-	extract_data(filename);
 }

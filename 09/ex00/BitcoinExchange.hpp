@@ -10,6 +10,7 @@
 # include <sstream>
 # include <limits>
 # include <stdexcept>
+# include <algorithm>
 
 typedef std::map<std::string, double> t_data;
 
@@ -21,6 +22,7 @@ class BitcoinExchange
 
 		void	extract_data(std::string filename);
 		void	print_convertion(std::string key, double value);
+		t_data	database;
 
 	public:
 		static bool	is_valid_date(const char *str);
@@ -31,9 +33,9 @@ class BitcoinExchange
 
 		BitcoinExchange & operator=(BitcoinExchange const & rhs);
 
-		void	convert_values(std::string filename);
-		void	init_prices(std::string filename);
-		t_data	prices;
+		void			convert_values(std::string filename);
+		void			init_database(std::string filename);
+		t_data const	get_database(void) const;
 };
 
 #endif

@@ -13,7 +13,7 @@ int	main(int argc, char *argv[])
 	BitcoinExchange	exchange;
 	try
 	{
-		exchange.init_prices("data.csv");
+		exchange.init_database("data.csv");
 		exchange.convert_values(argv[1]);
 	}
 	catch(std::runtime_error & e)
