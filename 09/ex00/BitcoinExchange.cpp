@@ -15,13 +15,13 @@ void			BitcoinExchange::deep_copy(const t_data & src, t_data & dst)
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const & rhs)
 {
-	deep_copy(rhs.get_database(), this->database);
+	deep_copy(rhs.get_database(), this->_database);
 }
 
 
 BitcoinExchange & BitcoinExchange::operator=(BitcoinExchange const & rhs)
 {
-	deep_copy(rhs.get_database(), this->database);
+	deep_copy(rhs.get_database(), this->_database);
 	return (*this);
 }
 
@@ -31,7 +31,7 @@ BitcoinExchange::~BitcoinExchange(void)
 
 t_data const	BitcoinExchange::get_database(void) const
 {
-	return (this->database);
+	return (this->_database);
 }
 
 void	BitcoinExchange::init_database(std::string filename)
@@ -62,15 +62,15 @@ void	BitcoinExchange::extract_data(std::string filename)
 	{
 		file.getline(key, 256, ',');
 		file.getline(value, 256);
-		this->database[key] = std::atof(value);
+		this->_database[key] = std::atof(value);
 	}
 	file.close();
 }
 
 void	BitcoinExchange::print_convertion(std::string key, double value)
 {
-	t_data::iterator it = this->database.lower_bound(key);
-	if (it != this->database.begin() && (*it).first != key)
+	t_data::iterator it = this->_database.lower_bound(key);
+	if (it != this->_database.begin() && (*it).first != key)
 		it--;
 	std::cout << key << " => " << value << " = " 
 		<< (*it).second * value << "\n";
@@ -90,7 +90,7 @@ double	BitcoinExchange::read_number(std::string & line, std::string & delim)
 		throw std::runtime_error("Error: invalid number => " + line);
 	if (number < 0)
 		throw std::runtime_error("Error: not a positive number.");
-	if (number > std::numeric_limits<int>::max())
+	if (number > 1000)
 		throw std::runtime_error("Error: too large a number.");
 	return (number);
 }
