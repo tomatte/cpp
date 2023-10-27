@@ -37,6 +37,43 @@ void	BitcoinExchange::extract_data(std::string filename)
 	file.close();
 }
 
+void	BitcoinExchange::print_convertion(std::string key, double value)
+{
+	t_data::iterator it = this->prices.lower_bound(key);
+	if (it != this->prices.begin() && (*it).first != key)
+		it--;
+	std::cout << key << " => " << value << " = " 
+		<< (*it).second * value << "\n";
+}
+
+double	BitcoinExchange::read_number(std::string & line, std::string & delim)
+{
+	std::string			value;
+	std::stringstream	ss;
+	double				number;
+	
+	value = line.substr(line.find_first_of(delim) + delim.length());
+	ss << value;
+	ss >> number;
+	if (ss.fail())
+	{
+		std::cout << "Error: invalid number => " << line << "'" << value << "'" << std::endl;
+		throw std::exception();
+	}
+	if (number < 0)
+	{
+		std::cout << "Error: not a positive number.\n";
+		throw std::exception();
+	}
+	if (number > std::numeric_limits<int>::max())
+	{
+		std::cout << "Error: too large a number.\n";
+		throw std::exception();
+	}
+	return (number);
+}
+
+
 void	BitcoinExchange::convert_values(std::string filename)
 {
 	std::ifstream		file(filename.c_str());
@@ -44,9 +81,7 @@ void	BitcoinExchange::convert_values(std::string filename)
 	char				buffer[256];
 	std::string			line;
 	std::string			key;
-	std::string			value;
 	size_t				n;
-	std::stringstream	ss;
 	double				number;
 	double				price;
 
@@ -58,7 +93,6 @@ void	BitcoinExchange::convert_values(std::string filename)
 	file.getline(buffer, 256);
 	while (file.good() && file.eof() == false)
 	{
-		ss.clear();
 		file.getline(buffer, 256);
 		line = buffer;
 		n = line.find_first_of(delim);
@@ -73,29 +107,13 @@ void	BitcoinExchange::convert_values(std::string filename)
 			std::cout << "Error: invalid date => " << line << std::endl;
 			continue ;
 		}
-		value = line.substr(line.find_first_of(delim) + delim.length());
-		ss << value;
-		ss >> number;
-		if (ss.fail())
+		try { number = read_number(line, delim); }
+		catch (...)
 		{
-			std::cout << "Error: invalid number => " << line << "'" << value << "'" << std::endl;
+			//print error message
 			continue ;
 		}
-		if (number < 0)
-		{
-			std::cout << "Error: not a positive number.\n";
-			continue ;
-		}
-		try
-		{
-			price = this->prices.at(key);
-		} catch (...)
-		{
-			std::cout << "didn't find key => " << key << "\n";
-			continue ;
-		}
-		std::cout << key << " => " << value << " = " 
-			<< price * number << "\n";
+		print_convertion(key, number);
 	}
 	file.close();
 }

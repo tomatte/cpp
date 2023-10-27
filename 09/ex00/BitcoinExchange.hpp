@@ -8,13 +8,18 @@
 # include <ctime>
 # include <cctype>
 # include <sstream>
+# include <limits>
+# include <stdexcept>
 
 typedef std::map<std::string, double> t_data;
 
 class BitcoinExchange
 {
 	private:
+		static double	read_number(std::string & line, std::string & delim);
+
 		void	extract_data(std::string filename);
+		void	print_convertion(std::string key, double value);
 
 	public:
 		static bool	is_valid_date(const char *str);
