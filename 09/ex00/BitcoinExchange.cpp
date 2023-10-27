@@ -10,12 +10,6 @@ bool	BitcoinExchange::is_valid_date(const char *str)
 	return (strptime(str, format, &date) != NULL);
 }
 
-bool	BitcoinExchange::is_valid_number(const char *str)
-{
-
-}
-
-
 void	BitcoinExchange::extract_data(std::string filename)
 {
 	std::ifstream	file(filename.c_str());
@@ -23,10 +17,7 @@ void	BitcoinExchange::extract_data(std::string filename)
 	char			value[256];
 
 	if (file.fail())
-	{
-		std::cerr << "Error opening '" << filename << "'" << std::endl;
-		return ;
-	}
+		throw std::runtime_error("Error opening '" + filename + "'");
 	file.getline(key, 256);
 	while (file.good() && file.eof() == false)
 	{
@@ -51,25 +42,17 @@ double	BitcoinExchange::read_number(std::string & line, std::string & delim)
 	std::string			value;
 	std::stringstream	ss;
 	double				number;
+	std::string			err_msg;
 	
 	value = line.substr(line.find_first_of(delim) + delim.length());
 	ss << value;
 	ss >> number;
 	if (ss.fail())
-	{
-		std::cout << "Error: invalid number => " << line << std::endl;
-		throw std::exception();
-	}
+		throw std::runtime_error("Error: invalid number => " + line);
 	if (number < 0)
-	{
-		std::cout << "Error: not a positive number.\n";
-		throw std::exception();
-	}
+		throw std::runtime_error("Error: not a positive number.");
 	if (number > std::numeric_limits<int>::max())
-	{
-		std::cout << "Error: too large a number.\n";
-		throw std::exception();
-	}
+		throw std::runtime_error("Error: too large a number.");
 	return (number);
 }
 
@@ -80,16 +63,10 @@ std::string	BitcoinExchange::read_date(std::string & line, std::string & delim)
 
 	n = line.find_first_of(delim);
 	if (n == std::string::npos)
-	{
-		std::cout << "Error: bad input => " << line << std::endl;
-		throw std::exception();
-	}
+		throw std::runtime_error("Error: bad input => " + line);
 	date = line.substr(0, n);
 	if (is_valid_date(date.c_str()) == false)
-	{
-		std::cout << "Error: invalid date => " << line << std::endl;
-		throw std::exception();
-	}
+		throw std::runtime_error("Error: invalid date => " + line);
 	return (date);
 }
 
@@ -104,10 +81,7 @@ void	BitcoinExchange::convert_values(std::string filename)
 	double				price;
 
 	if (file.fail())
-	{
-		std::cerr << "Error opening '" << filename << "'" << std::endl;
-		throw std::exception();
-	}
+		throw std::runtime_error("Error opening '" + filename + "'");
 	file.getline(buffer, 256);
 	while (file.good() && file.eof() == false)
 	{
@@ -118,9 +92,9 @@ void	BitcoinExchange::convert_values(std::string filename)
 			date = read_date(line, delim);
 			number = read_number(line, delim);
 		}
-		catch (...)
+		catch (std::runtime_error & e)
 		{
-			//print error message
+			std::cout << e.what() << "\n";
 			continue ;
 		}
 		print_convertion(date, number);

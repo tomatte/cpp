@@ -10,13 +10,15 @@ int	main(int argc, char *argv[])
 		std::cout << "Wrong number of arguments." << std::endl;
 		return (1);
 	}
-
 	BitcoinExchange	exchange;
-	exchange.init_prices("data.csv");
-	try { exchange.convert_values(argv[1]); }
-	catch(...)
+	try
 	{
-		//print message
+		exchange.init_prices("data.csv");
+		exchange.convert_values(argv[1]);
+	}
+	catch(std::runtime_error & e)
+	{
+		std::cout << e.what() << std::endl;
 		return (2);
 	}
 	return (0);

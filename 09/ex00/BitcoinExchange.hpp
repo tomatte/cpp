@@ -24,7 +24,6 @@ class BitcoinExchange
 
 	public:
 		static bool	is_valid_date(const char *str);
-		static bool	is_valid_number(const char *str);
 
 		BitcoinExchange(void);
 		BitcoinExchange(BitcoinExchange const & rhs);
