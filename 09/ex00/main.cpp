@@ -5,9 +5,19 @@
 
 int	main(int argc, char *argv[])
 {
-	BitcoinExchange	exchange;
+	if (argc != 2)
+	{
+		std::cout << "Wrong number of arguments." << std::endl;
+		return (1);
+	}
 
+	BitcoinExchange	exchange;
 	exchange.init_prices("data.csv");
-	exchange.convert_values(argv[1]);
+	try { exchange.convert_values(argv[1]); }
+	catch(...)
+	{
+		//print message
+		return (2);
+	}
 	return (0);
 }

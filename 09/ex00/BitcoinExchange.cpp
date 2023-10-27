@@ -88,7 +88,7 @@ void	BitcoinExchange::convert_values(std::string filename)
 	if (file.fail())
 	{
 		std::cerr << "Error opening '" << filename << "'" << std::endl;
-		return ;
+		throw std::exception();
 	}
 	file.getline(buffer, 256);
 	while (file.good() && file.eof() == false)
