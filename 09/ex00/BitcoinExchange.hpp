@@ -6,16 +6,19 @@
 # include <fstream>
 # include <cstdlib>
 # include <ctime>
+# include <cctype>
+# include <sstream>
 
 typedef std::map<std::string, double> t_data;
 
 class BitcoinExchange
 {
 	private:
-		static void	extract_data(t_data & storage, std::string filename);
+		void	extract_data(std::string filename);
 
 	public:
 		static bool	is_valid_date(const char *str);
+		static bool	is_valid_number(const char *str);
 
 		BitcoinExchange(void);
 		BitcoinExchange(BitcoinExchange const & rhs);
@@ -23,8 +26,9 @@ class BitcoinExchange
 
 		BitcoinExchange & operator=(BitcoinExchange const & rhs);
 
+		void	convert_values(std::string filename);
+		void	init_prices(std::string filename);
 		t_data	prices;
-		t_data	ammounts;
 };
 
 #endif

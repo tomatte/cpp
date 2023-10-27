@@ -7,10 +7,7 @@ int	main(int argc, char *argv[])
 {
 	BitcoinExchange	exchange;
 
-	if (BitcoinExchange::is_valid_date("2023-12-10"))
-		std::cout << "VALID!\n";
-	else
-		std::cout << "INVALID :(\n";
-
+	exchange.init_prices("data.csv");
+	exchange.convert_values(argv[1]);
 	return (0);
 }
