@@ -4,6 +4,11 @@
 # include <string>
 # include <iostream>
 # include <stdexcept>
+# include <cstdlib>
+# include <limits>
+
+# define npos std::string::npos
+# define OPERANDS "+-/*"
 
 class RPN 
 {
@@ -19,7 +24,9 @@ class RPN
 
 		void	operation(std::string str);
 		void	verify_error(std::string & str) const;
-		static int	func(int a, int b, char operand);
+		static int	func(int a, int b, char op);
+		static char	find_operator(std::string & str);
+		static int	get_operand(std::string & str);
 };
 
 #endif
