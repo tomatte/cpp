@@ -3,10 +3,9 @@ GREEN		=	"\033[0;32m"
 BLUE		=	"\033[0;34m"
 NC			=	"\033[0m"
 
-NAME		=	btc
+NAME		=	RPN
 
 SOURCES		=	main.cpp \
-				BitcoinExchange.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs
