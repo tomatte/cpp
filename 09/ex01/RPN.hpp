@@ -18,6 +18,8 @@ class RPN
 		RPN & operator=(RPN const & rhs);
 
 		void	operation(std::string str);
+		void	verify_error(std::string & str) const;
+		static int	func(int a, int b, char operand);
 };
 
 #endif
