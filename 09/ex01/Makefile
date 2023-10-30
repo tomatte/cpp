@@ -6,6 +6,7 @@ NC			=	"\033[0m"
 NAME		=	RPN
 
 SOURCES		=	main.cpp \
+				RPN.cpp \
 
 OBJ		=	$(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 OBJ_DIR	=	objs

@@ -1,6 +1,10 @@
 #ifndef RPN_H
 # define RPN_H
 # include <stack>
+# include <string>
+# include <iostream>
+# include <stdexcept>
+
 class RPN 
 {
 	private:
@@ -12,6 +16,8 @@ class RPN
 		~RPN(void);
 
 		RPN & operator=(RPN const & rhs);
+
+		void	operation(std::string str);
 };
 
 #endif
