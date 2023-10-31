@@ -38,6 +38,7 @@ class RPN
 		void	numbers_to_stack1(std::stringstream & ss);
 		void	from_stack1_to_stack2(void);
 		int		convert_to_int(std::string & str);
+		void	execute_operation(void);
 
 };
 
