@@ -28,8 +28,8 @@ class RPN
 
 		void	operation(std::string str);
 		void	verify_error(std::string & str) const;
+		int		pop(void);
 		static int	func(int a, int b, char op);
-		int			pop(void);
 
 		void	numbers_to_stack1(std::stringstream & ss);
 		int		convert_to_int(std::string & str);
