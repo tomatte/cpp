@@ -45,36 +45,12 @@ int	RPN::func(int a, int b, char op)
 	}
 }
 
-char	RPN::find_operator(std::string const & str)
+int	RPN::pop(void)
 {
-	if (str.find_first_of(OPERANDS) == npos)
-		throw std::runtime_error("Error");
-	return str.at(str.find_first_of(OPERANDS));
-}
-
-int	RPN::pop(ft_stack & s)
-{
-	int	num = s.top();
-	s.pop();
+	int	num = _stack.top();
+	_stack.pop();
 	return (num);
 }
-
-/* 
-
-
-place numbers on stack1 until find operator
-save operator in a char
-save size of stack1
-place numbers from stack1 into stack2 to be in right order
-execute operation in size numbers of stack2
-when just an operator is found then aply it to all numbers in stack2 until only 1 is remaining
-
-
-	NEEDED:
-		2 stacks
-		1 operator: char
-		1 len: int
- */
 
 int		RPN::convert_to_int(std::string & str)
 {
@@ -98,34 +74,24 @@ void	RPN::numbers_to_stack1(std::stringstream & ss)
 	while (1)
 	{
 		if (ss.eof())
-			throw std::runtime_error("Error: eof");
+			throw std::runtime_error("Error");
 		ss >> word;
 		if (word.find_first_of("-+/*") != npos)
 			break ;
-		this->_stack1.push(convert_to_int(word));
+		_stack.push(convert_to_int(word));
 	}
-	this->op = word[0];
-	this->len = this->_stack1.size();
-}
-
-void	RPN::from_stack1_to_stack2(void)
-{
-	while (this->_stack1.empty() == false)
-		this->_stack2.push(pop(this->_stack1));
+	if (word.length() != 1)
+		throw std::runtime_error("Error: invalid operator");
+	_op = word[0];
 }
 
 void	RPN::execute_operation(void)
 {
-	if (this->len == 0)
-		this->len = this->_stack2.size();
-
-	int result;
-	while (this->len > 1)
-	{
-		result = func(pop(this->_stack2), pop(this->_stack2), this->op);
-		this->_stack2.push(result);
-		this->len--;
-	}
+	if (_stack.size() < 2)
+		throw std::runtime_error("Error");
+	const int	b = pop();
+	const int	a = pop();
+	_stack.push(func(a, b, _op));
 }
 
 void	RPN::operation(std::string str)
@@ -136,24 +102,9 @@ void	RPN::operation(std::string str)
 	while (!ss.eof())
 	{
 		numbers_to_stack1(ss);
-		from_stack1_to_stack2();
 		execute_operation();
-		std::cout << "Result: " << this->_stack2.top() << "  Size:" << this->_stack2.size() << std::endl;
 	}
-	std::cout << "Result: " << this->_stack2.top() << std::endl;
+	if (_stack.size() != 1)
+		throw std::runtime_error("Error");
+	std::cout << "Result: " << _stack.top() << std::endl;
 }
-
-/* 
-	while (this->_stack1.empty() == false)
-	{
-		std::cout << "stack1: " << this->_stack1.top() << "   size: " << this->_stack1.size() << "\n";
-		this->_stack1.pop();
-	}
-
-	while (this->_stack2.empty() == false)
-	{
-		std::cout << "stack2: " << this->_stack2.top() << "   size: " << this->_stack2.size() << "\n";
-		this->_stack2.pop();
-	}
-	std::cout << "op: " << this->op << "  len: " << this->len << "\n";
- */

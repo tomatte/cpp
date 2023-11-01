@@ -16,10 +16,8 @@
 class RPN 
 {
 	private:
-		ft_stack	_stack1;
-		ft_stack	_stack2;
-		int			len;
-		char		op;
+		ft_stack	_stack;
+		char		_op;
 
 	public:
 		RPN(void);
@@ -31,12 +29,9 @@ class RPN
 		void	operation(std::string str);
 		void	verify_error(std::string & str) const;
 		static int	func(int a, int b, char op);
-		static char	find_operator(std::string const & str);
-		int	get_operand(std::stringstream & ss);
-		int	pop(ft_stack & s);
+		int			pop(void);
 
 		void	numbers_to_stack1(std::stringstream & ss);
-		void	from_stack1_to_stack2(void);
 		int		convert_to_int(std::string & str);
 		void	execute_operation(void);
 
