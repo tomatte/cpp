@@ -64,7 +64,14 @@ void	PmergeMe::init(int argc, char *argv[])
 
 void	PmergeMe::sort(int argc, char *argv[])
 {
-	init(argc, argv);
-	std::cout << "list: "; print_items(_list);
-	std::cout << "vector: "; print_items(_vector);
+	try
+	{
+		init(argc, argv);
+		std::cout << "list: "; print_items(_list);
+		std::cout << "vector: "; print_items(_vector);
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
