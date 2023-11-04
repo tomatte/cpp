@@ -20,14 +20,29 @@ PmergeMe & PmergeMe::operator=(PmergeMe const & rhs)
 	(void)rhs;
 	return (*this);
 }
-void	PmergeMe::merge(t_vector & c)
+void	PmergeMe::merge(t_vector & left, t_vector & right, t_vector & c)
 {
-
+	std::cout << "left: "; print_items(left);
+	std::cout << "right: "; print_items(right);
+	std::cout << std::endl;
 }
 
 void	PmergeMe::merge_sort(t_vector & c)
 {
+	if (c.size() <= 1)
+		return ;
 
+	const int leftSize = c.size() / 2;
+	const int rightSize = c.size() - leftSize;
+
+	t_vector leftVector(leftSize);
+	t_vector rightVector(rightSize);
+
+	std::copy(c.begin(), c.begin() + leftSize, leftVector.begin());
+	std::copy(c.begin() + leftSize, c.end(), rightVector.begin());
+	merge_sort(leftVector);
+	merge_sort(rightVector);
+	merge(leftVector, rightVector, c);
 }
 
 void	PmergeMe::merge(t_list & c)
@@ -67,7 +82,8 @@ void	PmergeMe::sort(int argc, char *argv[])
 	try
 	{
 		init(argc, argv);
-		std::cout << "list: "; print_items(_list);
+		merge_sort(_vector);
+		std::cout << "\nEND\nlist: "; print_items(_vector);
 		std::cout << "vector: "; print_items(_vector);
 	}
 	catch (std::exception & e)

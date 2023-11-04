@@ -17,7 +17,7 @@ class PmergeMe
 		t_vector	_vector;
 		t_list		_list;
 		
-		static void	merge(t_vector & c);
+		static void	merge(t_vector & left, t_vector & right, t_vector & c);
 		static void	merge(t_list & c);
 
 		static void	merge_sort(t_vector & c);
