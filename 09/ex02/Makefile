@@ -36,8 +36,8 @@ fclean: clean
 re:	fclean all
 
 #compile without -Werror
-nf: CFLAGS = -Wall -Wextra
-nf: all
-nfr: fclean nf
+f: CFLAGS = -Wall -Wextra
+f: all
+fr: fclean f
 
 .PHONY:	all clean fclean re
