@@ -1,10 +1,11 @@
 #include <iostream>
 #include "PmergeMe.cpp"
+#include "debug.hpp"
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	PmergeMe	p;
 
-	std::cout << "Helo" << std::endl;
+	p.sort(argc, argv);
 	return (0);
 }

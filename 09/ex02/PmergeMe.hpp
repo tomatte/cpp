@@ -5,6 +5,8 @@
 # include <algorithm>
 # include <iostream>
 # include <string>
+# include <stdexcept>
+# include <sstream>
 
 # define t_vector std::vector<int>
 # define t_list std::list<int>
@@ -21,6 +23,8 @@ class PmergeMe
 		static void	merge_sort(t_vector & c);
 		static void	merge_sort(t_list & c);
 
+		static int	str_to_int(const char *str);
+
 	public:
 		PmergeMe(void);
 		PmergeMe(PmergeMe const & rhs);
@@ -31,8 +35,8 @@ class PmergeMe
 		//get_list
 		//get_vector
 
-		void	sort(void);
-		static void	convert(int argc, char *argv[]);
+		void	sort(int argc, char *argv[]);
+		void	init(int argc, char *argv[]);
 };
 
 #endif
