@@ -7,21 +7,22 @@
 # include <string>
 # include <stdexcept>
 # include <sstream>
+# include <deque>
 
 # define t_vector std::vector<int>
-# define t_list std::list<int>
+# define t_deque std::deque<int>
 
 class PmergeMe
 {
 	private:
 		t_vector	_vector;
-		t_list		_list;
+		t_deque		_deque;
 		
 		static void	merge(t_vector & left, t_vector & right, t_vector & c);
-		static void	merge(t_list & c);
+		static void	merge(t_deque & left, t_deque & right, t_deque & c);
 
 		static void	merge_sort(t_vector & c);
-		static void	merge_sort(t_list & c);
+		static void	merge_sort(t_deque & c);
 
 		static int	str_to_int(const char *str);
 

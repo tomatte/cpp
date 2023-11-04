@@ -22,9 +22,38 @@ PmergeMe & PmergeMe::operator=(PmergeMe const & rhs)
 }
 void	PmergeMe::merge(t_vector & left, t_vector & right, t_vector & c)
 {
-	std::cout << "left: "; print_items(left);
-	std::cout << "right: "; print_items(right);
-	std::cout << std::endl;
+	typename t_vector::iterator	left_it = left.begin();
+	typename t_vector::iterator	right_it = right.begin();
+	typename t_vector::iterator	main_it = c.begin();
+
+	while (left_it != left.end() && right_it != right.end())
+	{
+		if (*right_it < *left_it)
+		{
+			*main_it = *right_it;
+			right_it++;
+		}
+		else
+		{
+			*main_it = *left_it;
+			left_it++;
+		}
+		main_it++;
+	}
+
+	while (left_it < left.end())
+	{
+		*main_it = *left_it;
+		left_it++;
+		main_it++;
+	}
+
+	while (right_it < right.end())
+	{
+		*main_it = *right_it;
+		right_it++;
+		main_it++;
+	}
 }
 
 void	PmergeMe::merge_sort(t_vector & c)
@@ -45,14 +74,58 @@ void	PmergeMe::merge_sort(t_vector & c)
 	merge(leftVector, rightVector, c);
 }
 
-void	PmergeMe::merge(t_list & c)
+void	PmergeMe::merge(t_deque & left, t_deque & right, t_deque & c)
 {
+	typename t_deque::iterator	left_it = left.begin();
+	typename t_deque::iterator	right_it = right.begin();
+	typename t_deque::iterator	main_it = c.begin();
 
+	while (left_it != left.end() && right_it != right.end())
+	{
+		if (*right_it < *left_it)
+		{
+			*main_it = *right_it;
+			right_it++;
+		}
+		else
+		{
+			*main_it = *left_it;
+			left_it++;
+		}
+		main_it++;
+	}
+
+	while (left_it < left.end())
+	{
+		*main_it = *left_it;
+		left_it++;
+		main_it++;
+	}
+
+	while (right_it < right.end())
+	{
+		*main_it = *right_it;
+		right_it++;
+		main_it++;
+	}
 }
 
-void	PmergeMe::merge_sort(t_list & c)
+void	PmergeMe::merge_sort(t_deque & c)
 {
+	if (c.size() <= 1)
+		return ;
 
+	const int leftSize = c.size() / 2;
+	const int rightSize = c.size() - leftSize;
+
+	t_deque leftVector(leftSize);
+	t_deque rightVector(rightSize);
+
+	std::copy(c.begin(), c.begin() + leftSize, leftVector.begin());
+	std::copy(c.begin() + leftSize, c.end(), rightVector.begin());
+	merge_sort(leftVector);
+	merge_sort(rightVector);
+	merge(leftVector, rightVector, c);
 }
 
 int	PmergeMe::str_to_int(const char *str)
@@ -72,7 +145,7 @@ void	PmergeMe::init(int argc, char *argv[])
 	for (int i = 1; i < argc; i++)
 	{
 		const int number = str_to_int(argv[i]);
-		_list.push_back(number);
+		_deque.push_back(number);
 		_vector.push_back(number);
 	}
 }
@@ -83,7 +156,8 @@ void	PmergeMe::sort(int argc, char *argv[])
 	{
 		init(argc, argv);
 		merge_sort(_vector);
-		std::cout << "\nEND\nlist: "; print_items(_vector);
+		merge_sort(_deque);
+		std::cout << "\nEND\nlist: "; print_items(_deque);
 		std::cout << "vector: "; print_items(_vector);
 	}
 	catch (std::exception & e)
