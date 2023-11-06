@@ -20,11 +20,11 @@ PmergeMe & PmergeMe::operator=(PmergeMe const & rhs)
 	(void)rhs;
 	return (*this);
 }
-void	PmergeMe::merge(t_vector & left, t_vector & right, t_vector & c)
+void	PmergeMe::merge(t_vectors & left, t_vectors & right, t_vectors & c)
 {
-	typename t_vector::iterator	left_it = left.begin();
-	typename t_vector::iterator	right_it = right.begin();
-	typename t_vector::iterator	main_it = c.begin();
+	typename t_vectors::iterator	left_it = left.begin();
+	typename t_vectors::iterator	right_it = right.begin();
+	typename t_vectors::iterator	main_it = c.begin();
 
 	while (left_it != left.end() && right_it != right.end())
 	{
@@ -56,7 +56,7 @@ void	PmergeMe::merge(t_vector & left, t_vector & right, t_vector & c)
 	}
 }
 
-void	PmergeMe::merge_sort(t_vector & c)
+void	PmergeMe::merge_sort(t_vectors & c)
 {
 	if (c.size() <= 1)
 		return ;
@@ -64,8 +64,8 @@ void	PmergeMe::merge_sort(t_vector & c)
 	const int leftSize = c.size() / 2;
 	const int rightSize = c.size() - leftSize;
 
-	t_vector leftVector(leftSize);
-	t_vector rightVector(rightSize);
+	t_vectors leftVector(leftSize);
+	t_vectors rightVector(rightSize);
 
 	std::copy(c.begin(), c.begin() + leftSize, leftVector.begin());
 	std::copy(c.begin() + leftSize, c.end(), rightVector.begin());
@@ -110,11 +110,23 @@ void	PmergeMe::create_main_and_pend(t_vector & c)
 	}
 
 	//merge sort list
-	
+	merge_sort(vec_list);
+
+	t_vector	main;
+	t_vector	pend;
+	for (int i = 0; i < vec_list.size(); i++)
+	{
+		main.push_back(vec_list[i][0]);
+		pend.push_back(vec_list[i][1]);
+	}
+
 	for (int i = 0; i < vec_list.size(); i++)
 	{
 		print_items(vec_list[i]);
 	}
+
+	std::cout << "main: "; print_items(main);
+	std::cout << "pend: "; print_items(pend);
 }
 
 void	PmergeMe::merge(t_deque & left, t_deque & right, t_deque & c)

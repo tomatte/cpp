@@ -9,8 +9,9 @@
 # include <sstream>
 # include <deque>
 
-# define t_vector std::vector<int>
-# define t_deque std::deque<int>
+typedef std::vector<int> t_vector;
+typedef std::vector<t_vector> t_vectors;
+typedef std::deque<int> t_deque;
 
 class PmergeMe
 {
@@ -18,10 +19,10 @@ class PmergeMe
 		t_vector	_vector;
 		t_deque		_deque;
 		
-		static void	merge(t_vector & left, t_vector & right, t_vector & c);
+		static void	merge(t_vectors & left, t_vectors & right, t_vectors & c);
 		static void	merge(t_deque & left, t_deque & right, t_deque & c);
 
-		static void	merge_sort(t_vector & c);
+		static void	merge_sort(t_vectors & c);
 		static void	merge_sort(t_deque & c);
 
 		static void	create_main_and_pend(t_vector & c);
