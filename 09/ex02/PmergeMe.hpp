@@ -24,6 +24,8 @@ class PmergeMe
 		static void	merge_sort(t_vector & c);
 		static void	merge_sort(t_deque & c);
 
+		static void	create_main_and_pend(t_vector & c);
+
 		static int	str_to_int(const char *str);
 
 	public:

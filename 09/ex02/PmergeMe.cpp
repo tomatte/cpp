@@ -74,6 +74,49 @@ void	PmergeMe::merge_sort(t_vector & c)
 	merge(leftVector, rightVector, c);
 }
 
+/* 
+	if array is odd, store the last element somewhere
+	criar n/2 arrays of 2 items
+	order each array to start with the highest value
+	order the arrays based on the first item 
+	(how to order them? should I use binary insert here? should I use merge sort? maybe)
+ */
+
+void	PmergeMe::create_main_and_pend(t_vector & c)
+{
+	int struggler;
+
+	//create n/2 vectors of 2 elements
+	if (c.size() % 2 != 0)
+		struggler = c.back();
+	const int len = c.size() / 2;
+	std::vector<t_vector>	vec_list;
+	vec_list.reserve(len);
+	for (int i = 0; i < len * 2; i += 2)
+	{
+		t_vector item;
+		item.reserve(2);
+		if (c[i] >= c[i + 1])
+		{
+			item.push_back(c[i]);
+			item.push_back(c[i + 1]);
+		}
+		else
+		{
+			item.push_back(c[i + 1]);
+			item.push_back(c[i]);
+		}
+		vec_list.push_back(item);
+	}
+
+	//merge sort list
+	
+	for (int i = 0; i < vec_list.size(); i++)
+	{
+		print_items(vec_list[i]);
+	}
+}
+
 void	PmergeMe::merge(t_deque & left, t_deque & right, t_deque & c)
 {
 	typename t_deque::iterator	left_it = left.begin();
@@ -155,10 +198,10 @@ void	PmergeMe::sort(int argc, char *argv[])
 	try
 	{
 		init(argc, argv);
-		merge_sort(_vector);
-		merge_sort(_deque);
-		std::cout << "\nEND\nlist: "; print_items(_deque);
-		std::cout << "vector: "; print_items(_vector);
+		// merge_sort(_vector);
+		// merge_sort(_deque);
+		create_main_and_pend(_vector);
+		std::cout << "\nvector: "; print_items(_vector);
 	}
 	catch (std::exception & e)
 	{
