@@ -9,25 +9,27 @@
 # include <sstream>
 # include <deque>
 
-typedef std::vector<int> t_vector;
-typedef std::vector<t_vector> t_vectors;
 typedef std::deque<int> t_deque;
+typedef std::deque<t_deque> t_deques;
+typedef typename std::list<int> t_list;
+typedef std::list<t_list> t_lists;
 
 class PmergeMe
 {
 	private:
-		t_vector	_vector;
 		t_deque		_deque;
+		t_list		_list;
 		
-		static void	merge(t_vectors & left, t_vectors & right, t_vectors & c);
-		static void	merge(t_deque & left, t_deque & right, t_deque & c);
+		static void	merge(t_deques & left, t_deques & right, t_deques & c);
 
-		static void	merge_sort(t_vectors & c);
-		static void	merge_sort(t_deque & c);
+		static void	merge_sort(t_deques & c);
 
-		static void	create_main_and_pend(t_vector & c);
+		static void	create_main_and_pend(t_deque & c);
 
 		static int	str_to_int(const char *str);
+
+		static int	pop_back(t_deque & c);
+		static int	pop_front(t_deque & c);
 
 	public:
 		PmergeMe(void);

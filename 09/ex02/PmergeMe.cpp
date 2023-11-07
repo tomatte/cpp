@@ -20,11 +20,11 @@ PmergeMe & PmergeMe::operator=(PmergeMe const & rhs)
 	(void)rhs;
 	return (*this);
 }
-void	PmergeMe::merge(t_vectors & left, t_vectors & right, t_vectors & c)
+void	PmergeMe::merge(t_deques & left, t_deques & right, t_deques & c)
 {
-	typename t_vectors::iterator	left_it = left.begin();
-	typename t_vectors::iterator	right_it = right.begin();
-	typename t_vectors::iterator	main_it = c.begin();
+	typename t_deques::iterator	left_it = left.begin();
+	typename t_deques::iterator	right_it = right.begin();
+	typename t_deques::iterator	main_it = c.begin();
 
 	while (left_it != left.end() && right_it != right.end())
 	{
@@ -56,7 +56,7 @@ void	PmergeMe::merge(t_vectors & left, t_vectors & right, t_vectors & c)
 	}
 }
 
-void	PmergeMe::merge_sort(t_vectors & c)
+void	PmergeMe::merge_sort(t_deques & c)
 {
 	if (c.size() <= 1)
 		return ;
@@ -64,8 +64,8 @@ void	PmergeMe::merge_sort(t_vectors & c)
 	const int leftSize = c.size() / 2;
 	const int rightSize = c.size() - leftSize;
 
-	t_vectors leftVector(leftSize);
-	t_vectors rightVector(rightSize);
+	t_deques leftVector(leftSize);
+	t_deques rightVector(rightSize);
 
 	std::copy(c.begin(), c.begin() + leftSize, leftVector.begin());
 	std::copy(c.begin() + leftSize, c.end(), rightVector.begin());
@@ -82,7 +82,21 @@ void	PmergeMe::merge_sort(t_vectors & c)
 	(how to order them? should I use binary insert here? should I use merge sort? maybe)
  */
 
-void	PmergeMe::create_main_and_pend(t_vector & c)
+int	PmergeMe::pop_back(t_deque & c)
+{
+	const int num = c.back();
+	c.pop_back();
+	return (num);
+}
+
+int	PmergeMe::pop_front(t_deque & c)
+{
+	const int num = c.front();
+	c.pop_front();
+	return (num);
+}
+
+void	PmergeMe::create_main_and_pend(t_deque & c)
 {
 	int struggler;
 
@@ -90,12 +104,10 @@ void	PmergeMe::create_main_and_pend(t_vector & c)
 	if (c.size() % 2 != 0)
 		struggler = c.back();
 	const int len = c.size() / 2;
-	std::vector<t_vector>	vec_list;
-	vec_list.reserve(len);
+	t_deques	vec_list;
 	for (int i = 0; i < len * 2; i += 2)
 	{
-		t_vector item;
-		item.reserve(2);
+		t_deque item;
 		if (c[i] >= c[i + 1])
 		{
 			item.push_back(c[i]);
@@ -112,8 +124,8 @@ void	PmergeMe::create_main_and_pend(t_vector & c)
 	//merge sort list
 	merge_sort(vec_list);
 
-	t_vector	main;
-	t_vector	pend;
+	t_deque	main;
+	t_deque	pend;
 	for (int i = 0; i < vec_list.size(); i++)
 	{
 		main.push_back(vec_list[i][0]);
@@ -125,62 +137,9 @@ void	PmergeMe::create_main_and_pend(t_vector & c)
 		print_items(vec_list[i]);
 	}
 
+	main.push_front(pop_front(pend));
 	std::cout << "main: "; print_items(main);
 	std::cout << "pend: "; print_items(pend);
-}
-
-void	PmergeMe::merge(t_deque & left, t_deque & right, t_deque & c)
-{
-	typename t_deque::iterator	left_it = left.begin();
-	typename t_deque::iterator	right_it = right.begin();
-	typename t_deque::iterator	main_it = c.begin();
-
-	while (left_it != left.end() && right_it != right.end())
-	{
-		if (*right_it < *left_it)
-		{
-			*main_it = *right_it;
-			right_it++;
-		}
-		else
-		{
-			*main_it = *left_it;
-			left_it++;
-		}
-		main_it++;
-	}
-
-	while (left_it < left.end())
-	{
-		*main_it = *left_it;
-		left_it++;
-		main_it++;
-	}
-
-	while (right_it < right.end())
-	{
-		*main_it = *right_it;
-		right_it++;
-		main_it++;
-	}
-}
-
-void	PmergeMe::merge_sort(t_deque & c)
-{
-	if (c.size() <= 1)
-		return ;
-
-	const int leftSize = c.size() / 2;
-	const int rightSize = c.size() - leftSize;
-
-	t_deque leftVector(leftSize);
-	t_deque rightVector(rightSize);
-
-	std::copy(c.begin(), c.begin() + leftSize, leftVector.begin());
-	std::copy(c.begin() + leftSize, c.end(), rightVector.begin());
-	merge_sort(leftVector);
-	merge_sort(rightVector);
-	merge(leftVector, rightVector, c);
 }
 
 int	PmergeMe::str_to_int(const char *str)
@@ -201,7 +160,7 @@ void	PmergeMe::init(int argc, char *argv[])
 	{
 		const int number = str_to_int(argv[i]);
 		_deque.push_back(number);
-		_vector.push_back(number);
+		_list.push_back(number);
 	}
 }
 
@@ -212,8 +171,8 @@ void	PmergeMe::sort(int argc, char *argv[])
 		init(argc, argv);
 		// merge_sort(_vector);
 		// merge_sort(_deque);
-		create_main_and_pend(_vector);
-		std::cout << "\nvector: "; print_items(_vector);
+		create_main_and_pend(_deque);
+		std::cout << "\nvector: "; print_items(_deque);
 	}
 	catch (std::exception & e)
 	{
