@@ -100,12 +100,12 @@ void	PmergeMe::find_place(t_deque & c, int target, int start, int end)
 {
 	if (start >= end)
 	{
-		std::cout << "index: " << (end + 1) << std::endl;
+		c.insert(c.begin() + end + 1, target);
 		return ;
 	}
 	if (end <= start)
 	{
-		std::cout << "index: " << (start + 1) << std::endl;
+		c.insert(c.begin() + start + 1, target);
 		return ;
 	}
 
@@ -113,19 +113,19 @@ void	PmergeMe::find_place(t_deque & c, int target, int start, int end)
 
 	if (c[middle] == target)
 	{
-		std::cout << "index: " << (middle + 1) << std::endl;
+		c.insert(c.begin() + middle + 1, target);
 		return ;
 	}
 
 	if (middle != end && c[middle] < target && c[middle + 1] > target)
 	{
-		std::cout << "index: " << (middle + 1) << std::endl;
+		c.insert(c.begin() + middle + 1, target);
 		return ;
 	}
 
 	if (middle != start && c[middle - 1] < target && c[middle] > target)
 	{
-		std::cout << "index: " << middle << std::endl;
+		c.insert(c.begin() + middle, target);
 		return ;
 	}
 
@@ -190,6 +190,7 @@ void	PmergeMe::create_main_and_pend(t_deque & c)
 	insert(main, 7);
 	insert(main, 4);
 	insert(main, 2);
+	std::cout << "main: "; print_items(main);
 }
 
 int	PmergeMe::str_to_int(const char *str)
