@@ -96,6 +96,50 @@ int	PmergeMe::pop_front(t_deque & c)
 	return (num);
 }
 
+void	PmergeMe::find_place(t_deque & c, int target, int start, int end)
+{
+	if (start >= end)
+	{
+		std::cout << "index: " << (end + 1) << std::endl;
+		return ;
+	}
+	if (end <= start)
+	{
+		std::cout << "index: " << (start + 1) << std::endl;
+		return ;
+	}
+
+	const int middle = (start + end) / 2;
+
+	if (c[middle] == target)
+	{
+		std::cout << "index: " << (middle + 1) << std::endl;
+		return ;
+	}
+
+	if (middle != end && c[middle] < target && c[middle + 1] > target)
+	{
+		std::cout << "index: " << (middle + 1) << std::endl;
+		return ;
+	}
+
+	if (middle != start && c[middle - 1] < target && c[middle] > target)
+	{
+		std::cout << "index: " << middle << std::endl;
+		return ;
+	}
+
+	if (c[middle] < target)
+		return (find_place(c, target, middle + 1, end));
+	else
+		return (find_place(c, target, start, middle - 1));
+}
+
+void	PmergeMe::insert(t_deque & c, int n)
+{
+	find_place(c, n, 0, c.size() - 1);
+}
+
 void	PmergeMe::create_main_and_pend(t_deque & c)
 {
 	int struggler;
@@ -140,6 +184,12 @@ void	PmergeMe::create_main_and_pend(t_deque & c)
 	main.push_front(pop_front(pend));
 	std::cout << "main: "; print_items(main);
 	std::cout << "pend: "; print_items(pend);
+	insert(main, 16);
+	insert(main, 12);
+	insert(main, 11);
+	insert(main, 7);
+	insert(main, 4);
+	insert(main, 2);
 }
 
 int	PmergeMe::str_to_int(const char *str)
@@ -179,3 +229,8 @@ void	PmergeMe::sort(int argc, char *argv[])
 		std::cerr << e.what() << std::endl;
 	}
 }
+
+/* 
+ 1 2 3 4 5 6 7 8 9 10
+ 
+  */

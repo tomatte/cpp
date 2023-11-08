@@ -31,6 +31,9 @@ class PmergeMe
 		static int	pop_back(t_deque & c);
 		static int	pop_front(t_deque & c);
 
+		static void	insert(t_deque & c, int n);
+		static void	find_place(t_deque & c, int target, int start, int end);
+
 	public:
 		PmergeMe(void);
 		PmergeMe(PmergeMe const & rhs);
