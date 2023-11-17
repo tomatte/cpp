@@ -140,6 +140,54 @@ void	PmergeMe::insert(t_deque & c, int n)
 	find_place(c, n, 0, c.size() - 1);
 }
 
+int	PmergeMe::jacobsthal(unsigned int index)
+{
+	if (index == 0)
+		return (0);
+	if (index == 1)
+		return (1);
+	return (jacobsthal(index - 2) * 2 + jacobsthal(index - 1));
+}
+
+bool	PmergeMe::find(t_deque & c, int n)
+{
+	return (std::find(c.begin(), c.end(), n) != c.end());
+}
+
+t_deque PmergeMe::create_indexes(t_deque & pend)
+{
+	t_deque	indexes;
+	t_deque	numbers;
+
+	for (int i = 2; i < pend.size(); i++)
+		numbers.push_back(i);
+
+	int j = 3;
+	int z = 1;
+	indexes.push_back(1);
+	while (z < pend.size())
+	{
+		if (find(numbers, jacobsthal(j)))
+		{
+			indexes.push_back(jacobsthal(j));
+			numbers.erase(std::find(numbers.begin(), numbers.end(), jacobsthal(j)));
+		}
+		for (int i = jacobsthal(j) - 1; find(numbers, i); i--)
+		{
+			indexes.push_back(i);
+			numbers.erase(std::find(numbers.begin(), numbers.end(), i));
+		}
+		z++;
+		j++;
+	}
+	while (numbers.empty() == false)
+	{
+		indexes.push_back(*(numbers.begin()));
+		numbers.erase(numbers.begin());
+	}
+	return indexes;
+}
+
 void	PmergeMe::create_main_and_pend(t_deque & c)
 {
 	int struggler;
@@ -165,7 +213,6 @@ void	PmergeMe::create_main_and_pend(t_deque & c)
 		vec_list.push_back(item);
 	}
 
-	//merge sort list
 	merge_sort(vec_list);
 
 	t_deque	main;
@@ -176,21 +223,19 @@ void	PmergeMe::create_main_and_pend(t_deque & c)
 		pend.push_back(vec_list[i][1]);
 	}
 
+	if (c.size() % 2 != 0)
+		pend.push_back(struggler);
+
 	for (int i = 0; i < vec_list.size(); i++)
 	{
 		print_items(vec_list[i]);
 	}
 
+	t_deque	indexes = create_indexes(pend);
 	main.push_front(pop_front(pend));
 	std::cout << "main: "; print_items(main);
 	std::cout << "pend: "; print_items(pend);
-	insert(main, 16);
-	insert(main, 12);
-	insert(main, 11);
-	insert(main, 7);
-	insert(main, 4);
-	insert(main, 2);
-	std::cout << "main: "; print_items(main);
+	std::cout << "indexes: "; print_items(indexes);
 }
 
 int	PmergeMe::str_to_int(const char *str)
@@ -224,6 +269,9 @@ void	PmergeMe::sort(int argc, char *argv[])
 		// merge_sort(_deque);
 		create_main_and_pend(_deque);
 		std::cout << "\nvector: "; print_items(_deque);
+		std::cout << "\nJACOBSTHAL: " << jacobsthal(3) << std::endl;
+		std::cout << "\nJACOBSTHAL: " << jacobsthal(4) << std::endl;
+		std::cout << "\nJACOBSTHAL: " << jacobsthal(5) << std::endl;
 	}
 	catch (std::exception & e)
 	{

@@ -8,6 +8,7 @@
 # include <stdexcept>
 # include <sstream>
 # include <deque>
+# include <map>
 
 typedef std::deque<int> t_deque;
 typedef std::deque<t_deque> t_deques;
@@ -33,6 +34,10 @@ class PmergeMe
 
 		static void	insert(t_deque & c, int n);
 		static void	find_place(t_deque & c, int target, int start, int end);
+		
+		static int		jacobsthal(unsigned int index);
+		static t_deque 	create_indexes(t_deque & pend);
+		static bool		find(t_deque & c, int n);
 
 	public:
 		PmergeMe(void);
