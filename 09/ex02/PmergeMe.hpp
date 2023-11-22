@@ -39,6 +39,13 @@ class PmergeMe
 		static t_deque 	create_indexes(t_deque & pend);
 		static bool		find(t_deque & c, int n);
 
+		static void		binary_insert_pend_elements(
+				t_deque & main,
+				t_deque & pend, 
+				t_deque & indexes
+			);
+
+
 	public:
 		PmergeMe(void);
 		PmergeMe(PmergeMe const & rhs);

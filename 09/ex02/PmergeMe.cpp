@@ -98,14 +98,14 @@ int	PmergeMe::pop_front(t_deque & c)
 
 void	PmergeMe::find_place(t_deque & c, int target, int start, int end)
 {
-	if (start >= end)
+	if (start >= end && end != 0)
 	{
 		c.insert(c.begin() + end + 1, target);
 		return ;
 	}
 	if (end <= start)
 	{
-		c.insert(c.begin() + start + 1, target);
+		c.insert(c.begin() + start, target);
 		return ;
 	}
 
@@ -188,6 +188,20 @@ t_deque PmergeMe::create_indexes(t_deque & pend)
 	return indexes;
 }
 
+void	PmergeMe::binary_insert_pend_elements(
+			t_deque & main, 
+			t_deque & pend, 
+			t_deque & indexes)
+{
+	t_deque::iterator it = indexes.begin();
+	while (it != indexes.end())
+	{
+		t_deque::iterator pend_it = pend.begin() + *it - 1;
+		insert(main, *pend_it);
+		it++;
+	}
+}
+
 void	PmergeMe::create_main_and_pend(t_deque & c)
 {
 	int struggler;
@@ -236,6 +250,8 @@ void	PmergeMe::create_main_and_pend(t_deque & c)
 	std::cout << "main: "; print_items(main);
 	std::cout << "pend: "; print_items(pend);
 	std::cout << "indexes: "; print_items(indexes);
+	binary_insert_pend_elements(main, pend, indexes);
+	std::cout << "main: "; print_items(main);
 }
 
 int	PmergeMe::str_to_int(const char *str)
