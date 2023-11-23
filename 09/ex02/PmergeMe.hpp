@@ -26,6 +26,8 @@ class PmergeMe
 		double _list_time;
 
 		int & list(int index);
+		t_list::iterator iterator(t_list & c, int index);
+		static int & list(t_list & c, int index);
 		
 		static void	merge(t_deques & left, t_deques & right, t_deques & c);
 		static void	merge(t_list & left, t_list & right, t_list & c);
@@ -37,7 +39,7 @@ class PmergeMe
 		void sort_two(void);
 
 		static void	create_main_and_pend(t_deque & c);
-		static void	create_main_and_pend(t_list & c);
+		void	create_main_and_pend(t_list & c);
 
 		void sort_deque(void);
 		void sort_list(void);
@@ -50,13 +52,13 @@ class PmergeMe
 		static int	pop_front(t_list & c);
 
 		static void	insert(t_deque & c, int n);
-		static void	insert(t_list & c, int n);
+		void	insert(t_list & c, int n);
 		static void	find_place(t_deque & c, int target, int start, int end);
-		static void	find_place(t_list & c, int target, int start, int end);
+		void	find_place(t_list & c, int target, int start, int end);
 		
 		static int		jacobsthal(unsigned int index);
 		static t_deque 	create_indexes(t_deque & pend);
-		static t_deque 	create_indexes(t_list & pend);
+		static t_list 	create_indexes(t_list & pend);
 		static bool		find(t_deque & c, int n);
 		static bool		find(t_list & c, int n);
 
@@ -65,7 +67,7 @@ class PmergeMe
 				t_deque & pend, 
 				t_deque & indexes
 			);
-		static void		binary_insert_pend_elements(
+		void		binary_insert_pend_elements(
 				t_list & main,
 				t_list & pend, 
 				t_list & indexes

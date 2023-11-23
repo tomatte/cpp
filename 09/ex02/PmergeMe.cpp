@@ -296,9 +296,185 @@ void PmergeMe::sort_deque(void)
 
 //-------------------LIST---------------//
 
+int	PmergeMe::pop_back(t_list & c)
+{
+	const int num = c.back();
+	c.pop_back();
+	return (num);
+}
+
+int	PmergeMe::pop_front(t_list & c)
+{
+	const int num = c.front();
+	c.pop_front();
+	return (num);
+}
+
+void	PmergeMe::find_place(t_list & c, int target, int start, int end)
+{
+	if (start >= end && end != 0)
+	{
+		c.insert(iterator(c, end + 1), target);
+		return ;
+	}
+	if (end <= start)
+	{
+		c.insert(iterator(c, start), target);
+		return ;
+	}
+
+	const int middle = (start + end) / 2;
+
+	if (list(c, middle) == target)
+	{
+		c.insert(iterator(c, middle + 1), target);
+		return ;
+	}
+
+	if (middle != end && list(c, middle) < target && list(c, middle + 1) > target)
+	{
+		c.insert(iterator(c, middle + 1), target);
+		return ;
+	}
+
+	if (middle != start && list(c, middle - 1) < target && list(c, middle) > target)
+	{
+		c.insert(iterator(c, middle), target);
+		return ;
+	}
+
+	if (list(c, middle) < target)
+		return (find_place(c, target, middle + 1, end));
+	else
+		return (find_place(c, target, start, middle - 1));
+}
+
+t_list::iterator PmergeMe::iterator(t_list & c, int index)
+{
+	t_list::iterator it = c.begin();
+	while (index > 0)
+	{
+		index--;
+		it++;
+	}
+	return (it);
+}
+
+void	PmergeMe::insert(t_list & c, int n)
+{
+	find_place(c, n, 0, c.size() - 1);
+}
+
+bool	PmergeMe::find(t_list & c, int n)
+{
+	return (std::find(c.begin(), c.end(), n) != c.end());
+}
+
+t_list PmergeMe::create_indexes(t_list & pend)
+{
+	t_list	indexes;
+	t_list	numbers;
+
+	for (size_t i = 2; i < pend.size(); i++)
+		numbers.push_back(i);
+
+	int j = 3;
+	int z = 1;
+	indexes.push_back(1);
+	while (z < (int) pend.size())
+	{
+		if (find(numbers, jacobsthal(j)))
+		{
+			indexes.push_back(jacobsthal(j));
+			numbers.erase(std::find(numbers.begin(), numbers.end(), jacobsthal(j)));
+		}
+		for (int i = jacobsthal(j) - 1; find(numbers, i); i--)
+		{
+			indexes.push_back(i);
+			numbers.erase(std::find(numbers.begin(), numbers.end(), i));
+		}
+		z++;
+		j++;
+	}
+	while (numbers.empty() == false)
+	{
+		indexes.push_back(*(numbers.begin()));
+		numbers.erase(numbers.begin());
+	}
+	return indexes;
+}
+
+void	PmergeMe::binary_insert_pend_elements(
+			t_list & main, 
+			t_list & pend, 
+			t_list & indexes)
+{
+	t_list::iterator it = indexes.begin();
+	while (it != indexes.end())
+	{
+		insert(main, list(pend, *it - 1));
+		it++;
+	}
+}
+
+void	PmergeMe::create_main_and_pend(t_list & c)
+{
+	int struggler;
+
+	//create n/2 vectors of 2 elements
+	if (c.size() % 2 != 0)
+		struggler = c.back();
+	const int len = c.size() / 2;
+	t_deques	vec_list;
+	for (int i = 0; i < len * 2; i += 2)
+	{
+		t_deque item;
+		if (list(i) >= list(i + 1))
+		{
+			item.push_back(list(i));
+			item.push_back(list(i + 1));
+		}
+		else
+		{
+			item.push_back(list(i + 1));
+			item.push_back(list(i));
+		}
+		vec_list.push_back(item);
+	}
+
+	merge_sort(vec_list);
+
+	t_list	main;
+	t_list	pend;
+	for (size_t i = 0; i < vec_list.size(); i++)
+	{
+		main.push_back(vec_list[i][0]);
+		pend.push_back(vec_list[i][1]);
+	}
+
+	if (c.size() % 2 != 0)
+		pend.push_back(struggler);
+
+	t_list	indexes = create_indexes(pend);
+	main.push_front(pop_front(pend));
+	binary_insert_pend_elements(main, pend, indexes);
+	c = main;
+}
+
 int & PmergeMe::list(int index)
 {
 	t_list::iterator it = _list.begin();
+	while (index > 0)
+	{
+		it++;
+		index--;
+	}
+	return (*it);
+}
+
+int & PmergeMe::list(t_list & c, int index)
+{
+	t_list::iterator it = c.begin();
 	while (index > 0)
 	{
 		it++;
@@ -325,6 +501,8 @@ void PmergeMe::sort_list(void)
 		return ;
 	else if (_list.size() == 2)
 		sort_two();
+	else
+		create_main_and_pend(_list);
 
 	time_t end = clock();
 
