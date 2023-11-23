@@ -294,6 +294,43 @@ void PmergeMe::sort_deque(void)
 	_deque_time = ((end - start) / (double) CLOCKS_PER_SEC) * 1000000;
 }
 
+//-------------------LIST---------------//
+
+int & PmergeMe::list(int index)
+{
+	t_list::iterator it = _list.begin();
+	while (index > 0)
+	{
+		it++;
+		index--;
+	}
+	return (*it);
+}
+
+void PmergeMe::sort_two(void)
+{
+	if (list(0) > list(1))
+	{
+		const int aux = list(0);
+		list(0) = list(1);
+		list(1) = aux;
+	}
+}
+
+void PmergeMe::sort_list(void)
+{
+	time_t start = clock();
+
+	if (_list.size() == 1)
+		return ;
+	else if (_list.size() == 2)
+		sort_two();
+
+	time_t end = clock();
+
+	_list_time = ((end - start) / (double) CLOCKS_PER_SEC) * 1000000;
+}
+
 void	PmergeMe::sort(int argc, char *argv[])
 {
 	try
@@ -301,6 +338,8 @@ void	PmergeMe::sort(int argc, char *argv[])
 		init(argc, argv);
 		std::cout << "Before: "; print_items(_deque);
 		sort_deque();
+		sort_list();
+		std::cout << "List: "; print_items(_list);
 		std::cout << "After:  "; print_items(_deque);
 		std::cout << "Time to process a range of " << _deque.size() << 
 			" elements with std::deque : " << _deque_time << " us" << std::endl;
