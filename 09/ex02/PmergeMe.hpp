@@ -25,7 +25,10 @@ class PmergeMe
 
 		static void	merge_sort(t_deques & c);
 
+		static void sort_two(t_deque & c);
 		static void	create_main_and_pend(t_deque & c);
+
+		void sort_deque(void);
 
 		static int	str_to_int(const char *str);
 

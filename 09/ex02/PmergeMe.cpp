@@ -268,14 +268,32 @@ void	PmergeMe::init(int argc, char *argv[])
 	}
 }
 
+void PmergeMe::sort_two(t_deque & c)
+{
+	if (c[0] > c[1])
+	{
+		const int aux = c[0];
+		c[0] = c[1];
+		c[1] = aux;
+	}
+}
+
+void PmergeMe::sort_deque(void)
+{
+	if (_deque.size() == 1)
+		return ;
+	else if (_deque.size() == 2)
+		sort_two(_deque);
+	else
+		create_main_and_pend(_deque);
+}
+
 void	PmergeMe::sort(int argc, char *argv[])
 {
 	try
 	{
 		init(argc, argv);
-		// merge_sort(_vector);
-		// merge_sort(_deque);
-		create_main_and_pend(_deque);
+		sort_deque();
 		print_items(_deque);
 	}
 	catch (std::exception & e)
