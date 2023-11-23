@@ -280,12 +280,18 @@ void PmergeMe::sort_two(t_deque & c)
 
 void PmergeMe::sort_deque(void)
 {
+	time_t start = clock();
+
 	if (_deque.size() == 1)
 		return ;
 	else if (_deque.size() == 2)
 		sort_two(_deque);
 	else
 		create_main_and_pend(_deque);
+	
+	time_t end = clock();
+
+	_deque_time = ((end - start) / (double) CLOCKS_PER_SEC) * 1000000;
 }
 
 void	PmergeMe::sort(int argc, char *argv[])
@@ -293,8 +299,11 @@ void	PmergeMe::sort(int argc, char *argv[])
 	try
 	{
 		init(argc, argv);
+		std::cout << "Before: "; print_items(_deque);
 		sort_deque();
-		print_items(_deque);
+		std::cout << "After:  "; print_items(_deque);
+		std::cout << "Time to process a range of " << _deque.size() << 
+			" elements with std::deque : " << _deque_time << " us" << std::endl;
 	}
 	catch (std::exception & e)
 	{

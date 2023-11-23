@@ -9,6 +9,7 @@
 # include <sstream>
 # include <deque>
 # include <map>
+# include <time.h>
 
 typedef std::deque<int> t_deque;
 typedef std::deque<t_deque> t_deques;
@@ -20,6 +21,8 @@ class PmergeMe
 	private:
 		t_deque		_deque;
 		t_list		_list;
+
+		double _deque_time;
 		
 		static void	merge(t_deques & left, t_deques & right, t_deques & c);
 

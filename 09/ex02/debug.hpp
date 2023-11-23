@@ -12,9 +12,8 @@ void	print_item(T & item)
 template<typename Container>
 void	print_items(Container & c)
 {
-	std::cout << "* ";
 	std::for_each(c.begin(), c.end(), print_item<typename Container::value_type>);
-	std::cout << " *" << std::endl;
+	std::cout << std::endl;
 }
 
 #endif
