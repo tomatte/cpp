@@ -159,13 +159,13 @@ t_deque PmergeMe::create_indexes(t_deque & pend)
 	t_deque	indexes;
 	t_deque	numbers;
 
-	for (int i = 2; i < pend.size(); i++)
+	for (size_t i = 2; i < pend.size(); i++)
 		numbers.push_back(i);
 
 	int j = 3;
 	int z = 1;
 	indexes.push_back(1);
-	while (z < pend.size())
+	while (z < (int) pend.size())
 	{
 		if (find(numbers, jacobsthal(j)))
 		{
@@ -231,7 +231,7 @@ void	PmergeMe::create_main_and_pend(t_deque & c)
 
 	t_deque	main;
 	t_deque	pend;
-	for (int i = 0; i < vec_list.size(); i++)
+	for (size_t i = 0; i < vec_list.size(); i++)
 	{
 		main.push_back(vec_list[i][0]);
 		pend.push_back(vec_list[i][1]);
@@ -240,18 +240,10 @@ void	PmergeMe::create_main_and_pend(t_deque & c)
 	if (c.size() % 2 != 0)
 		pend.push_back(struggler);
 
-	for (int i = 0; i < vec_list.size(); i++)
-	{
-		print_items(vec_list[i]);
-	}
-
 	t_deque	indexes = create_indexes(pend);
 	main.push_front(pop_front(pend));
-	std::cout << "main: "; print_items(main);
-	std::cout << "pend: "; print_items(pend);
-	std::cout << "indexes: "; print_items(indexes);
 	binary_insert_pend_elements(main, pend, indexes);
-	std::cout << "main: "; print_items(main);
+	c = main;
 }
 
 int	PmergeMe::str_to_int(const char *str)
@@ -284,18 +276,10 @@ void	PmergeMe::sort(int argc, char *argv[])
 		// merge_sort(_vector);
 		// merge_sort(_deque);
 		create_main_and_pend(_deque);
-		std::cout << "\nvector: "; print_items(_deque);
-		std::cout << "\nJACOBSTHAL: " << jacobsthal(3) << std::endl;
-		std::cout << "\nJACOBSTHAL: " << jacobsthal(4) << std::endl;
-		std::cout << "\nJACOBSTHAL: " << jacobsthal(5) << std::endl;
+		print_items(_deque);
 	}
 	catch (std::exception & e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 }
-
-/* 
- 1 2 3 4 5 6 7 8 9 10
- 
-  */
