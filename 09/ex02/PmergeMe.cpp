@@ -20,6 +20,7 @@ PmergeMe & PmergeMe::operator=(PmergeMe const & rhs)
 	(void)rhs;
 	return (*this);
 }
+
 void	PmergeMe::merge(t_deques & left, t_deques & right, t_deques & c)
 {
 	typename t_deques::iterator	left_it = left.begin();
@@ -282,19 +283,71 @@ void PmergeMe::sort_deque(void)
 {
 	time_t start = clock();
 
-	if (_deque.size() == 1)
-		return ;
-	else if (_deque.size() == 2)
+	if (_deque.size() == 2)
 		sort_two(_deque);
-	else
+	else if (_deque.size() > 2)
 		create_main_and_pend(_deque);
-	
+
 	time_t end = clock();
 
 	_deque_time = ((end - start) / (double) CLOCKS_PER_SEC) * 1000000;
 }
 
 //-------------------LIST---------------//
+
+void	PmergeMe::merge(t_lists & left, t_lists & right, t_lists & c)
+{
+	typename t_lists::iterator	left_it = left.begin();
+	typename t_lists::iterator	right_it = right.begin();
+	typename t_lists::iterator	main_it = c.begin();
+
+	while (left_it != left.end() && right_it != right.end())
+	{
+		if (*right_it < *left_it)
+		{
+			*main_it = *right_it;
+			right_it++;
+		}
+		else
+		{
+			*main_it = *left_it;
+			left_it++;
+		}
+		main_it++;
+	}
+
+	while (left_it != left.end())
+	{
+		*main_it = *left_it;
+		left_it++;
+		main_it++;
+	}
+
+	while (right_it != right.end())
+	{
+		*main_it = *right_it;
+		right_it++;
+		main_it++;
+	}
+}
+
+void	PmergeMe::merge_sort(t_lists & c)
+{
+	if (c.size() <= 1)
+		return ;
+
+	const int leftSize = c.size() / 2;
+	const int rightSize = c.size() - leftSize;
+
+	t_lists leftVector(leftSize);
+	t_lists rightVector(rightSize);
+
+	std::copy(c.begin(), iterator(c, leftSize), leftVector.begin());
+	std::copy(iterator(c, leftSize), c.end(), rightVector.begin());
+	merge_sort(leftVector);
+	merge_sort(rightVector);
+	merge(leftVector, rightVector, c);
+}
 
 int	PmergeMe::pop_back(t_list & c)
 {
@@ -352,6 +405,17 @@ void	PmergeMe::find_place(t_list & c, int target, int start, int end)
 t_list::iterator PmergeMe::iterator(t_list & c, int index)
 {
 	t_list::iterator it = c.begin();
+	while (index > 0)
+	{
+		index--;
+		it++;
+	}
+	return (it);
+}
+
+t_lists::iterator PmergeMe::iterator(t_lists & c, int index)
+{
+	t_lists::iterator it = c.begin();
 	while (index > 0)
 	{
 		index--;
@@ -425,10 +489,10 @@ void	PmergeMe::create_main_and_pend(t_list & c)
 	if (c.size() % 2 != 0)
 		struggler = c.back();
 	const int len = c.size() / 2;
-	t_deques	vec_list;
+	t_lists	vec_list;
 	for (int i = 0; i < len * 2; i += 2)
 	{
-		t_deque item;
+		t_list item;
 		if (list(i) >= list(i + 1))
 		{
 			item.push_back(list(i));
@@ -448,8 +512,8 @@ void	PmergeMe::create_main_and_pend(t_list & c)
 	t_list	pend;
 	for (size_t i = 0; i < vec_list.size(); i++)
 	{
-		main.push_back(vec_list[i][0]);
-		pend.push_back(vec_list[i][1]);
+		main.push_back(list(list(vec_list, i), 0));
+		pend.push_back(list(list(vec_list, i), 1));
 	}
 
 	if (c.size() % 2 != 0)
@@ -483,6 +547,17 @@ int & PmergeMe::list(t_list & c, int index)
 	return (*it);
 }
 
+t_list & PmergeMe::list(t_lists & c, int index)
+{
+	t_lists::iterator it = c.begin();
+	while (index > 0)
+	{
+		it++;
+		index--;
+	}
+	return (*it);
+}
+
 void PmergeMe::sort_two(void)
 {
 	if (list(0) > list(1))
@@ -497,11 +572,9 @@ void PmergeMe::sort_list(void)
 {
 	time_t start = clock();
 
-	if (_list.size() == 1)
-		return ;
-	else if (_list.size() == 2)
+	if (_list.size() == 2)
 		sort_two();
-	else
+	else if (_list.size() > 2)
 		create_main_and_pend(_list);
 
 	time_t end = clock();
@@ -517,10 +590,11 @@ void	PmergeMe::sort(int argc, char *argv[])
 		std::cout << "Before: "; print_items(_deque);
 		sort_deque();
 		sort_list();
-		std::cout << "List: "; print_items(_list);
 		std::cout << "After:  "; print_items(_deque);
 		std::cout << "Time to process a range of " << _deque.size() << 
 			" elements with std::deque : " << _deque_time << " us" << std::endl;
+		std::cout << "Time to process a range of " << _list.size() << 
+			" elements with std::list : " << _list_time << " us" << std::endl;
 	}
 	catch (std::exception & e)
 	{

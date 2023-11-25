@@ -25,15 +25,19 @@ class PmergeMe
 		double _deque_time;
 		double _list_time;
 
+		t_list::iterator	iterator(t_list & c, int index);
+		t_lists::iterator	iterator(t_lists & c, int index);
+
 		int & list(int index);
-		t_list::iterator iterator(t_list & c, int index);
 		static int & list(t_list & c, int index);
+		static t_list & list(t_lists & c, int index);
 		
 		static void	merge(t_deques & left, t_deques & right, t_deques & c);
-		static void	merge(t_list & left, t_list & right, t_list & c);
+		void		merge(t_lists & left, t_lists & right, t_lists & c);
 
 		static void	merge_sort(t_deques & c);
-		static void	merge_sort(t_list & c);
+		void	merge_sort(t_lists & c);
+
 
 		static void sort_two(t_deque & c);
 		void sort_two(void);
