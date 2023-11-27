@@ -92,7 +92,6 @@ double	BitcoinExchange::read_number(std::string & line, std::string & delim)
 		(void) e;
 		throw std::runtime_error("Error: bad input");
 	}
-	std::cout << "aaadelim: " << line.find_first_of(delim) << std::endl;
 	ss << value;
 	ss >> number;
 	if (ss.fail())
