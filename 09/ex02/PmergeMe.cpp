@@ -168,12 +168,15 @@ t_deque PmergeMe::create_indexes(t_deque & pend)
 	indexes.push_back(1);
 	while (z < (int) pend.size())
 	{
-		if (find(numbers, jacobsthal(j)))
+		int jacob;
+		if (j <= 32)
+			jacob = jacobsthal(j);
+		if (find(numbers, jacob))
 		{
-			indexes.push_back(jacobsthal(j));
-			numbers.erase(std::find(numbers.begin(), numbers.end(), jacobsthal(j)));
+			indexes.push_back(jacob);
+			numbers.erase(std::find(numbers.begin(), numbers.end(), jacob));
 		}
-		for (int i = jacobsthal(j) - 1; find(numbers, i); i--)
+		for (int i = jacob - 1; find(numbers, i); i--)
 		{
 			indexes.push_back(i);
 			numbers.erase(std::find(numbers.begin(), numbers.end(), i));
@@ -252,7 +255,7 @@ int	PmergeMe::str_to_int(const char *str)
 	std::stringstream	ss(str);
 	int n;
 	ss >> n;
-	if (ss.fail())
+	if (ss.fail() || n < 0)
 		throw std::runtime_error("invalid number found");
 	return (n);
 }
@@ -447,12 +450,15 @@ t_list PmergeMe::create_indexes(t_list & pend)
 	indexes.push_back(1);
 	while (z < (int) pend.size())
 	{
-		if (find(numbers, jacobsthal(j)))
+		int jacob;
+		if (j <= 32)
+			jacob = jacobsthal(j);
+		if (find(numbers, jacob))
 		{
-			indexes.push_back(jacobsthal(j));
-			numbers.erase(std::find(numbers.begin(), numbers.end(), jacobsthal(j)));
+			indexes.push_back(jacob);
+			numbers.erase(std::find(numbers.begin(), numbers.end(), jacob));
 		}
-		for (int i = jacobsthal(j) - 1; find(numbers, i); i--)
+		for (int i = jacob - 1; find(numbers, i); i--)
 		{
 			indexes.push_back(i);
 			numbers.erase(std::find(numbers.begin(), numbers.end(), i));
